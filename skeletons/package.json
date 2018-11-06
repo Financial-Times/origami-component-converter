@@ -1,0 +1,9 @@
+{
+  "name": "COMPONENT_NAME",
+  "version": "COMPONENT_VERSION",
+  "description": "COMPONENT_DESCRIPTION",
+  "main": "index.js",
+  "module": "index.mjs",
+  "source": "main.js",
+  "component": "COMPONENT_NAME"
+}
