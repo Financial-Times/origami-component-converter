@@ -1,3 +1,8 @@
 {
-	"organisation": "chee"
+	"organisation": "chee",
+	"componentsDirectory": "components",
+	"registries": [
+		"http://registry.origami.ft.com",
+		"https://registry.bower.io"
+	]
 }

@@ -1,4 +1,5 @@
 {
-	"dom-delegate": "@financial-times/ftdomdelegate",
-	"ftdomdelegate": "@financial-times/ftdomdelegate"
+	"ftdomdelegate": "dom-delegate",
+	"prism": "prismjs",
+	"hogan": "hogan.js"
 }

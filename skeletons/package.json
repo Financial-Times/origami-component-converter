@@ -2,8 +2,14 @@
   "name": "COMPONENT_NAME",
   "version": "COMPONENT_VERSION",
   "description": "COMPONENT_DESCRIPTION",
+  "component": "COMPONENT_ORIGAMI_NAME",
   "main": "index.js",
   "module": "index.mjs",
   "source": "main.js",
-  "component": "COMPONENT_NAME"
+  "scripts": {
+    "build": "buble -i src -d dist; ../../node_modules/.bin/microbundle -f es,cjs --compress=false --target=web"
+  },
+  "devDependencies": {
+    "buble": "^0.19.6"
+  }
 }

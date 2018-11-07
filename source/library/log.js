@@ -1,18 +1,13 @@
+// @flow
 let vees = process.argv.filter(arg => arg.startsWith('-v')).join('').match(/v/g)
 
-let userLogLevel = vees
+let userLogLevel: number = vees
 	? vees.length
 	: 0
 
-enum LogLevel {
-	None,
-	Verbose,
-	Untamed,
-	Wild
-}
-
-export default (message: any, level = LogLevel.Verbose) => {
+export default (message: any, level: number = 1) => {
 	if (userLogLevel >= level) {
+		// eslint-disable-next-line no-console
 		console.info(message)
 	}
 

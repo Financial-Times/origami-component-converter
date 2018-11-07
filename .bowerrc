@@ -1,0 +1,9 @@
+{
+  "directory": "components",
+  "registries": {
+    "search": [
+      "http://registry.origami.ft.com",
+      "https://registry.bower.io"
+    ]
+  }
+}

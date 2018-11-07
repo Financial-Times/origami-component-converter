@@ -1,21 +1,32 @@
 {
-  "name": "@financial-times/origami-module-builder",
+  "name": "origami-npm-module-maker",
   "version": "1.0.0",
   "description": "computer wee-oo-ee-oo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel source/ -d compiled/",
+    "watch": "npm run-script build -s -- -w"
   },
   "author": "chee <chee@snoot.club>",
   "license": "MIT",
   "dependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-flow": "^7.0.0",
+    "execa": "^1.0.0",
+    "get-stream": "^4.1.0",
+    "microbundle": "git@github.com:chee/microbundle#c764568",
     "minimist": "^1.2.0",
-    "semver-regex": "^2.0.0",
-    "microbundle": "^0.7.0"
+    "semver": "^5.6.0"
   },
   "devDependencies": {
-    "@types/node": "^10.12.2",
-    "lerna": "^3.4.3",
-    "typescript": "^3.1.6"
+    "@babel/core": "^7.1.5",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-fp": "^2.3.0",
+    "flow-bin": "^0.85.0",
+    "lerna": "^3.4.3"
   }
 }
