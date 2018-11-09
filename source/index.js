@@ -29,7 +29,7 @@ void async function ဪ () {
 	await spawn('bower install -F')
 	await createAndWriteLernaManifest(bower.manifest)
 	await Promise.all(componentNames.map(createAndWriteNpmManifest))
-	await spawn('lerna bootstrap')
+	await spawn('lerna bootstrap --hoist')
 	await spawn('lerna run build')
 
 	log('oh good', 0)
