@@ -35,5 +35,9 @@
 		"eslint-plugin-fp": "^2.3.0",
 		"flow-bin": "^0.85.0",
 		"lerna": "^3.4.3"
+	},
+	"scripts": {
+		"build": "babel source/ -d compiled/",
+		"watch": "npm run-script build -s -- -w"
 	}
 }
