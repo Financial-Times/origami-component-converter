@@ -1,20 +1,18 @@
 {
-  "name": "COMPONENT_NAME",
+  "name": "COMPONENT_MODULE_NAME",
   "version": "COMPONENT_VERSION",
   "description": "COMPONENT_DESCRIPTION",
   "component": "COMPONENT_ORIGAMI_NAME",
   "main": "index.js",
-  "module": "index.mjs",
-  "source": "main.js",
   "scripts": {
-    "compile": "npx buble -i ./src/js -o ./mjs --no modules; npx babel mjs --out-dir js --plugins=@babel/transform-modules-commonjs",
-    "bundle": "../../node_modules/.bin/microbundle -f es,cjs --compress=false --target=web",
-    "build": "npm run-script -s compile; npm run-script -s bundle"
+    "build": "([ -e main.js ] && babel main.js --out-file index.js || exit 0) && ([ -e src/js ] && babel src/js --out-dir js || exit 0)"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
     "@babel/plugin-transform-modules-commonjs": "^7.1.0",
-    "buble": "^0.19.6"
-  }
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-import-redirect": "^1.1.1"
+  },
+  "browserslist": "last 2 versions, not ie <11, not ie_mob <12, not op_mini all, not dead"
 }
