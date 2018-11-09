@@ -7,7 +7,6 @@ import * as lerna from './library/lerna.js'
 import * as npm from './library/npm.js'
 import * as bower from './library/bower.js'
 import * as bowerrc from './library/bowerrc.js'
-import * as buble from './library/buble.js'
 
 let createAndWriteBowerrc = compose(
 	bowerrc.write,

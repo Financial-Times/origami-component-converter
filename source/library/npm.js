@@ -164,9 +164,9 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 
 	log(`created ${name} as ${npmName}`)
 
-	let buildScript = skeleton
+	let bundleScript = skeleton
 		.scripts
-		.build
+		.bundle
 		.concat(
 			microbundle.createExternalString(npmDependencies)
 		)
@@ -175,7 +175,7 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 		...skeleton,
 		scripts: {
 			...skeleton.scripts,
-			build: buildScript
+			bundle: bundleScript
 		},
 		name: npmName,
 		version,
