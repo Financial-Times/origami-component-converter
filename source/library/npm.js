@@ -164,26 +164,48 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 
 	log(`created ${name} as ${npmName}`)
 
-	let bundleScript = skeleton
-		.scripts
-		.bundle
-		.concat(
-			microbundle.createExternalString(npmDependencies)
-		)
+	let babel = {
+		presets: [
+			[
+				'@babel/preset-env',
+				{useBuiltIns: false}
+			]
+		],
+		plugins: [
+			'@babel/plugin-transform-modules-commonjs',
+			[
+				'module:babel-plugin-module-resolver',
+				{alias: createAliases(dependencies)}
+			]
+		],
+		overrides: []
+	}
+
+	babel.overrides = [{
+		test: './main.js',
+		presets: babel.presets,
+		plugins: [
+			...babel.plugins,
+			[
+				'module:babel-plugin-import-redirect',
+				{
+					redirect: {
+						'./src/js/(.*)': './js/$1'
+					}
+				}
+			]
+		]
+	}]
 
 	return {
 		...skeleton,
-		scripts: {
-			...skeleton.scripts,
-			bundle: bundleScript
-		},
 		name: npmName,
 		version,
 		description,
 		homepage,
 		dependencies: npmDependencies,
 		component: name,
-		aliases: createAliases(dependencies)
+		babel
 	}
 }
 
