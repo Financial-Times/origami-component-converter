@@ -30,7 +30,7 @@
 		"babel-eslint": "^10.0.1",
 		"eslint": "^5.8.0",
 		"eslint-plugin-flowtype": "^3.2.0",
-		"eslint-plugin-fp": "^2.3.0",
+		"eslint-plugin-import": "^2.14.0",
 		"flow-bin": "^0.85.0",
 		"lerna": "^3.4.3"
 	},
