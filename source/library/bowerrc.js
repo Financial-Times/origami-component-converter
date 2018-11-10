@@ -1,19 +1,14 @@
 // @flow
 import type {
-	BowerManifest,
 	Bowerrc
 } from '../types/manifest.types'
 
-import settings, {
-	type Settings
-} from './settings.js'
+import settings from './settings.js'
 
 import {
 	root
 } from './directories.js'
 
-import path from 'path'
-import importJson from './import-json.js'
 import writeObject from './write-object.js'
 
 export let create = (): Bowerrc => {

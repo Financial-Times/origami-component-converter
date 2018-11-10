@@ -5,10 +5,6 @@ import type {
 } from '../types/manifest.types'
 
 import type {
-	Settings
-} from '../types/settings.types'
-
-import type {
 	Dependency
 } from '../types/dependency.types'
 
@@ -17,13 +13,12 @@ import type {
 } from '../types/dictionary.types'
 
 import {
-	root,
 	getComponentDirectory
 } from './directories.js'
 
 import path from 'path'
 import semver from 'semver'
-import hashVersionRegex from './hash-version-regex'
+import hashVersionRegex from './hash-version-regex.js'
 import importJson from './import-json.js'
 import write from './write-object.js'
 import settings from './settings.js'
@@ -31,7 +26,6 @@ import componentNames from './component-names.js'
 import mappings from './mappings.js'
 import log from './log.js'
 import * as bower from './bower.js'
-import * as microbundle from './microbundle.js'
 import entries from './entries'
 import {npm as skeleton} from './skeletons'
 

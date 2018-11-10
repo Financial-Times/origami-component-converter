@@ -4,10 +4,6 @@ import type {
 	BowerManifest
 } from '../types/manifest.types'
 
-import type {
-	Settings
-} from '../types/settings.types'
-
 import {
 	root,
 	getComponentDirectory

@@ -5,8 +5,6 @@ import {
 
 import root from './root.js'
 
-import path from 'path'
-
 import compose from './compose.js'
 
 let parse = (json: string): any =>

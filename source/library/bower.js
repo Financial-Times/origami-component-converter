@@ -1,21 +1,14 @@
 // @flow
 import type {
-	BowerManifest,
-	Bowerrc
+	BowerManifest
 } from '../types/manifest.types'
 
-import type {
-	Settings
-} from '../types/settings.types'
-
 import {
-	root,
 	getComponentDirectory
 } from './directories.js'
 
 import path from 'path'
 import importJson from './import-json.js'
-import write from './write-object.js'
 
 export let manifest: BowerManifest = importJson('bower.json')
 

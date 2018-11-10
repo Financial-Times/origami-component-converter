@@ -2,7 +2,9 @@
 import log from './library/log.js'
 import spawn from './library/spawn.js'
 import compose from './library/compose.js'
-import componentNames from './library/component-names'
+import componentNames from './library/component-names.js'
+
+import {getComponentDirectory} from './library/directories.js'
 import * as lerna from './library/lerna.js'
 import * as npm from './library/npm.js'
 import * as bower from './library/bower.js'
@@ -10,6 +12,7 @@ import * as bowerrc from './library/bowerrc.js'
 
 let createAndWriteBowerrc = compose(
 	bowerrc.write,
+	// eslint-disable-next-line no-unused-vars
 	_ => bowerrc.create()
 )
 

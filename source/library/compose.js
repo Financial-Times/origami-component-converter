@@ -9,6 +9,6 @@ let compose: $Compose = ((...functions) => (...args) =>
 		.reduceRight(
 			(result, fn) => fn(result),
 			functions[functions.length - 1](...args)
-		) : any)
+		): any)
 
 export default compose
