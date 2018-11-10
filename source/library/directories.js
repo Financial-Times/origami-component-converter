@@ -3,7 +3,7 @@
 import path from 'path'
 import settings from './settings.js'
 
-import root from './root'
+import root from './root.js'
 
 export {root}
 

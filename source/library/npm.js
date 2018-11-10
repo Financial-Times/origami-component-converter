@@ -26,8 +26,6 @@ import componentNames from './component-names.js'
 import mappings from './mappings.js'
 import log from './log.js'
 import * as bower from './bower.js'
-import entries from './entries'
-import {npm as skeleton} from './skeletons'
 
 export let getManifestPath = (componentName: string): string =>
 	path.resolve(
