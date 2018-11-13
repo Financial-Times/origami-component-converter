@@ -1,14 +1,14 @@
 // @flow
-import execa from 'execa'
+import {
+	spawn
+} from 'child_process'
 import getStream from 'get-stream'
 import log from './log.js'
 import compose from './compose.js'
 
-type SpawnOptions = {cwd: string}
-
 export default (
 	command: string,
-	options: SpawnOptions = {cwd: '.'}
+	options: child_process$spawnOpts = {cwd: '.'}
 ): Promise<void | string> => {
 	log(`begin: ${command}`)
 
@@ -17,7 +17,7 @@ export default (
 		...args
 	] = command.split(/\s+/)
 
-	let child = execa(commandName, args, options)
+	let child = spawn(commandName, args, options)
 
 	child.stdout.pipe(process.stdout)
 	child.stderr.pipe(process.stderr)

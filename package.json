@@ -11,7 +11,6 @@
 		"@babel/preset-env": "^7.1.5",
 		"@babel/preset-flow": "^7.0.0",
 		"dom-delegate": "^2.2.0",
-		"execa": "^1.0.0",
 		"fontfaceobserver": "^2.0.9",
 		"get-stream": "^4.1.0",
 		"highlight.js": "8.4.0",
