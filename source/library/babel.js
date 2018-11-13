@@ -22,7 +22,7 @@ export function createConfiguration ({aliases}: Options): Configuration {
 	return builder()
 		.preset('@babel/preset-env', {useBuiltIns: false})
 		.plugin('@babel/plugin-transform-modules-commonjs')
-		.plugin('module:babel-plugin-module-resolve', {alias: aliases})
+		.plugin('module:babel-plugin-module-resolver', {alias: aliases})
 		.override(
 			'./main.js',
 			builder()
