@@ -28,6 +28,8 @@ import {
 import {npm as skeleton} from './skeletons.js'
 import compose from './compose.js'
 
+let prerelease = '-chee.1.0.5'
+
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(componentName, 'package.json')
 
@@ -71,6 +73,10 @@ export let createDependencyName = (name: string): string => {
 }
 
 export let createDependencyVersion = ([name, version]: Dependency): string => {
+	if (components.names.includes(name)) {
+		return 'latest'
+	}
+
 	// if it is a valid semver range, use that
 	let validRange = semver.validRange(version)
 
@@ -112,18 +118,21 @@ export let createDependencyVersion = ([name, version]: Dependency): string => {
 	)
 }
 
-function stringifyDependency ([name, version]: Dependency): string {
+let stringifyDependency = ([name, version]: Dependency): string => {
 	return JSON.stringify({[name]: version})
 }
+
+let logChange = (one: Dependency, two: Dependency): string =>
+	log(
+		`${stringifyDependency(one)} -> ${stringifyDependency(two)}`,
+		2
+	)
 
 export let createDependency = ([name, version]: Dependency): Dependency => {
 	let npmName = createDependencyName(name)
 	let npmVersion = createDependencyVersion([name, version])
 
-	log(
-		`${stringifyDependency([name, version])} -> ${stringifyDependency([npmName, npmVersion])}`,
-		2
-	)
+	logChange([name, version], [npmName, npmVersion])
 
 	return [
 		npmName,
@@ -174,7 +183,7 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 	return {
 		...skeleton,
 		name: npmName,
-		version,
+		version: `${version}${prerelease}`,
 		description,
 		homepage,
 		dependencies: npmDependencies,
