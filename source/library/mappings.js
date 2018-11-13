@@ -1,7 +1,7 @@
 // @flow
 import type {
 	Dictionary
-} from '../types/dictionary.types'
+} from './dictionary.js'
 
 import importJson from './import-json.js'
 

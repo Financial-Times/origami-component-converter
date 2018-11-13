@@ -1,6 +1,6 @@
 // @flow
 
-import type {Dictionary} from './dictionary.types'
+import type {Dictionary} from '../library/dictionary.js'
 
 export type LernaManifest = {
 	packages: string[],
