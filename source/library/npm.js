@@ -17,6 +17,7 @@ import * as components from './components.js'
 import mappings from './mappings.js'
 import log from './log.js'
 import * as bower from './bower.js'
+import * as babel from './babel.js'
 import {
 	entries,
 	keys,
@@ -151,39 +152,6 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 
 	log(`created ${name} as ${npmName}`)
 
-	let babel = {
-		presets: [
-			[
-				'@babel/preset-env',
-				{useBuiltIns: false}
-			]
-		],
-		plugins: [
-			'@babel/plugin-transform-modules-commonjs',
-			[
-				'module:babel-plugin-module-resolver',
-				{alias: createAliases(dependencies)}
-			]
-		],
-		overrides: []
-	}
-
-	babel.overrides = [{
-		test: './main.js',
-		presets: babel.presets,
-		plugins: [
-			...babel.plugins,
-			[
-				'module:babel-plugin-import-redirect',
-				{
-					redirect: {
-						'./src/js/(.*)': './js/$1'
-					}
-				}
-			]
-		]
-	}]
-
 	return {
 		...skeleton,
 		name: npmName,
@@ -192,7 +160,9 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 		homepage,
 		dependencies: npmDependencies,
 		component: name,
-		babel
+		babel: babel.createConfiguration({
+			aliases: createAliases(npmDependencies)
+		})
 	}
 }
 
