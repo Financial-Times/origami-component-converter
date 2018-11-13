@@ -1,9 +1,7 @@
 // @flow
-let vees = process.argv.filter(arg => arg.startsWith('-v')).join('').match(/v/g)
+import args from './args.js'
 
-let userLogLevel: number = vees
-	? vees.length
-	: 0
+let userLogLevel = args.v
 
 export default (message: any, level: number = 1) => {
 	if (userLogLevel >= level) {
