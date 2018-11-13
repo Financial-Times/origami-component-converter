@@ -33,8 +33,23 @@ export function mapDirectories (fn: string => any, componentNames: string[] = so
 	return Promise.all(componentNames.map(perform))
 }
 
-export function spawnEach (command: string): Promise<void | any> {
-	return mapDirectories(cwd => spawn(command, {cwd}))
+export function batch (command: string | ?string => string | false, componentNames?: string[] = sort(), batchSize?: number = 8): Promise<void | any> {
+	let getCommand = (name?: string) =>
+		typeof command == 'function'
+			? command(name)
+			: command
+
+	let batches = splitEvery(batchSize, componentNames)
+
+	return batches.reduce((promise: Promise<void | any>, batch) =>
+		promise.then(() =>
+			map(name => {
+				let command = getCommand(name)
+				let cwd = resolve(name)
+				return command !== false && spawn(command, {cwd})
+			}, batch)
+		), Promise.resolve()
+	)
 }
 
 export let sort = (componentNames?: string[] = names): string[] =>
