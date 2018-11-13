@@ -5,7 +5,7 @@
   "component": "COMPONENT_ORIGAMI_NAME",
   "main": "index.js",
   "scripts": {
-    "build": "([ -e main.js ] && babel main.js --out-file index.js || exit 0) && ([ -e src/js ] && babel src/js --out-dir js || exit 0)"
+    "build": "([ -e main.js ] && babel main.js --out-file index.js || exit 0) && ([ -e src ] && babel src --out-dir dist || exit 0)"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
