@@ -164,7 +164,7 @@ export let createDependencies = (dependencies: Dependency[]) =>
 	}, {})
 
 let createAliases = (dependencies: Dictionary): Dictionary => {
-	let dependencyNames = Object.keys(dependencies || {})
+	let dependencyNames = keys(dependencies || {})
 
 	return components.names.reduce((aliases, componentName) => {
 		if (dependencyNames.includes(componentName)) {
