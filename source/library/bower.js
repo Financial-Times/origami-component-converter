@@ -4,11 +4,18 @@ import type {
 } from '../types/manifest.types'
 
 import importJson from './import-json.js'
+import compose from './compose.js'
 import * as components from './components.js'
+import {
+	keys,
+	merge
+} from './dictionary.js'
 
-export let manifest: BowerManifest = importJson('bower.json')
-
-export let componentNames: string[] = Object.keys(manifest.dependencies)
+export let getAllDependencyNames = (manifest: BowerManifest): string[] =>
+	keys(merge(
+		manifest.devDependencies || {},
+		manifest.dependencies
+	))
 
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(
@@ -16,5 +23,8 @@ export let getManifestPath = (componentName: string): string =>
 		'.bower.json'
 	)
 
-export let getManifest = (componentName: string): BowerManifest =>
-	importJson(getManifestPath(componentName))
+export let getManifest: (string => BowerManifest) =
+	compose(
+		importJson,
+		getManifestPath
+	)

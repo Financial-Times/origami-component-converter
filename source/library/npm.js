@@ -8,6 +8,7 @@ import type {
 	Dependency
 } from '../types/dependency.types'
 
+import {existsSync} from 'fs'
 import semver from 'semver'
 import hashVersionRegex from './hash-version-regex.js'
 import importJson from './import-json.js'
@@ -25,6 +26,7 @@ import {
 	type Dictionary
 } from './dictionary.js'
 import {npm as skeleton} from './skeletons.js'
+import compose from './compose.js'
 
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(componentName, 'package.json')
@@ -32,6 +34,13 @@ export let getManifestPath = (componentName: string): string =>
 
 export let getManifest = (componentName: string): NpmManifest =>
 	importJson(getManifestPath(componentName))
+export let getAllDependencyNames = (manifest: NpmManifest): string[] =>
+	keys(merge(
+		manifest.optionalDependencies || {},
+		manifest.peerDependencies || {},
+		manifest.devDependencies || {},
+		manifest.dependencies
+	))
 
 export let createComponentName = (componentName: string): string =>
 	`@${settings.organisation}/${componentName}`
