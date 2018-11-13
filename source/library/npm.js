@@ -45,6 +45,19 @@ export let getManifest: (string => NpmManifest) =
 		getManifestPath
 	)
 
+export let mergeManifests = (existing: NpmManifest, generated: NpmManifest) => {
+	let dependencies = merge(existing.dependencies || {}, generated.dependencies || {})
+	// let devDependencies = merge(existing.devDependencies || {}, generated.devDependencies || {})
+	let scripts = merge(existing.scripts || {}, generated.scripts || {})
+
+	return {
+		...generated,
+		scripts,
+		dependencies,
+		// devDependencies
+	}
+}
+
 export let getAllDependencyNames = (manifest: NpmManifest): string[] =>
 	keys(merge(
 		manifest.optionalDependencies || {},
@@ -193,6 +206,11 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 		})
 	}
 }
+
+export let mergeManifestWithExistingManifest = (manifest: NpmManifest): NpmManifest =>
+	checkHasManifest(manifest.component)
+		? mergeManifests(getManifest(manifest.component), manifest)
+		: manifest
 
 export let writeManifest = (manifest: NpmManifest): Promise<void> =>
 	write(

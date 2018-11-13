@@ -16,6 +16,7 @@ let createAndWriteBowerrc = compose(
 
 let createAndWriteNpmManifest = compose(
 	npm.writeManifest,
+	npm.mergeManifestWithExistingManifest,
 	npm.createManifest,
 	bower.getManifest
 )
