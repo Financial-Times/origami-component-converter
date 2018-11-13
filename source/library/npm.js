@@ -180,7 +180,8 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 		name,
 		version,
 		description,
-		homepage
+		homepage,
+		license
 	} = bowerManifest
 
 	let dependencies: Dictionary = bowerManifest.dependencies
@@ -200,8 +201,9 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 		dependencies: npmDependencies,
 		component: name,
 		babel: babel.createConfiguration({
-			aliases: createAliases(npmDependencies)
-		})
+			aliases: createAliases(dependencies)
+		}),
+		license
 	}
 }
 
