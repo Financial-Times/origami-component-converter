@@ -30,10 +30,19 @@ import compose from './compose.js'
 
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(componentName, 'package.json')
+
+export let checkHasManifest: (string => boolean) =
+	compose(
+		existsSync,
+		getManifestPath
 	)
 
-export let getManifest = (componentName: string): NpmManifest =>
-	importJson(getManifestPath(componentName))
+export let getManifest: (string => NpmManifest) =
+	compose(
+		importJson,
+		getManifestPath
+	)
+
 export let getAllDependencyNames = (manifest: NpmManifest): string[] =>
 	keys(merge(
 		manifest.optionalDependencies || {},
