@@ -6,7 +6,9 @@ export type Settings = {
 	/** the directory components live in */
 	componentsDirectory: string,
 	/** oh bower registries to have a look at */
-	registries: string[]
+	registries: string[],
+	/** prerelease tag (include the leading `-`) */
+	prerelease: string
 }
 
 import importJson from './import-json.js'

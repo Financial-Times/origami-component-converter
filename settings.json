@@ -4,5 +4,6 @@
 	"registries": [
 		"http://registry.origami.ft.com",
 		"https://registry.bower.io"
-	]
+	],
+	"prerelease": "-chee.1.0.7"
 }
