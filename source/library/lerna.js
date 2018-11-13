@@ -4,13 +4,9 @@ import type {
 	BowerManifest
 } from '../types/manifest.types'
 
-import {
-	root,
-	getComponentDirectory
-} from './directories.js'
-
+import * as components from './components.js'
 import write from './write-object.js'
-
+import unary from './unary.js'
 import {
 	lerna as skeleton
 } from './skeletons.js'
@@ -22,7 +18,7 @@ export let createManifest = (bowerManifest: BowerManifest): LernaManifest => {
 
 	let packages = Object
 		.keys(dependencies)
-		.map(getComponentDirectory)
+		.map(unary(components.resolve))
 
 	return {
 		...skeleton,

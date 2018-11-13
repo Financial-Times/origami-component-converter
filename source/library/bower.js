@@ -3,20 +3,16 @@ import type {
 	BowerManifest
 } from '../types/manifest.types'
 
-import {
-	getComponentDirectory
-} from './directories.js'
-
-import path from 'path'
 import importJson from './import-json.js'
+import * as components from './components.js'
 
 export let manifest: BowerManifest = importJson('bower.json')
 
 export let componentNames: string[] = Object.keys(manifest.dependencies)
 
 export let getManifestPath = (componentName: string): string =>
-	path.resolve(
-		getComponentDirectory(componentName),
+	components.resolve(
+		componentName,
 		'.bower.json'
 	)
 

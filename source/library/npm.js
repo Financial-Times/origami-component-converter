@@ -8,21 +8,12 @@ import type {
 	Dependency
 } from '../types/dependency.types'
 
-import type {
-	Dictionary
-} from '../types/dictionary.types'
-
-import {
-	getComponentDirectory
-} from './directories.js'
-
-import path from 'path'
 import semver from 'semver'
 import hashVersionRegex from './hash-version-regex.js'
 import importJson from './import-json.js'
 import write from './write-object.js'
 import settings from './settings.js'
-import componentNames from './component-names.js'
+import * as components from './components.js'
 import mappings from './mappings.js'
 import log from './log.js'
 import * as bower from './bower.js'
@@ -34,9 +25,7 @@ import {
 } from './dictionary.js'
 
 export let getManifestPath = (componentName: string): string =>
-	path.resolve(
-		getComponentDirectory(componentName),
-		'package.json'
+	components.resolve(componentName, 'package.json')
 	)
 
 export let getManifest = (componentName: string): NpmManifest =>
@@ -137,7 +126,7 @@ export let createDependencies = (dependencies: Dependency[]) =>
 let createAliases = (dependencies: Dictionary): Dictionary => {
 	let dependencyNames = Object.keys(dependencies || {})
 
-	return componentNames.reduce((aliases, componentName) => {
+	return components.names.reduce((aliases, componentName) => {
 		if (dependencyNames.includes(componentName)) {
 			aliases[componentName] = createComponentName(componentName)
 		}
