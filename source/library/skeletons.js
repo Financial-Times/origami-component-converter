@@ -1,15 +1,12 @@
 // @flow
 import type {
-	NpmManifest,
-	LernaManifest
+	NpmManifest
 } from '../types/manifest.types'
 
 import importJson from './import-json.js'
 
 let npm: NpmManifest = importJson('skeletons/package.json')
-let lerna: LernaManifest = importJson('skeletons/lerna.json')
 
 export {
-	npm,
-	lerna
+	npm
 }
