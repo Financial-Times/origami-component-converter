@@ -17,7 +17,9 @@ type ComponentManifest = {
 	/** all the component's dependencies */
 	dependencies: Dictionary,
 	/** the component's canonical homepage */
-	homepage: string
+	homepage: string,
+	/** the component's developer dependencies */
+	devDependencies?: Dictionary,
 }
 
 export type BowerManifest = ComponentManifest & {
@@ -37,7 +39,11 @@ export type NpmManifest = ComponentManifest & {
 	/** the component's origami name */
 	component: string,
 	/** aliases for packages !! */
-	aliases: Dictionary
+	aliases: Dictionary,
+	/** optional dependencies */
+	optionalDependencies?: Dictionary,
+	/** optional dependencies */
+	peerDependencies?: Dictionary,
 }
 
 export type Bowerrc = {
