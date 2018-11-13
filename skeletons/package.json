@@ -14,5 +14,6 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-import-redirect": "^1.1.1"
   },
-  "browserslist": "last 2 versions, not ie <11, not ie_mob <12, not op_mini all, not dead"
+  "browserslist": "last 2 versions, not ie <11, not ie_mob <12, not op_mini all, not dead",
+  "license": "MIT"
 }

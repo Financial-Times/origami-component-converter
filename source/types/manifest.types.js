@@ -2,11 +2,6 @@
 
 import type {Dictionary} from '../library/dictionary.js'
 
-export type LernaManifest = {
-	packages: string[],
-	version: string
-}
-
 type ComponentManifest = {
 	/** the name of the component */
 	name: string,
@@ -20,11 +15,13 @@ type ComponentManifest = {
 	homepage: string,
 	/** the component's developer dependencies */
 	devDependencies?: Dictionary,
+	/** the license the code is released onder */
+	license: string
 }
 
 export type BowerManifest = ComponentManifest & {
 	/** the component's entry points */
-	main: string[]
+	main: string | string[]
 }
 
 export type NpmManifest = ComponentManifest & {
@@ -35,11 +32,11 @@ export type NpmManifest = ComponentManifest & {
 	/** the component's precompiled entry point */
 	source: string,
 	/** scripts that can be run with `npm run-script` */
-	scripts: Dictionary,
+	scripts?: Dictionary,
 	/** the component's origami name */
 	component: string,
 	/** aliases for packages !! */
-	aliases: Dictionary,
+	aliases?: Dictionary,
 	/** optional dependencies */
 	optionalDependencies?: Dictionary,
 	/** optional dependencies */
