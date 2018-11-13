@@ -5,9 +5,7 @@ import type {
 
 import settings from './settings.js'
 
-import {
-	root
-} from './directories.js'
+import * as root from './root.js'
 
 import writeObject from './write-object.js'
 
@@ -25,6 +23,6 @@ export let create = (): Bowerrc => {
 
 export let write = (bowerrc: Bowerrc): Promise<void> =>
 	writeObject(
-		root('.bowerrc'),
+		root.resolve('.bowerrc'),
 		bowerrc
 	)

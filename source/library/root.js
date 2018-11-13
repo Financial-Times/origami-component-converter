@@ -1,7 +1,7 @@
 // @flow
 import path from 'path'
 
-export default (filename?: string): string => {
+export let resolve = (filename?: string, ...filenames?: string[]): string => {
 	let root = path.resolve(
 		__dirname,
 		'..',
@@ -9,7 +9,11 @@ export default (filename?: string): string => {
 	)
 
 	if (filename) {
-		return path.resolve(root, filename)
+		return path.resolve(
+			root,
+			filename,
+			...filenames || []
+		)
 	}
 
 	return root

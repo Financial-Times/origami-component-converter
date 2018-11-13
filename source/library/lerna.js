@@ -5,6 +5,7 @@ import type {
 } from '../types/manifest.types'
 
 import * as components from './components.js'
+import * as root from './root.js'
 import write from './write-object.js'
 import unary from './unary.js'
 import {
@@ -28,6 +29,6 @@ export let createManifest = (bowerManifest: BowerManifest): LernaManifest => {
 
 export let writeManifest = (lernaManifest: LernaManifest): Promise<void> =>
 	write(
-		root('lerna.json'),
+		root.resolve('lerna.json'),
 		lernaManifest
 	)
