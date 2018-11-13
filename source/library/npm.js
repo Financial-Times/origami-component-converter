@@ -24,6 +24,7 @@ import {
 	merge,
 	type Dictionary
 } from './dictionary.js'
+import {npm as skeleton} from './skeletons.js'
 
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(componentName, 'package.json')
@@ -36,7 +37,7 @@ export let createComponentName = (componentName: string): string =>
 	`@${settings.organisation}/${componentName}`
 
 export let createDependencyName = (name: string): string => {
-	let isOrigamiComponent = componentNames.includes(name)
+	let isOrigamiComponent = components.names.includes(name)
 
 	if (isOrigamiComponent) {
 		return createComponentName(name)
