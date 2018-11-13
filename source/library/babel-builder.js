@@ -117,8 +117,6 @@ export default class BabelBuilder {
 			? new BabelBuilder(this)
 			: new BabelBuilder()
 
-		result.test = test
-
 		override.presets.map((name, options) => {
 			result.preset(name, options)
 		})
@@ -126,6 +124,8 @@ export default class BabelBuilder {
 		override.plugins.map((name, options) => {
 			result.plugin(name, options)
 		})
+
+		result.test = test
 
 		this.overrides && this.overrides.push(result)
 
@@ -136,6 +136,7 @@ export default class BabelBuilder {
 		let configuration = {}
 		configuration.presets = this.presets.toJSON()
 		configuration.plugins = this.plugins.toJSON()
+		this.test && (configuration.test = this.test)
 		if (this.overrides) {
 			configuration.overrides = this.overrides.map(override => {
 				let object = override.toJSON()
