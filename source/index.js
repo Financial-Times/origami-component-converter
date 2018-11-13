@@ -2,7 +2,7 @@
 import log from './library/log.js'
 import spawn from './library/spawn.js'
 import compose from './library/compose.js'
-
+import args from './library/args.js'
 import * as components from './library/components.js'
 import * as npm from './library/npm.js'
 import * as bower from './library/bower.js'
@@ -22,9 +22,23 @@ let createAndWriteNpmManifest = compose(
 
 void async function ဪ () {
 	await createAndWriteBowerrc()
-	await spawn('bower install -F')
-	await components.map(createAndWriteNpmManifest)
-	// await components.spawnEach('npm publish --access public')
+	args.b && await spawn('bower install -F')
+	args.n && await components.map(createAndWriteNpmManifest)
+	args.i && await components.batch('npm install')
+	args.l && await components.batch('npm link')
+	args.l && await components.batch(name => {
+		if (!name) return false
+
+		let names = components
+			.sort([name])
+			.map(npm.createComponentName)
+			.join(' ')
+
+		return Boolean(names.length) &&
+			`npm link ${names}`
+	}, 1)
+	args.m && await components.batch('npm run-script build')
+	args.p && await components.batch('npm publish --access public')
 
 	log('oh good', 0)
 }().catch(error => {
