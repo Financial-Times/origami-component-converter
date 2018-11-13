@@ -28,8 +28,6 @@ import {
 import {npm as skeleton} from './skeletons.js'
 import compose from './compose.js'
 
-let prerelease = '-chee.1.0.5'
-
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(componentName, 'package.json')
 
@@ -196,7 +194,7 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 	return {
 		...skeleton,
 		name: npmName,
-		version: `${version}${prerelease}`,
+		version: `${version}${settings.prerelease}`,
 		description,
 		homepage,
 		dependencies: npmDependencies,
