@@ -57,9 +57,25 @@ export function values (dictionary: Dictionary): string[] {
 	return result
 }
 
-type Reducer = <Result>(Result, string, string) => Result
+export function each (fn: ((string, string) => void | any), dictionary: Dictionary): void {
+	for (let key in dictionary) {
+		fn(dictionary[key], key)
+	}
+}
 
-export let reduce = <Result>(fn: Reducer) => (dictionary: Dictionary, initialValue: Result): Result => {
+export function eachKey (fn: ((string) => void | any), dictionary: Dictionary): void {
+	for (let key in dictionary) {
+		fn(key)
+	}
+}
+
+export function eachValue (fn: ((string) => void | any), dictionary: Dictionary): void {
+	for (let key in dictionary) {
+		fn(dictionary[key])
+	}
+}
+
+export let reduce = <Result>(fn: (Result, string, string) => Result, dictionary: Dictionary, initialValue: Result): Result => {
 	let result = initialValue
 
 	for (let key in dictionary) {
@@ -67,4 +83,23 @@ export let reduce = <Result>(fn: Reducer) => (dictionary: Dictionary, initialVal
 	}
 
 	return result
+}
+
+
+export function filter (test: ((string, string) => boolean), dictionary: Dictionary): Dictionary {
+	return reduce((dictionary, key, value) => {
+		if (test(dictionary[key], key)) {
+			dictionary[key] = value
+		}
+
+		return dictionary
+	}, dictionary, {})
+}
+
+export function filterKeys (test: ((string) => boolean), dictionary: Dictionary): Dictionary {
+	return filter(key => test(key), dictionary)
+}
+
+export function filterValues (test: ((string) => boolean), dictionary: Dictionary): Dictionary {
+	return filter((_, value) => test(value), dictionary)
 }
