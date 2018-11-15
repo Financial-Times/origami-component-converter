@@ -5,13 +5,14 @@ import {
 import getStream from 'get-stream'
 import log from './log.js'
 import compose from './compose.js'
+import argv from './args.js'
 
 let createPrinter = (command: string, cwd: string) => (state: string) =>
 	log(`${state}: ${command} in ${cwd}`)
 
 export default (
 	command: string,
-	options: child_process$spawnOpts = {cwd: '.'}
+	options: child_process$spawnOpts = {cwd: argv.workingDirectory}
 ): Promise<void | string> => {
 	let print = createPrinter(command, options.cwd || '.')
 
