@@ -1,20 +1,11 @@
 // @flow
 import path from 'path'
+import createResolver from './create-resolver.js'
 
-export let resolve = (filename?: string, ...filenames?: string[]): string => {
-	let root = path.resolve(
-		__dirname,
-		'..',
-		'..'
-	)
+let root = path.resolve(__dirname,
+	'..',
+	'..'
+)
 
-	if (filename) {
-		return path.resolve(
-			root,
-			filename,
-			...filenames || []
-		)
-	}
-
-	return root
-}
+export let resolve = createResolver(root)
+export default root
