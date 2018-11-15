@@ -1,6 +1,7 @@
 // @flow
 
 import type {Dictionary} from '../library/dictionary.js'
+import type {Configuration as BabelConfiguration} from '../library/babel.js'
 
 type ComponentManifest = {
 	/** the name of the component */
@@ -39,8 +40,10 @@ export type NpmManifest = ComponentManifest & {
 	aliases?: Dictionary,
 	/** optional dependencies */
 	optionalDependencies?: Dictionary,
-	/** optional dependencies */
+	/** peer dependencies */
 	peerDependencies?: Dictionary,
+	/** babel config */
+	babel?: BabelConfiguration
 }
 
 export type Bowerrc = {
