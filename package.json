@@ -1,29 +1,39 @@
 {
-	"name": "origami-npm-module-maker",
-	"version": "1.0.0",
-	"description": "computer wee-oo-ee-oo",
-	"main": "index.js",
-	"author": "chee <chee@snoot.club>",
-	"license": "MIT",
-	"dependencies": {
-		"get-stream": "^4.1.0",
-		"semver": "^5.6.0",
-		"toposort": "^2.0.2"
-	},
-	"devDependencies": {
-		"@babel/cli": "^7.1.5",
-		"@babel/plugin-transform-modules-commonjs": "^7.1.0",
-		"@babel/preset-env": "^7.1.5",
-		"@babel/preset-flow": "^7.0.0",
-		"@babel/core": "^7.1.5",
-		"babel-eslint": "^10.0.1",
-		"eslint": "^5.8.0",
-		"eslint-plugin-flowtype": "^3.2.0",
-		"eslint-plugin-import": "^2.14.0",
-		"flow-bin": "^0.85.0"
-	},
-	"scripts": {
-		"build": "babel source/ -d compiled/",
-		"watch": "npm run-script build -s -- -w"
-	}
+  "name": "mialivpvf69",
+  "version": "1.0.0",
+  "description": "computer wee-oo-ee-oo",
+  "main": "index.js",
+  "author": "chee <chee@snoot.club>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-import-redirect": "^1.1.1",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "get-stream": "^4.1.0",
+    "libnpm": "^1.4.0",
+    "npm-packlist": "^1.1.12",
+    "semver": "^5.6.0",
+    "tar": "^4.4.8",
+    "toposort": "^2.0.2",
+    "yargs": "^12.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "flow-bin": "^0.85.0"
+  },
+  "scripts": {
+    "build": "babel source/ -d compiled/",
+    "watch": "npm run-script build -s -- -w",
+    "start": "node ."
+  },
+  "repository": {
+    "git": "git@github.com:chee/origami"
+  }
 }
