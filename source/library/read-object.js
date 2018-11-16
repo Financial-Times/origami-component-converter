@@ -1,5 +1,5 @@
 // @flow
-import {promises as fs} from 'fs'
+import * as fs from 'fs-extra'
 
 import compose from './compose.js'
 import path from 'path'
