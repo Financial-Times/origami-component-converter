@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // @flow
 import log from './library/log.js'
 import spawn from './library/spawn.js'
