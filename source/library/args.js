@@ -67,6 +67,11 @@ export default yargs
 	.options('print-components', {
 		describe: 'show components in sort order and die'
 	})
+	.options('initialise', {
+		default: true,
+		describe: 'initialise the working directory with a package.json and do an npm install',
+		type: 'boolean'
+	})
 	.options('working-directory', {
 		default: process.cwd(),
 		coerce: (directory: string) => path.resolve(process.cwd(), directory)
