@@ -80,11 +80,18 @@ export async function batch (command: string | ?string => string | false, compon
 	)
 }
 
-export let sort = (componentNames?: string[] = names): string[] =>
-	toposort(componentNames.reduce((graph, componentName) =>
+export let sort = async (componentNames?: string[] = names.targets): Promise<string[]> => {
+	let manifests = await Promise.all(componentNames.map(bower.getManifest))
+	let graph = manifests.reduce((graph, component) =>
 		graph.concat(
-			bower.getAllDependencyNames(bower.getManifest(componentName))
-				.filter(componentName => names.includes(componentName))
-				.map(dependencyName => [dependencyName, componentName])
+			bower.getAllDependencyNames(component)
+				.filter(name => names.targets.includes(name))
+				.map(dependencyName => [dependencyName, component.name])
 		), []
-	))
+	)
+
+	return Array.from(new Set([
+		...toposort(graph),
+		...names.targets
+	]))
+}
