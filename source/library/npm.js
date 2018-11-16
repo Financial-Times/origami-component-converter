@@ -198,14 +198,14 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 
 	let npmName = createComponentName(name)
 	let npmDependencies = dependencies &&
-		createDependencies(entries(dependencies))
+		await createDependencies(entries(dependencies))
 
-	log(`created ${name} as ${npmName}`)
+	log(`creating ${name}@${bowerManifest.version} as ${npmName}@${version}`)
 
 	return {
 		...skeleton,
 		name: npmName,
-		version: `${version}${settings.prerelease}`,
+		version,
 		description,
 		homepage,
 		dependencies: npmDependencies,
@@ -217,10 +217,9 @@ export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
 	}
 }
 
-export let mergeManifestWithExistingManifest = (manifest: NpmManifest): NpmManifest =>
-	checkHasManifest(manifest.component)
-		? mergeManifests(getManifest(manifest.component), manifest)
-		: manifest
+export let mergeManifestWithExistingManifest = async (manifestPromise: Promise<NpmManifest>): Promise<NpmManifest> => {
+	let manifest = await manifestPromise
+	let hasManifest = await checkHasManifest(manifest.component)
 
 export let writeManifest = (manifest: NpmManifest): Promise<void> =>
 	write(
