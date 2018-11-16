@@ -1,8 +1,8 @@
 {
-  "name": "mialivpvf69",
-  "version": "1.0.0",
-  "description": "computer wee-oo-ee-oo",
-  "main": "index.js",
+  "name": "@origami/npm",
+  "version": "0.0.0",
+  "description": "cool for cats",
+  "main": "compiled/index.js",
   "author": "chee <chee@snoot.club>",
   "license": "MPL-2.0",
   "dependencies": {
