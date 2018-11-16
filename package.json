@@ -36,5 +36,8 @@
   },
   "repository": {
     "git": "git@github.com:chee/origami"
+  },
+  "bin": {
+    "on": "compiled/index.js"
   }
 }
