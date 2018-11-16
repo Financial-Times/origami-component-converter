@@ -82,7 +82,7 @@ export default yargs
 		coerce: parseComponents
 	})
 	.options('npm-install', {
-		default: true,
+		default: false,
 		type: 'boolean',
 		describe: 'install component dependencies'
 	})
