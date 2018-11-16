@@ -9,6 +9,7 @@ import type {
 } from '../types/dependency.types'
 
 import {existsSync} from 'fs'
+import libnpm from 'libnpm'
 import semver from 'semver'
 import hashVersionRegex from './hash-version-regex.js'
 import importJson from './import-json.js'
@@ -217,3 +218,21 @@ export let writeManifest = (manifest: NpmManifest): Promise<void> =>
 		getManifestPath(manifest.component),
 		manifest
 	)
+let logProxy = new Proxy({}, {get: () => log})
+
+export let run = async (componentName: string, scriptName: string): Promise<void> => {
+	return libnpm.runScript(
+		await getLibnpmStyleManifest(componentName),
+		scriptName,
+		components.resolve(componentName),
+		{
+			log: logProxy,
+			unsafePerm: true,
+			dir: path.resolve('node_modules'),
+			config: {}
+		}
+	)
+}
+
+export let build = (componentName: string) =>
+	run(componentName, 'build-component')
