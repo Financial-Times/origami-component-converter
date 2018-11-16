@@ -6,5 +6,18 @@
   "main": "index.js",
   "scripts": {},
   "browserslist": "last 2 versions, not ie <11, not ie_mob <12, not op_mini all, not dead",
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "svg/",
+    "dist/",
+    "index.js",
+    "src/",
+    "main*",
+    "img",
+    "*.json",
+    "README*"
+  ],
+  "publishConfig": {
+    "registry": "http://localhost:4873/"
+  }
 }
