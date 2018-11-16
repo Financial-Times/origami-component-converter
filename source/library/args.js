@@ -50,6 +50,12 @@ export default yargs
 		default: false,
 		type: 'boolean'
 	})
+	.options('unpublish', {
+		alias: 'u',
+		describe: 'remove from npm registry',
+		default: false,
+		type: 'boolean'
+	})
 	.options('prerelease', {
 		describe: 'prerelease tag to use (not implemented)',
 		default: settings.prerelease
