@@ -6,8 +6,9 @@ import compose from './library/compose.js'
 import args from './library/args.js'
 import * as components from './library/components.js'
 import * as npm from './library/npm.js'
-import * as bower from './library/bower.js'
 import * as bowerrc from './library/bowerrc.js'
+import * as root from './library/root.js'
+import * as babel from './library/babel.js'
 import read from './library/read-object.js'
 import write from './library/write-object.js'
 
@@ -31,6 +32,8 @@ void async function ဪ () {
 	args.printComponents &&
 		(log((await components.sort()).join('\n'), 0), process.exit())
 
+	let {targets} = components.names
+
 	args.initialise && await copyPackageJson()
 	args.initialise && await copy(
 		root.resolve('npmrc'),
@@ -38,23 +41,28 @@ void async function ဪ () {
 	)
 	args.initialise && await spawn('npm install --no-package-lock')
 	await createAndWriteBowerrc()
-	args.b && await spawn('bower install -F')
-	args.n && await components.map(createAndWriteNpmManifest)
-	args.i && await components.batch('npm install')
-	args.l && await components.batch('npm link')
-	args.l && await components.batch(name => {
+	args.fresh && await spawn('rm -rf ./components/')
+	args.download && await spawn(`bower install -F ${targets.join(' ')}`)
+	args.createManifests && await components.sequence(npm.createAndWriteManifest)
+	args.npmInstall && await components.batch('npm install --no-package-lock', undefined, 4)
+	args.createLinks && await components.batch('npm link')
+	args.createLinks && await components.sequence(async name => {
 		if (!name) return false
 
-		let names = components
-			.sort([name])
+		let names = (
+			await components.sort([name])
+		)
 			.map(npm.createComponentName)
 			.join(' ')
 
 		return Boolean(names.length) &&
 			`npm link ${names}`
-	}, 1)
-	args.m && await components.batch('npm run-script build')
-	args.p && await components.batch('npm publish --access public')
+	})
+	args.build && await components.sequence(babel.compile)
+	args.cleanManifests && await components.sequence(npm.cleanAndWriteManifest)
+	args.unpublish && await components.batch('npm unpublish --force')
+	args.publish && await components.batch('npm publish')
+	args.hokeyCokey && await components.batch('npm unpublish --force')
 
 	log('oh good', 0)
 }().catch(error => {
