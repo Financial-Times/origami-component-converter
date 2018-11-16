@@ -57,14 +57,14 @@ export let getLibnpmStyleManifest: (string => Promise<NpmManifest>) =
 
 export let mergeManifests = (existing: NpmManifest, generated: NpmManifest) => {
 	let dependencies = merge(existing.dependencies || {}, generated.dependencies || {})
-	// let devDependencies = merge(existing.devDependencies || {}, generated.devDependencies || {})
+	let devDependencies = merge(existing.devDependencies || {}, generated.devDependencies || {})
 	let scripts = merge(existing.scripts || {}, generated.scripts || {})
 
 	return {
 		...generated,
 		scripts,
 		dependencies,
-		// devDependencies
+		devDependencies
 	}
 }
 
