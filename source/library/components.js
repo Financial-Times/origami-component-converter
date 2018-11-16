@@ -12,7 +12,9 @@ import path from 'path'
 import componentNames from './component-names.js'
 import * as workingDirectory from './working-directory.js'
 
-export let targetNames: string[] = args.components
+export let targetNames: string[] = args.components.map(name =>
+	name.split('@')[0]
+)
 
 type Names = {
 	targets: string[],
@@ -21,7 +23,7 @@ type Names = {
 }
 
 export let names: Names = {
-	targets: args.components,
+	targets: targetNames,
 	origami: componentNames,
 	all: Array.from(new Set([...targetNames, ...componentNames]))
 }
