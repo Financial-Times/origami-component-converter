@@ -56,10 +56,6 @@ export default yargs
 		default: false,
 		type: 'boolean'
 	})
-	.options('prerelease', {
-		describe: 'prerelease tag to use (not implemented)',
-		default: settings.prerelease
-	})
 	.options('organisation', {
 		describe: 'organisation to use (not implemented)',
 		default: settings.organisation
