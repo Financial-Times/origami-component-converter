@@ -10,7 +10,7 @@ import write from './write-object.js'
 export let create = (): Bowerrc => {
 	let {
 		componentsDirectory: directory,
-		registries: search
+		bowerRegistries: search
 	} = settings
 
 	return {
