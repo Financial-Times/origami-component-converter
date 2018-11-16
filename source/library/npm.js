@@ -147,9 +147,9 @@ let logChange = (one: Dependency, two: Dependency): string =>
 		2
 	)
 
-export let createDependency = ([name, version]: Dependency): Dependency => {
-	let npmName = createDependencyName(name)
-	let npmVersion = createDependencyVersion([name, version])
+export let createDependency = async ([name, version]: Dependency): Promise<Dependency> => {
+	let npmName = await createDependencyName(name)
+	let npmVersion = await createDependencyVersion([name, version])
 
 	logChange([name, version], [npmName, npmVersion])
 
@@ -159,22 +159,24 @@ export let createDependency = ([name, version]: Dependency): Dependency => {
 	]
 }
 
-export let createDependencies = (dependencies: Dependency[]) =>
-	dependencies.reduce((dependencies: Dictionary, dependency: Dependency) => {
+export let createDependencies = async (bowerDependencies: Dependency[]): Promise<Dictionary> => {
+	let npmDependencies = await Promise.all(bowerDependencies.map(createDependency))
+
+	return npmDependencies.reduce((dependencies, dependency: Dependency) => {
 		let [
 			name,
 			version
-		] = createDependency(dependency)
+		] = dependency
 
 		dependencies[name] = version
-
 		return dependencies
 	}, {})
+}
 
 let createAliases = (dependencies: Dictionary): Dictionary => {
 	let dependencyNames = keys(dependencies || {})
 
-	return components.names.reduce((aliases, componentName) => {
+	return components.names.all.reduce((aliases, componentName) => {
 		if (dependencyNames.includes(componentName)) {
 			aliases[componentName] = createComponentName(componentName)
 		}
