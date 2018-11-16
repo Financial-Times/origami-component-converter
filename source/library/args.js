@@ -39,7 +39,7 @@ export default yargs
 		default: true,
 		type: 'boolean'
 	})
-	.options('clean-manifest', {
+	.options('clean-manifests', {
 		describe: 'clean the manifest before publish',
 		default: true,
 		type: 'boolean'
