@@ -4,16 +4,7 @@
   "description": "COMPONENT_DESCRIPTION",
   "component": "COMPONENT_ORIGAMI_NAME",
   "main": "index.js",
-  "scripts": {
-    "build": "([ -e main.js ] && babel main.js --out-file index.js || exit 0) && ([ -e src ] && babel src --out-dir dist || exit 0)"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.5",
-    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
-    "babel-plugin-module-resolver": "^3.1.1",
-    "babel-plugin-import-redirect": "^1.1.1"
-  },
+  "scripts": {},
   "browserslist": "last 2 versions, not ie <11, not ie_mob <12, not op_mini all, not dead",
   "license": "MIT"
 }
