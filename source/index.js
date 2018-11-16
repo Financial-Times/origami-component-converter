@@ -11,16 +11,14 @@ import * as root from './library/root.js'
 import * as babel from './library/babel.js'
 import read from './library/read-object.js'
 import write from './library/write-object.js'
+import * as fs from 'fs-extra'
+import * as workingDirectory from './library/working-directory.js'
 
 let createAndWriteBowerrc = compose(
 	bowerrc.write,
 	// eslint-disable-next-line no-unused-vars
 	_ => bowerrc.create()
 )
-
-let copy = async (from: string, to: string) => {
-	return write(to, await read(from))
-}
 
 let copyPackageJson = async () => {
 	let rootManifest = await read(root.resolve('package.json'))
@@ -35,9 +33,9 @@ void async function ဪ () {
 	let {targets} = components.names
 
 	args.initialise && await copyPackageJson()
-	args.initialise && await copy(
+	args.initialise && await fs.copy(
 		root.resolve('npmrc'),
-		'.npmrc'
+		workingDirectory.resolve('.npmrc')
 	)
 	args.initialise && await spawn('npm install --no-package-lock')
 	await createAndWriteBowerrc()
