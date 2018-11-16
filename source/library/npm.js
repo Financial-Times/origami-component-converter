@@ -10,8 +10,6 @@ import type {
 
 import libnpm from 'libnpm'
 import semver from 'semver'
-import packlist from 'npm-packlist'
-import tar from 'tar'
 import hashVersionRegex from './hash-version-regex.js'
 import read from './read-object.js'
 import write from './write-object.js'
@@ -22,12 +20,10 @@ import log from './log.js'
 import * as bower from './bower.js'
 import * as babel from './babel.js'
 import path from 'path'
-import args from './args.js'
 import {
 	entries,
 	keys,
 	merge,
-	// filterValues,
 	type Dictionary
 } from './dictionary.js'
 import {npm as skeleton} from './skeletons.js'
@@ -243,90 +239,12 @@ export let writeManifest = async (manifestPromise: Promise<NpmManifest> | NpmMan
 	)
 }
 
-// let componentNameRegex = new RegExp(`@${settings.organisation}/(.*)`)
-//
-// let mapComponentDependencyToVersion = async (dependencies: Dictionary): Promise<Dictionary> => {
-// 	let result = {}
-// 	await Promise.all(entries(dependencies).map(async ([name, version]) => {
-// 		let componentNameMatch = componentNameRegex.exec(name)
-//
-// 		if (!componentNameMatch) {
-// 			log(`no match component regex: ${name}`, 4)
-// 			return result[name] = version
-// 		}
-//
-// 		let [, componentName] = componentNameMatch
-// 		let hasManifest = await checkHasManifest(componentName)
-//
-// 		if (!hasManifest) {
-// 			log(`no man: ${componentName}`, 4)
-// 			return result[name] = version
-// 		}
-//
-// 		let dependencyManifest = await getManifest(componentName)
-// 		let isComponent = components.includes(dependencyManifest.component)
-//
-// 		if (!isComponent) {
-// 			log(`no component: ${dependencyManifest.component}`, 4)
-// 			return result[name] = version
-// 		}
-//
-// 		log(`${name} -> ${dependencyManifest.version}`, 2)
-//
-// 		return result[name] = dependencyManifest.version
-// 	}))
-//
-// 	return result
-// }
-
-// let checkIsFileVersion = (version: string): boolean =>
-// 	version.startsWith('file:')
-
-// let not = (test: any => boolean) => (value: any): boolean =>
-// 	!test(value)
-
 export let cleanManifest = async (manifestPromise: Promise<NpmManifest>): Promise<NpmManifest> => {
 	let manifest = {...await manifestPromise}
 
-	manifest.scripts && delete manifest.scripts['build-component']
 	manifest.babel && delete manifest.babel
 
-	// manifest.dependencies = await mapComponentDependencyToVersion(
-	// 	manifest.dependencies
-	// )
-
-	// manifest.devDependencies = filterValues(
-	// 	not(checkIsFileVersion),
-	// 	manifest.devDependencies
-	// )
-
 	return manifest
-}
-
-export let pack = async (componentName: string): Promise<stream$Readable> => {
-	let componentPath = components.resolve(componentName)
-	let files = await packlist({path: componentPath})
-
-	log(`${componentName} gets ${files.join()}`, 1)
-
-	return tar.create({
-		cwd: componentPath,
-		gzip: true
-	}, files)
-}
-
-export let publish = async (componentName: string): Promise<any> => {
-	let token = process.env.NPM_TOKEN
-
-	return libnpm.publish(
-		await getManifest(componentName),
-		await pack(componentName),
-		{
-			npmVersion: 'chee-rabbits-o@0.0.0',
-			token,
-			access: 'public'
-		}
-	)
 }
 
 let logProxy = new Proxy({}, {get: () => log})
