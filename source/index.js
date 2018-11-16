@@ -8,6 +8,8 @@ import * as components from './library/components.js'
 import * as npm from './library/npm.js'
 import * as bower from './library/bower.js'
 import * as bowerrc from './library/bowerrc.js'
+import read from './library/read-object.js'
+import write from './library/write-object.js'
 
 let createAndWriteBowerrc = compose(
 	bowerrc.write,
@@ -26,6 +28,8 @@ let copyPackageJson = async () => {
 }
 
 void async function ဪ () {
+	args.printComponents &&
+		(log((await components.sort()).join('\n'), 0), process.exit())
 
 	args.initialise && await copyPackageJson()
 	args.initialise && await copy(
