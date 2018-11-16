@@ -6,9 +6,7 @@ export type Settings = {
 	/** the directory components live in */
 	componentsDirectory: string,
 	/** oh bower registries to have a look at */
-	bowerRegistries: string[],
-	/** npm registry to publish to */
-	npmRegistry?: string
+	bowerRegistries: string[]
 }
 
 import importJson from './import-json.js'
