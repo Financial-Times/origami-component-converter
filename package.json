@@ -4,7 +4,7 @@
   "description": "computer wee-oo-ee-oo",
   "main": "index.js",
   "author": "chee <chee@snoot.club>",
-  "license": "MIT",
+  "license": "MPL-2.0",
   "dependencies": {
     "babel-plugin-import-redirect": "^1.1.1",
     "babel-plugin-module-resolver": "^3.1.1",
