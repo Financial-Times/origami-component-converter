@@ -15,14 +15,24 @@ let createAndWriteBowerrc = compose(
 	_ => bowerrc.create()
 )
 
-let createAndWriteNpmManifest = compose(
-	npm.writeManifest,
-	npm.mergeManifestWithExistingManifest,
-	npm.createManifest,
-	bower.getManifest
-)
+let copy = async (from: string, to: string) => {
+	return write(to, await read(from))
+}
+
+let copyPackageJson = async () => {
+	let rootManifest = await read(root.resolve('package.json'))
+	rootManifest.name = Math.random().toString(36).slice(2)
+	return write('package.json', rootManifest)
+}
 
 void async function ဪ () {
+
+	args.initialise && await copyPackageJson()
+	args.initialise && await copy(
+		root.resolve('npmrc'),
+		'.npmrc'
+	)
+	args.initialise && await spawn('npm install --no-package-lock')
 	await createAndWriteBowerrc()
 	args.b && await spawn('bower install -F')
 	args.n && await components.map(createAndWriteNpmManifest)
