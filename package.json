@@ -8,6 +8,7 @@
   "dependencies": {
     "babel-plugin-import-redirect": "^1.1.1",
     "babel-plugin-module-resolver": "^3.1.1",
+    "fs-extra": "^7.0.1",
     "get-stream": "^4.1.0",
     "libnpm": "^1.4.0",
     "npm-packlist": "^1.1.12",
