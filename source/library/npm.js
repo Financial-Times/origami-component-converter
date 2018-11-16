@@ -8,11 +8,10 @@ import type {
 	Dependency
 } from '../types/dependency.types'
 
-import {existsSync} from 'fs'
 import libnpm from 'libnpm'
 import semver from 'semver'
 import hashVersionRegex from './hash-version-regex.js'
-import importJson from './import-json.js'
+import read from './read-object.js'
 import write from './write-object.js'
 import settings from './settings.js'
 import * as components from './components.js'
@@ -28,19 +27,29 @@ import {
 } from './dictionary.js'
 import {npm as skeleton} from './skeletons.js'
 import compose from './compose.js'
+import checkFileIsAccessible from './check-file-is-accessible.js'
 
 export let getManifestPath = (componentName: string): string =>
-	components.resolve(componentName, 'package.json')
+	components.resolve(
+		componentName,
+		'package.json'
+	)
 
-export let checkHasManifest: (string => boolean) =
+export let checkHasManifest: (string => Promise<boolean>) =
 	compose(
-		existsSync,
+		checkFileIsAccessible,
 		getManifestPath
 	)
 
-export let getManifest: (string => NpmManifest) =
+export let getManifest: (string => Promise<NpmManifest>) =
 	compose(
-		importJson,
+		read,
+		getManifestPath
+	)
+
+export let getLibnpmStyleManifest: (string => Promise<NpmManifest>) =
+	compose(
+		libnpm.readJSON,
 		getManifestPath
 	)
 
