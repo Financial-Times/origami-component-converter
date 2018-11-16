@@ -185,7 +185,7 @@ let createAliases = (dependencies: Dictionary): Dictionary => {
 	}, {...mappings})
 }
 
-export let createManifest = (bowerManifest: BowerManifest): NpmManifest => {
+export let createManifest = async (bowerManifest: BowerManifest): Promise<NpmManifest> => {
 	let {
 		name,
 		version,
@@ -221,11 +221,25 @@ export let mergeManifestWithExistingManifest = async (manifestPromise: Promise<N
 	let manifest = await manifestPromise
 	let hasManifest = await checkHasManifest(manifest.component)
 
-export let writeManifest = (manifest: NpmManifest): Promise<void> =>
-	write(
-		getManifestPath(manifest.component),
+	if (!hasManifest) {
+		return manifest
+	}
+
+	let existingManifest = await getManifest(manifest.component)
+	return mergeManifests(existingManifest, manifest)
+}
+
+export let writeManifest = async (manifestPromise: Promise<NpmManifest> | NpmManifest, path?: string): Promise<void> => {
+	let manifest = await manifestPromise
+
+	path = path || getManifestPath(manifest.component)
+
+	return write(
+		path,
 		manifest
 	)
+}
+
 export let pack = async (componentName: string): Promise<stream$Readable> => {
 	let componentPath = components.resolve(componentName)
 	let files = await packlist({path: componentPath})
@@ -270,3 +284,19 @@ export let run = async (componentName: string, scriptName: string): Promise<void
 
 export let build = (componentName: string) =>
 	run(componentName, 'build-component')
+
+export let createAndWriteManifest = async (componentName: string): Promise<void> => {
+	let bowerManifest = await bower.getManifest(componentName)
+
+	return compose(
+		writeManifest,
+		mergeManifestWithExistingManifest,
+		createManifest
+	)(bowerManifest)
+}
+
+export let cleanAndWriteManifest: (string => Promise<void>) = compose(
+	writeManifest,
+	cleanManifest,
+	getManifest
+)
