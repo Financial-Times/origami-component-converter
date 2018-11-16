@@ -30,17 +30,16 @@ void async function ဪ () {
 	args.printComponents &&
 		(log((await components.sort()).join('\n'), 0), process.exit())
 
-	let {targets} = components.names
-
 	args.initialise && await copyPackageJson()
 	args.initialise && await fs.copy(
 		root.resolve('npmrc'),
 		workingDirectory.resolve('.npmrc')
 	)
+
 	args.initialise && await spawn('npm install --no-package-lock')
 	await createAndWriteBowerrc()
 	args.fresh && await spawn('rm -rf ./components/')
-	args.download && await spawn(`bower install -F ${targets.join(' ')}`)
+	args.download && await spawn(`bower install -F ${args.components.join(' ')}`)
 	args.createManifests && await components.sequence(npm.createAndWriteManifest)
 	args.npmInstall && await components.batch('npm install --no-package-lock', undefined, 4)
 	args.createLinks && await components.batch('npm link')
