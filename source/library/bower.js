@@ -3,7 +3,8 @@ import type {
 	BowerManifest
 } from '../types/manifest.types'
 
-import importJson from './import-json.js'
+import checkFileIsAccessible from './check-file-is-accessible.js'
+import read from './read-object.js'
 import compose from './compose.js'
 import * as components from './components.js'
 import {
@@ -23,8 +24,15 @@ export let getManifestPath = (componentName: string): string =>
 		'.bower.json'
 	)
 
-export let getManifest: (string => BowerManifest) =
+export let getManifest: (string => Promise<BowerManifest>) =
 	compose(
-		importJson,
+		read,
+		getManifestPath
+	)
+
+
+export let checkHasManifest: (string => Promise<boolean>) =
+	compose(
+		checkFileIsAccessible,
 		getManifestPath
 	)
