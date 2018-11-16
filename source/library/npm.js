@@ -80,9 +80,7 @@ export let createComponentName = (componentName: string): string =>
 	`@${settings.organisation}/${componentName}`
 
 export let createDependencyName = (name: string): string => {
-	let isOrigamiComponent = components.names.includes(name)
-
-	if (isOrigamiComponent) {
+	if (components.includes(name)) {
 		return createComponentName(name)
 	}
 
