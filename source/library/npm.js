@@ -93,11 +93,7 @@ export let createDependencyName = (name: string): string => {
 	return name
 }
 
-export let createDependencyVersion = ([name, version]: Dependency): string => {
-	if (components.names.includes(name)) {
-		return 'latest'
-	}
-
+export let createDependencyVersion = async ([name, version]: Dependency): Promise<string> => {
 	// if it is a valid semver range, use that
 	let validRange = semver.validRange(version)
 
