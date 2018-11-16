@@ -116,14 +116,16 @@ export let createDependencyVersion = async ([name, version]: Dependency): Promis
 	}
 
 	// or, try getting the version bower resolved to
-	let bowerVersion = bower.getManifest(name).version
+	let bowerVersion = (await bower.checkHasManifest(name)) &&
+		(await bower.getManifest(name)).version
 
 	if (bowerVersion) {
 		return bowerVersion
 	}
 
 	// or, if there's a package json there, use that version
-	let packageJsonVersion = getManifest(name).version
+	let packageJsonVersion = (await checkHasManifest(name)) &&
+		(await getManifest(name)).version
 
 	if (packageJsonVersion) {
 		return packageJsonVersion
