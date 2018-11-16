@@ -16,8 +16,5 @@
     "img",
     "*.json",
     "README*"
-  ],
-  "publishConfig": {
-    "registry": "http://localhost:4873/"
-  }
+  ]
 }
