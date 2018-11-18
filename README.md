@@ -3,33 +3,25 @@
 ## usage
 
 ```sh
-$ git clone git@github.com:chee/origami
-$ cd origami
-$ npm install
-$ npm run-script build
-$ node . -veryverbose
+$ npm install -g sinopia
+$ sinopia
+$ npm install -g @chee/o-npm
+$ on --working-directory /tmp/origami --publish
 ```
 
 this will:
 
-1. write a `.bowerrc` file to point at the origami bower registry
-2. fetch the latest versions of all the components listed in the `bower.json`,
-3. generate a `.lerna.json`
-4. generate `package.json` files for all the components
-5. link them up to one another
-6. build them
-7. run the `obt` tests
+1. create /tmp/origami containing:
+  - `.bowerrc` pointing to the origami registry
+  - `.npmrc` pointing to the local sinopia registry
+  - `package.json` depending on babel for building the components
+2. fetch the latest versions of all the components (you can pass targets like `--components o-typography,o-colors`
+3. create `package.json` files for all the components
+4. build the components
+5. clean the `package.json`
+6. publish to your local `npm` registry
 
-you can publish them modules with
+## TODO
 
-```sh
-$ npx lerna publish
-```
-
-NOTES
-
-* currently not all the modules can be built
-* the tests are not run yet
-* the bundling will not work without using the fork of microbundle that exists
-		only on the laptop of chee
-* the entire `src` directory needs to be compiled to a `dist` directory too
+* run the obt tests on the node module version of a component
+* write literally any tests for this code
