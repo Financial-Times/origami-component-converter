@@ -1,5 +1,5 @@
 {
-  "name": "@origami/npm",
+  "name": "@chee/o-npm",
   "version": "0.0.0",
   "description": "cool for cats",
   "main": "compiled/index.js",
@@ -38,5 +38,16 @@
   },
   "bin": {
     "on": "compiled/index.js"
-  }
+  },
+  "files": [
+    "skeletons",
+    "compiled",
+    ".bowerrc",
+    "README.md",
+    "components.json",
+    "mappings.json",
+    "settings.json",
+    "npmrc",
+    "package.json"
+  ]
 }
