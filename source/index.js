@@ -37,7 +37,7 @@ void async function ဪ () {
 	)
 
 	args.initialise && await spawn('npm install --no-package-lock')
-	await createAndWriteBowerrc()
+	args.initialise && await createAndWriteBowerrc()
 	args.fresh && await spawn('rm -rf ./components/')
 	args.download && await spawn(`bower install -F ${args.components.join(' ')}`)
 	args.createManifests && await components.sequence(npm.createAndWriteManifest)
