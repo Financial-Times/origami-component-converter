@@ -6,7 +6,7 @@
 $ npm install -g sinopia
 $ sinopia
 $ npm install -g @chee/o-npm
-$ on --working-directory /tmp/origami --publish
+$ on --working-directory /tmp/origami
 ```
 
 this will:
@@ -20,6 +20,8 @@ this will:
 4. build the components
 5. clean the `package.json`
 6. publish to your local `npm` registry
+
+you can pass `--components o-typography,o-table` to build only those components.
 
 ## TODO
 
