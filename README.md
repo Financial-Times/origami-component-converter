@@ -21,9 +21,17 @@ this will:
 5. clean the `package.json`
 6. publish to your local `npm` registry
 
+
+## notes
+
 you can pass `--components o-typography,o-table` to build only those components.
 
-## TODO
+sinopia doesn't fall back to the npm registry by default for scoped packages, so
+you might need to edit `$HOME/.config/sinopia/config.yaml` and add
+`proxy: npmjs` to the `'@*/*':` section.
+
+
+## todo
 
 * run the obt tests on the node module version of a component
 * write literally any tests for this code
