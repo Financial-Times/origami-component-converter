@@ -30,6 +30,11 @@ void async function ဪ () {
 	args.printComponents &&
 		(log((await components.sort()).join('\n'), 0), process.exit())
 
+	if (args.exec) {
+		await components.batch(args.exec)
+		process.exit(0)
+	}
+
 	args.initialise && await copyPackageJson()
 	args.initialise && await fs.copy(
 		root.resolve('npmrc'),

@@ -82,4 +82,9 @@ export default yargs
 		type: 'boolean',
 		describe: 'install component dependencies'
 	})
+	.options('exec', {
+		default: '',
+		type: 'string',
+		describe: 'run a boi in each boi in order'
+	})
 	.argv
