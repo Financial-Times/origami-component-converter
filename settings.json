@@ -1,7 +1,7 @@
 {
   "organisation": "financial-times",
   "componentsDirectory": "components",
-  "registries": [
+  "bowerRegistries": [
     "http://registry.origami.ft.com",
     "https://registry.bower.io"
   ]
