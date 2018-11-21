@@ -15,6 +15,7 @@
     "main*",
     "img",
     "*.json",
-    "README*"
+    "!bower.json",
+    "!.bower.json"
   ]
 }
