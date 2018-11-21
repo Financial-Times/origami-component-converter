@@ -21,7 +21,7 @@ export let getAllDependencyNames = (manifest: BowerManifest): string[] =>
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(
 		componentName,
-		'.bower.json'
+		'bower.json'
 	)
 
 export let getManifest: (string => Promise<BowerManifest>) =
@@ -29,7 +29,6 @@ export let getManifest: (string => Promise<BowerManifest>) =
 		read,
 		getManifestPath
 	)
-
 
 export let checkHasManifest: (string => Promise<boolean>) =
 	compose(
