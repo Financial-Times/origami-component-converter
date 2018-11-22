@@ -46,7 +46,7 @@ export let getLatestReleaseMetadata = (componentName: string): Promise<?ReleaseM
 		headers: {authorization}
 	})
 		.then(response => (log(response.status), response))
-		.then(response => response.ok ? response : Promise.reject(response))
+		.then(response => response.ok || response.status === 304 ? response : Promise.reject(response))
 		.then(response => response.json())
 		.then(data => {
 			return data && {
