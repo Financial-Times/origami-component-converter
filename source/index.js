@@ -12,6 +12,7 @@ import read from './library/read-object.js'
 import write from './library/write-object.js'
 import * as fs from 'fs-extra'
 import * as workingDirectory from './library/working-directory.js'
+import * as github from './library/github.js'
 
 let copyPackageJson = async () => {
 	let rootManifest = await read(root.resolve('package.json'))
@@ -35,9 +36,8 @@ void async function ဪ () {
 	)
 
 	args.initialise && await spawn('npm install --no-package-lock')
-	args.initialise && await createAndWriteBowerrc()
 	args.fresh && await spawn('rm -rf ./components/')
-	args.download && await spawn(`bower install -F ${args.components.join(' ')}`)
+	args.download && await components.sequence(github.getLatestRelease, args.components)
 	args.createManifests && await components.sequence(npm.createAndWriteManifest)
 	args.npmInstall && await components.batch('npm install --no-package-lock', undefined, 4)
 	args.createLinks && await components.batch('npm link')
