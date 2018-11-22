@@ -9,6 +9,7 @@ import * as components from './components.js'
 import * as workingDirectory from './working-directory.js'
 import spawn from './spawn.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
+import * as fs from 'fs-extra'
 
 type Item = string | [string, any]
 
@@ -27,16 +28,18 @@ type Options = {
 }
 
 function createRedirects (aliases: Dictionary, initial: Dictionary = {}): Dictionary {
-	return reduce((redirects, componentName, moduleName) => {
+	return reduce((redirects, moduleName, componentName) => {
 		redirects[`${componentName}/src/(.*)`] = `${moduleName}/dist/$1`
 		return redirects
-	}, clone(initial), aliases)
+	}, clone(aliases), clone(initial))
 }
+
 
 export function createConfiguration ({aliases}: Options): Configuration {
 	return builder()
 		.preset('@babel/preset-env', {useBuiltIns: false})
 		.plugin('@babel/plugin-transform-modules-commonjs')
+		.plugin('module:babel-plugin-add-module-exports')
 		.plugin('module:babel-plugin-module-resolver', {alias: aliases})
 		.plugin('module:babel-plugin-import-redirect', {
 			redirect: createRedirects(aliases)
@@ -45,35 +48,95 @@ export function createConfiguration ({aliases}: Options): Configuration {
 			'./main.js',
 			builder()
 				.plugin('module:babel-plugin-import-redirect', {
-					redirect: createRedirects(
-						aliases,
-						{'./src/(.*)': './dist/$1'}
-					)
-				})
-		).toJSON()
+					redirect: createRedirects(aliases, {
+						'./src/(.*)': './dist/$1'
+					})
+				}),
+			'extend'
+		)
+		.override(
+			'./test.src/**',
+			builder()
+				.plugin('module:babel-plugin-import-redirect', {
+					redirect: createRedirects(aliases, {
+						'../src/(.*)': './dist/$1',
+						'../main': './index.js'
+					})
+				}),
+			!'extend'
+		)
+		.toJSON()
+}
+
+type CreateBabelBuildStringOptions = {
+	source: string,
+	type?: 'dir' | 'file',
+	destination: string
+}
+
+let createBabelBuildString = ({
+	source,
+	type = 'dir',
+	destination
+}: CreateBabelBuildStringOptions) =>
+	[
+		'babel',
+		source,
+		`--out-${type}`,
+		destination,
+		'--configFile=./package.json',
+		'--copy-files'
+	].join(' ')
+
+let babelSpawnEnvironmentPath =
+	`${workingDirectory.binaryDirectory}:${process.env.PATH || ''}`
+
+// fixme: slowboi
+let babelSpawnEnvironment = {
+	...process.env,
+	PATH: babelSpawnEnvironmentPath
 }
 
 export async function compile (componentName: string): Promise<any> {
 	let componentDirectory = components.resolve(componentName)
-	let workingBin = workingDirectory.resolve('node_modules/.bin')
-	let babelOptions = {
+	let componentResolve = components.resolve.bind(null, componentName)
+	let babelSpawnOptions = {
 		cwd: componentDirectory,
-		env: {
-			...process.env,
-			PATH: `${workingBin}:${process.env.PATH||''}`
-		}
+		env: babelSpawnEnvironment
 	}
-	let mainJsFile = components.resolve(componentName, 'main.js')
-	let sourceDirectory = components.resolve(componentName, 'src')
+	let mainJsFile = componentResolve('main.js')
+	let sourceDirectory = componentResolve('src')
+	let testDirectory = componentResolve('test')
+	let sourceTestDirectory = componentResolve('test.src')
 
 	await checkFileIsAccessible(sourceDirectory) && await spawn(
-		'babel src --out-dir dist --configFile=./package.json',
-		babelOptions
+		createBabelBuildString({
+			source: 'src',
+			destination: 'dist'
+		}),
+		babelSpawnOptions
 	)
 
-	return (await checkFileIsAccessible(mainJsFile)) && spawn(
-		'babel main.js --out-file index.js --configFile=./package.json',
-		babelOptions
+	await checkFileIsAccessible(mainJsFile) && await spawn(
+		createBabelBuildString({
+			source: 'main.js',
+			destination: 'index.js',
+			type: 'file'
+		}),
+		babelSpawnOptions
 	)
+
+	if (await checkFileIsAccessible(testDirectory)) {
+		await checkFileIsAccessible(sourceTestDirectory) &&
+			await fs.remove(sourceTestDirectory)
+		await fs.move(testDirectory, sourceTestDirectory)
+		return spawn(
+			createBabelBuildString({
+				source: 'test.src',
+				destination: 'test',
+			}),
+			babelSpawnOptions
+		)
+	}
 }
 // TODO programattic babel boi
