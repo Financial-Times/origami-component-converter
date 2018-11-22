@@ -149,7 +149,7 @@ let stringifyDependency = ([name, version]: Dependency): string => {
 
 let logChange = (one: Dependency, two: Dependency): string =>
 	log(
-		`${stringifyDependency(one)} -> ${stringifyDependency(two)}`,
+		`${stringifyDependency(one)} -> ${stringifyDependency(two)}`.grey,
 		2
 	)
 
@@ -208,7 +208,7 @@ export let createManifest = async (bowerManifest: BowerManifest): Promise<NpmMan
 	let npmDependencies = dependencies &&
 		await createDependencies(entries(dependencies))
 
-	log(`creating ${name}@${version} as ${npmName}@${version}`)
+	log(`creating ${name}@${version} as ${npmName}@${version}`.cyan)
 
 	return {
 		...skeleton,
