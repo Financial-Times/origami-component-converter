@@ -187,11 +187,13 @@ let createAliases = (dependencies: Dictionary): Dictionary => {
 export let createManifest = async (bowerManifest: BowerManifest): Promise<NpmManifest> => {
 	let {
 		name,
-		version,
+		version: bowerVersion,
 		description,
 		homepage,
 		license
 	} = bowerManifest
+
+	let version = (await components.getVersion(name)) || bowerVersion
 
 	let dependencies: Dictionary = bowerManifest.dependencies
 
@@ -199,7 +201,7 @@ export let createManifest = async (bowerManifest: BowerManifest): Promise<NpmMan
 	let npmDependencies = dependencies &&
 		await createDependencies(entries(dependencies))
 
-	log(`creating ${name}@${bowerManifest.version} as ${npmName}@${version}`)
+	log(`creating ${name}@${version} as ${npmName}@${version}`)
 
 	return {
 		...skeleton,
