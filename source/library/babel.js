@@ -10,6 +10,7 @@ import * as workingDirectory from './working-directory.js'
 import spawn from './spawn.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
 import * as fs from 'fs-extra'
+import args from './args.js'
 
 type Item = string | [string, any]
 
@@ -134,7 +135,7 @@ export async function compile (componentName: string): Promise<any> {
 		babelSpawnOptions
 	)
 
-	if (await checkFileIsAccessible(testDirectory)) {
+	if (args.test && await checkFileIsAccessible(testDirectory)) {
 		await checkFileIsAccessible(sourceTestDirectory) &&
 			await fs.remove(sourceTestDirectory)
 		await fs.move(testDirectory, sourceTestDirectory)
