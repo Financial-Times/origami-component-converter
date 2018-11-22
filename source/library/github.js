@@ -30,8 +30,16 @@ let fetch = makeFetch.defaults({
 	cacheManager: workingDirectory.resolve('github-fetch-cache')
 })
 
-let getComponentApiUri = (componentName: string): string =>
-	`https://api.github.com/repos/${args.organisation}/${componentName}/releases/latest`
+let getComponentApiUri = (componentName: string, version?: string): string =>
+	[
+		'https://api.github.com/repos',
+		args.githubOrganisation,
+		componentName,
+		'releases',
+		version
+			? `tags/v${version}`
+			: 'latest'
+	].join('/')
 
 // memo
 let getAuthorization = () => {
@@ -44,9 +52,13 @@ let getAuthorization = () => {
 	}())
 }
 
-export let getLatestReleaseMetadata = (componentName: string): Promise<?ReleaseMetadata> => {
-	let url = getComponentApiUri(componentName)
+export let getLatestReleaseMetadata = (componentName: string, version?: string): Promise<?ReleaseMetadata> => {
+	let url = getComponentApiUri(componentName, version)
 	let authorization = getAuthorization()
+
+	log(
+		`gonna try getting metadata for ${componentName}${version ? `@${version}` : ''} from ${url}`
+	)
 
 	return fetch(url, {
 		headers: {authorization}
@@ -73,17 +85,12 @@ export let getLatestReleaseMetadata = (componentName: string): Promise<?ReleaseM
 }
 
 
-export let getLatestRelease = async (componentName: string): Promise<void> => {
-	let releaseMetadata = await getLatestReleaseMetadata(componentName)
+export let getLatestRelease = async (componentName: string, requestedVersion?: string): Promise<void> => {
+	let metadata = await getLatestReleaseMetadata(componentName, requestedVersion)
 
-	if (!releaseMetadata) {
+	if (!metadata) {
 		throw `got no release metadata for ${componentName}`
 	}
-
-	let {
-		version,
-		tarballUrl
-	} = releaseMetadata
 
 	let componentDirectory = components.resolve(componentName)
 
@@ -91,15 +98,15 @@ export let getLatestRelease = async (componentName: string): Promise<void> => {
 
 	await outputFile(
 		components.getVersionFilePath(componentName),
-		version
+		metadata.version
 	)
 
-	log(`downloading ${componentName}@${version} from ${tarballUrl}`)
+	log(`downloading ${componentName}@${metadata.version} from ${metadata.tarballUrl}`)
 
 	let authorization = getAuthorization()
 
 	await new Promise((yay, nay) =>
-		fetch(tarballUrl, {
+		fetch(metadata.tarballUrl, {
 			headers: {authorization}
 		})
 			.then(logResponseCode)
@@ -107,7 +114,7 @@ export let getLatestRelease = async (componentName: string): Promise<void> => {
 			.then(response =>
 				response.body.pipe(tar.extract({
 					cwd: componentDirectory,
-					newer: true,
+					// newer: true,
 					strip: 1,
 					onentry: entry => log(entry.path)
 				}))

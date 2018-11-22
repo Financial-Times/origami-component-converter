@@ -14,6 +14,9 @@ import * as workingDirectory from './working-directory.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
 import * as fs from 'fs-extra'
 
+export let targetEntries: [string, ?string][] =
+	args.components.map(name => name.split('@'))
+
 export let targetNames: string[] = args.components.map(name =>
 	name.split('@')[0]
 )
