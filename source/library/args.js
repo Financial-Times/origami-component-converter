@@ -56,8 +56,12 @@ export default yargs
 		default: false,
 		type: 'boolean'
 	})
-	.options('organisation', {
-		describe: 'organisation to use (not implemented)',
+	.options('npm-organisation', {
+		describe: 'npm organisation to use',
+		default: settings.organisation
+	})
+	.options('github-organisation', {
+		describe: 'github organisation to use for downloading component tarballs',
 		default: settings.organisation
 	})
 	.options('print-components', {
