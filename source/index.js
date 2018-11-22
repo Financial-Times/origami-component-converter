@@ -68,7 +68,7 @@ void async function ဪ () {
 	})
 	args.build && await components.sequence(babel.compile)
 	args.cleanManifests && await components.sequence(npm.cleanAndWriteManifest)
-	args.test && await components.batch('obt t', undefined, 1)
+	args.test && await components.batch('npx obt t', undefined, 1)
 	args.unpublish && await components.batch(`npm unpublish --force ${registryArgument}`)
 	args.publish && await components.batch(`npm publish ${registryArgument}`)
 	args.hokeyCokey && await components.batch('npm unpublish --force')
