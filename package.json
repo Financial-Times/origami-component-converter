@@ -10,7 +10,6 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "bower-registry-client": "^1.0.0",
     "dotenv": "^6.1.0",
-    "follow-redirects": "^1.5.10",
     "fs-extra": "^7.0.1",
     "get-stream": "^4.1.0",
     "libnpm": "^1.4.0",
