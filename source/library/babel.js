@@ -37,33 +37,39 @@ function createRedirects (aliases: Dictionary, initial: Dictionary = {}): Dictio
 
 export function createConfiguration ({aliases}: Options): Configuration {
 	return builder()
-		.preset('@babel/preset-env', {useBuiltIns: false})
-		.plugin('@babel/plugin-transform-modules-commonjs')
-		.plugin('module:babel-plugin-add-module-exports')
-		.plugin('module:babel-plugin-module-resolver', {alias: aliases})
-		.plugin('module:babel-plugin-import-redirect', {
-			redirect: createRedirects(aliases)
-		})
 		.override(
-			'./main.js',
+			builder()
+				.preset('@babel/preset-env', {useBuiltIns: false})
+				.plugin('@babel/plugin-transform-modules-commonjs')
+				.plugin('module:babel-plugin-add-module-exports')
+				.plugin('module:babel-plugin-module-resolver', {alias: aliases})
+				.plugin('module:babel-plugin-import-redirect', {
+					redirect: createRedirects(aliases)
+				})
+				.exclude('./test.src/**')
+		)
+		.override(
 			builder()
 				.plugin('module:babel-plugin-import-redirect', {
 					redirect: createRedirects(aliases, {
 						'./src/(.*)': './dist/$1'
 					})
-				}),
-			'extend'
+				})
+				.test('./main.js')
 		)
 		.override(
-			'./test.src/**',
 			builder()
 				.plugin('module:babel-plugin-import-redirect', {
+					root: 'test',
 					redirect: createRedirects(aliases, {
-						'../src/(.*)': './dist/$1',
-						'../main': './index.js'
+						'../src/(.*)': '../dist/$1',
+						// look away. this is a hack to get o-banner to compile. i am very
+						// confused
+						'./fixture/main': './fixture/main',
+						'../main': '../index.js'
 					})
-				}),
-			!'extend'
+				})
+				.test('./test.src/**')
 		)
 		.toJSON()
 }
