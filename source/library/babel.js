@@ -37,12 +37,14 @@ function createRedirects (aliases: Dictionary, initial: Dictionary = {}): Dictio
 
 export function createConfiguration ({aliases}: Options): Configuration {
 	return builder()
+		.plugin('module:babel-plugin-module-resolver', {
+			alias: aliases
+		})
 		.override(
 			builder()
 				.preset('@babel/preset-env', {useBuiltIns: false})
 				.plugin('@babel/plugin-transform-modules-commonjs')
 				.plugin('module:babel-plugin-add-module-exports')
-				.plugin('module:babel-plugin-module-resolver', {alias: aliases})
 				.plugin('module:babel-plugin-import-redirect', {
 					redirect: createRedirects(aliases)
 				})
