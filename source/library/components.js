@@ -11,6 +11,8 @@ import splitEvery from './split-every.js'
 import path from 'path'
 import componentNames from './component-names.js'
 import * as workingDirectory from './working-directory.js'
+import checkFileIsAccessible from './check-file-is-accessible.js'
+import * as fs from 'fs-extra'
 
 export let targetNames: string[] = args.components.map(name =>
 	name.split('@')[0]
@@ -96,4 +98,18 @@ export let sort = async (componentNames?: string[] = names.targets): Promise<str
 		...toposort(graph),
 		...names.targets
 	]))
+}
+
+export let getVersionFilePath = (componentName: string): string =>
+	resolve(componentName, 'version')
+
+export let getVersion = async (componentName: string): Promise<string | null> => {
+	let versionFilePath = getVersionFilePath(componentName)
+	let exists = await checkFileIsAccessible(versionFilePath)
+
+	if (exists) {
+		return fs.readFile(versionFilePath, 'utf-8')
+	}
+
+	return null
 }
