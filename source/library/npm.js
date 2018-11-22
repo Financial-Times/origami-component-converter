@@ -252,6 +252,7 @@ export let cleanManifest = async (manifestPromise: Promise<NpmManifest>): Promis
 	let manifest = {...await manifestPromise}
 
 	manifest.babel && delete manifest.babel
+	manifest.browserslist && delete manifest.browserlist
 
 	return manifest
 }
