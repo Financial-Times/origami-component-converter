@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // @flow
+require('dotenv').config()
 import log from './library/log.js'
 import spawn from './library/spawn.js'
 import compose from './library/compose.js'
