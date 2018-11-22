@@ -6,6 +6,11 @@
   "author": "chee <chee@snoot.club>",
   "license": "MPL-2.0",
   "dependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
+    "@babel/preset-env": "^7.1.5",
+    "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-import-redirect": "^1.1.1",
     "babel-plugin-module-resolver": "^3.1.1",
     "bower-registry-client": "^1.0.0",
@@ -21,10 +26,6 @@
     "yargs": "^12.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.6",
-    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
-    "@babel/preset-env": "^7.1.5",
     "@babel/preset-flow": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
