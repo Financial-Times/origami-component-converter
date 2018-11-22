@@ -48,7 +48,10 @@ export type NpmManifest = ComponentManifest & {
 
 export type Bowerrc = {
 	directory: string,
-	registries: {
+	registry: {
 		search: string[]
+	},
+	ca: {
+		search: []
 	}
 }
