@@ -1,5 +1,4 @@
 // @flow
-// using make-fetch-happen because it was already in the tree
 import makeFetch from 'make-fetch-happen'
 import semver from 'semver'
 import tar from 'tar'
@@ -8,10 +7,7 @@ import {
 	mkdirp,
 	outputFile
 } from 'fs-extra'
-import {https} from 'follow-redirects'
 import log from './log.js'
-import getStream from 'get-stream'
-import Url from 'url'
 import args from './args.js'
 import * as workingDirectory from './working-directory.js'
 
@@ -19,6 +15,16 @@ type ReleaseMetadata = {
 	version: string,
 	tarballUrl: string
 }
+
+let logResponseCode = response => (
+	log(response.status),
+	response
+)
+
+let checkResponseGoodness = response =>
+	response.ok || response.status === 304
+		? response
+		: Promise.reject(response)
 
 let fetch = makeFetch.defaults({
 	cacheManager: workingDirectory.resolve('github-fetch-cache')
@@ -45,8 +51,8 @@ export let getLatestReleaseMetadata = (componentName: string): Promise<?ReleaseM
 	return fetch(url, {
 		headers: {authorization}
 	})
-		.then(response => (log(response.status), response))
-		.then(response => response.ok || response.status === 304 ? response : Promise.reject(response))
+		.then(logResponseCode)
+		.then(checkResponseGoodness)
 		.then(response => response.json())
 		.then(data => {
 			return data && {
@@ -92,29 +98,24 @@ export let getLatestRelease = async (componentName: string): Promise<void> => {
 
 	let authorization = getAuthorization()
 
-	let requestOptions = {
-		...Url.parse(tarballUrl),
-		headers: {
-			authorization,
-			'user-agent': '@chee/o-npm v0.0.1'
-		}
-	}
-
-	await new Promise((yay, nay) => {
-		https.get(requestOptions, response => {
-			log(response.statusCode)
-			if (response.statusCode >= 400) {
-				nay(getStream(response))
-			}
-			response.pipe(tar.extract({
-				cwd: componentDirectory,
-				newer: true,
-				strip: 1,
-				onentry: entry => log(entry.path)
-			}))
-				.on('finish', yay)
-				.on('error', nay)
+	await new Promise((yay, nay) =>
+		fetch(tarballUrl, {
+			headers: {authorization}
 		})
-			.on('error', nay)
-	})
+			.then(logResponseCode)
+			.then(checkResponseGoodness)
+			.then(response =>
+				response.body.pipe(tar.extract({
+					cwd: componentDirectory,
+					newer: true,
+					strip: 1,
+					onentry: entry => log(entry.path)
+				}))
+			)
+			.then(stream => {
+				stream.on('finish', yay)
+				stream.on('error', nay)
+			})
+			.catch(nay)
+	)
 }
