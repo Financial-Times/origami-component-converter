@@ -3,3 +3,5 @@
 /compiled/
 /.npmrc
 /tmp/
+/.env
+/github-fetch-cache/
