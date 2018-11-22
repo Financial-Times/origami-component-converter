@@ -13,7 +13,7 @@ import semver from 'semver'
 import hashVersionRegex from './hash-version-regex.js'
 import read from './read-object.js'
 import write from './write-object.js'
-import settings from './settings.js'
+import args from './args.js'
 import * as components from './components.js'
 import mappings from './mappings.js'
 import log from './log.js'
@@ -76,7 +76,7 @@ export let getAllDependencyNames = (manifest: NpmManifest): string[] =>
 	))
 
 export let createComponentName = (componentName: string): string =>
-	`@${settings.organisation}/${componentName}`
+	`@${args.npmOrganisation}/${componentName}`
 
 export let createDependencyName = (name: string): string => {
 	if (components.includes(name)) {
