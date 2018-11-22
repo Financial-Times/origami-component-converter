@@ -74,6 +74,7 @@ class BuilderList {
 
 export default class BabelBuilder {
 	test: ?string
+	exclude: ?string
 
 	plugins: BuilderList
 
@@ -112,23 +113,18 @@ export default class BabelBuilder {
 		return this.plugins.get(name)
 	}
 
-	override (test: string, override: BabelBuilder, extend: boolean = true): BabelBuilder {
-		let result = extend
-			? new BabelBuilder(this)
-			: new BabelBuilder()
+	test (test: string | string[]): BabelBuilder {
+		this.test = test
+		return this
+	}
 
-		override.presets.map((name, options) => {
-			result.preset(name, options)
-		})
+	exclude (test: string | string[]): BabelBuilder {
+		this.exclude = test
+		return this
+	}
 
-		override.plugins.map((name, options) => {
-			result.plugin(name, options)
-		})
-
-		result.test = test
-
-		this.overrides && this.overrides.push(result)
-
+	override (override: BabelBuilder): BabelBuilder {
+		this.overrides && this.overrides.push(override)
 		return this
 	}
 
@@ -137,6 +133,7 @@ export default class BabelBuilder {
 		configuration.presets = this.presets.toJSON()
 		configuration.plugins = this.plugins.toJSON()
 		this.test && (configuration.test = this.test)
+		this.exclude && (configuration.exclude = this.exclude)
 		if (this.overrides) {
 			configuration.overrides = this.overrides.map(override => {
 				let object = override.toJSON()
