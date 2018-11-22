@@ -38,7 +38,7 @@ let getAuthorization = () => {
 	let authorization
 	return (function () {
 		authorization || (
-			authorization = `token ${process.env.GITHUB_TOKEN || ''}`
+			authorization = `token ${process.env.ON_GITHUB_TOKEN || ''}`
 		)
 		return authorization
 	}())
