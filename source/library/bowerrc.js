@@ -15,7 +15,11 @@ export let create = (): Bowerrc => {
 
 	return {
 		directory,
-		registries: {search}
+		registry: {search},
+		ca: {
+			search: []
+		},
+		cache: '/tmp'
 	}
 }
 
