@@ -52,7 +52,7 @@ void async function ဪ () {
 		Promise.resolve()
 	)
 	args.createManifests && await components.sequence(npm.createAndWriteManifest)
-	args.npmInstall && await components.batch(npmInstallCommand, undefined, 4)
+	args.npmInstall && await components.batch(npmInstallCommand, undefined, 2)
 	args.createLinks && await components.batch('npm link')
 	args.createLinks && await components.sequence(async name => {
 		if (!name) return false
@@ -68,6 +68,7 @@ void async function ဪ () {
 	})
 	args.build && await components.sequence(babel.compile)
 	args.cleanManifests && await components.sequence(npm.cleanAndWriteManifest)
+	args.test && await components.batch('obt t', undefined, 1)
 	args.unpublish && await components.batch(`npm unpublish --force ${registryArgument}`)
 	args.publish && await components.batch(`npm publish ${registryArgument}`)
 	args.hokeyCokey && await components.batch('npm unpublish --force')

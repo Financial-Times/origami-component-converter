@@ -96,4 +96,9 @@ export default yargs
 		type: 'string',
 		describe: 'the npm registry to use'
 	})
+	.options('test', {
+		default: false,
+		type: 'boolean',
+		describe: 'run `obt t` on the components after build'
+	})
 	.argv
