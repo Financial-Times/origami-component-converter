@@ -65,6 +65,7 @@ export default yargs
 		default: settings.organisation
 	})
 	.options('print-components', {
+		alias: 'ls',
 		describe: 'show components in sort order and die'
 	})
 	.options('initialise', {
