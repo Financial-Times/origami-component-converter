@@ -83,7 +83,7 @@ export let createDependencyName = (name: string): string => {
 		return createComponentName(name)
 	}
 
-	let mapping = mappings[name]
+	let mapping = mappings.name[name]
 
 	if (mapping) {
 		return mapping
@@ -93,6 +93,13 @@ export let createDependencyName = (name: string): string => {
 }
 
 export let createDependencyVersion = async ([name, version]: Dependency): Promise<string> => {
+	// if there is a mapping, use that
+	let mappingVersion = mappings.version[version]
+
+	if (mappingVersion) {
+		return mappingVersion
+	}
+
 	// if it is a valid semver range, use that
 	let validRange = semver.validRange(version)
 
@@ -181,7 +188,7 @@ let createAliases = (dependencies: Dictionary): Dictionary => {
 		}
 
 		return aliases
-	}, {...mappings})
+	}, {...mappings.name})
 }
 
 export let createManifest = async (bowerManifest: BowerManifest): Promise<NpmManifest> => {

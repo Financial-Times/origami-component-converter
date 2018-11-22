@@ -5,6 +5,11 @@ import type {
 
 import importJson from './import-json.js'
 
-let mappings: Dictionary = importJson('mappings.json')
+type Mappings = {
+	name: Dictionary,
+	version: Dictionary
+}
+
+let mappings: Mappings = importJson('mappings.json')
 
 export default mappings
