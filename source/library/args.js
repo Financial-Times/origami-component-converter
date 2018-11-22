@@ -87,4 +87,9 @@ export default yargs
 		type: 'string',
 		describe: 'run a boi in each boi in order'
 	})
+	.options('npm-registry', {
+		default: 'http://localhost:4873',
+		type: 'string',
+		describe: 'the npm registry to use'
+	})
 	.argv
