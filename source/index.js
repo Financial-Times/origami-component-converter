@@ -3,23 +3,15 @@
 require('dotenv').config()
 import log from './library/log.js'
 import spawn from './library/spawn.js'
-import compose from './library/compose.js'
 import args from './library/args.js'
 import * as components from './library/components.js'
 import * as npm from './library/npm.js'
-import * as bowerrc from './library/bowerrc.js'
 import * as root from './library/root.js'
 import * as babel from './library/babel.js'
 import read from './library/read-object.js'
 import write from './library/write-object.js'
 import * as fs from 'fs-extra'
 import * as workingDirectory from './library/working-directory.js'
-
-let createAndWriteBowerrc = compose(
-	bowerrc.write,
-	// eslint-disable-next-line no-unused-vars
-	_ => bowerrc.create()
-)
 
 let copyPackageJson = async () => {
 	let rootManifest = await read(root.resolve('package.json'))
