@@ -7,8 +7,18 @@ import log from './log.js'
 import compose from './compose.js'
 import argv from './args.js'
 
-let createPrinter = (command: string, cwd: string) => (state: string) =>
-	log(`${state}: ${command} in ${cwd}`)
+type State = 'go' | 'yay' | 'oh no'
+
+let getStateColor = (state: State) => {
+	switch (state) {
+	case 'go': return 'magenta'
+	case 'yay': return 'green'
+	case 'oh no': return 'red'
+	}
+}
+
+export let createPrinter = (command: string, cwd: string) => (state: State) =>
+	log(`${state}: ${command} in ${cwd}`[getStateColor(state)])
 
 export default (
 	command: string,
@@ -16,7 +26,7 @@ export default (
 ): Promise<void | string> => {
 	let print = createPrinter(command, options.cwd || '.')
 
-	print('gogo')
+	print('go')
 
 	let [
 		commandName,
@@ -29,15 +39,24 @@ export default (
 	child.stderr.pipe(process.stderr)
 
 	return new Promise((resolve, reject) => {
-		let yay = compose(resolve, getStream, child => child.stdout)
-		let nay = compose(reject, getStream, child => child.stderr)
+		let yay = compose(
+			resolve,
+			getStream,
+			child => child.stdout
+		)
+
+		let nay = compose(
+			reject,
+			getStream,
+			child => child.stderr
+		)
 
 		child.on('exit', code => {
 			if (code === 0) {
-				print('good')
+				print('yay')
 				return yay(child)
 			} else {
-				print('ohno')
+				print('oh no')
 				return nay(child)
 			}
 		})

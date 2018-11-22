@@ -72,7 +72,7 @@ void async function ဪ () {
 	args.publish && await components.batch(`npm publish ${registryArgument}`)
 	args.hokeyCokey && await components.batch('npm unpublish --force')
 
-	log('oh good', 0)
+	log('oh good'.rainbow, 0)
 }().catch(error => {
 	log(error, 0)
 	process.exit(22)

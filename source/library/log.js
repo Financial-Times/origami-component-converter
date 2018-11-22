@@ -1,5 +1,6 @@
 // @flow
 import args from './args.js'
+import 'colors'
 
 let userLogLevel = args.v
 
