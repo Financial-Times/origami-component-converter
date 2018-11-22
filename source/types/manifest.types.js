@@ -43,7 +43,8 @@ export type NpmManifest = ComponentManifest & {
 	/** peer dependencies */
 	peerDependencies?: Dictionary,
 	/** babel config */
-	babel?: BabelConfiguration
+	babel?: BabelConfiguration,
+	browserslist?: string
 }
 
 export type Bowerrc = {
