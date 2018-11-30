@@ -73,8 +73,8 @@ class BuilderList {
 }
 
 export default class BabelBuilder {
-	test: ?string
-	exclude: ?string
+	includeTest: ?(string | string[])
+	excludeTest: ?(string | string[])
 
 	plugins: BuilderList
 
@@ -114,12 +114,12 @@ export default class BabelBuilder {
 	}
 
 	test (test: string | string[]): BabelBuilder {
-		this.test = test
+		this.includeTest = test
 		return this
 	}
 
 	exclude (test: string | string[]): BabelBuilder {
-		this.exclude = test
+		this.excludeTest = test
 		return this
 	}
 
@@ -132,8 +132,8 @@ export default class BabelBuilder {
 		let configuration = {}
 		configuration.presets = this.presets.toJSON()
 		configuration.plugins = this.plugins.toJSON()
-		this.test && (configuration.test = this.test)
-		this.exclude && (configuration.exclude = this.exclude)
+		this.includeTest && (configuration.test = this.includeTest)
+		this.excludeTest && (configuration.exclude = this.excludeTest)
 		if (this.overrides) {
 			configuration.overrides = this.overrides.map(override => {
 				let object = override.toJSON()

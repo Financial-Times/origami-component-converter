@@ -20,7 +20,8 @@ export type Plugin = Item
 export type Configuration = {
 	presets: Preset[],
 	plugins: Plugin[],
-	test?: string,
+	test?: string | string[],
+	exclude?: string | string[],
 	overrides?: Configuration[]
 }
 
