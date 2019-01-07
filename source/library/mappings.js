@@ -10,6 +10,6 @@ type Mappings = {
 	version: Dictionary
 }
 
-let mappings: Mappings = importJson('mappings.json')
+let mappings: Mappings = importJson('config/mappings.json')
 
 export default mappings
