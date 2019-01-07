@@ -1,25 +1,25 @@
 // @flow
-
+import * as fs from 'fs-extra'
+import toposort from 'toposort'
+import path from 'path'
 import settings from './settings.js'
 import spawn from './spawn.js'
 import compose from './compose.js'
-import args from './args.js'
 import * as bower from './bower.js'
-import toposort from 'toposort'
 import unary from './unary.js'
 import splitEvery from './split-every.js'
-import path from 'path'
 import componentNames from './component-names.js'
-import * as workingDirectory from './working-directory.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
-import * as fs from 'fs-extra'
+import yargs from 'yargs'
+import convertOptions from './convert-options.js'
+
+let {argv} = yargs.options(convertOptions)
 
 export let targetEntries: [string, ?string][] =
-	args.components.map(name => name.split('@'))
+	argv.components.map(name => name.split('@'))
 
-export let targetNames: string[] = args.components.map(name =>
-	name.split('@')[0]
-)
+export let targetNames: string[] =
+	argv.components.map(name => name.split('@')[0])
 
 type Names = {
 	targets: string[],
@@ -36,7 +36,7 @@ export let names: Names = {
 export let includes = (componentName: string): boolean =>
 	names.all.includes(componentName)
 
-export let componentsDirectory = workingDirectory.resolve(
+export let componentsDirectory = path.resolve(
 	settings.componentsDirectory
 )
 
