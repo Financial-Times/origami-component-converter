@@ -42,6 +42,7 @@ export function createConfiguration ({aliases}: Options): Configuration {
 		})
 		.override(
 			builder()
+				.preset('module:babel-preset-es3')
 				.preset('@babel/preset-env', {useBuiltIns: false})
 				.plugin('@babel/plugin-transform-modules-commonjs')
 				.plugin('module:babel-plugin-add-module-exports')
@@ -96,20 +97,20 @@ let createBabelBuildString = ({
 		'--copy-files'
 	].join(' ')
 
-let babelSpawnEnvironmentPath =
+let getBabelSpawnEnvironmentPath = () =>
 	`${workingDirectory.resolve('node_modules', '.bin')}:${process.env.PATH || ''}`
 
 // fixme: slowboi
 let babelSpawnEnvironment = {
 	...process.env,
-	PATH: babelSpawnEnvironmentPath
+	PATH: getBabelSpawnEnvironmentPath
 }
 
 type BabelCompileOptions = {
 	test: boolean
 }
 
-export async function compile (componentName: string, options: BabelCompileOptions = {test: true}): Promise<any> {
+export async function compile (componentName: string, options: BabelCompileOptions = {test: false}): Promise<any> {
 	let componentDirectory = components.resolve(componentName)
 	let componentResolve = components.resolve.bind(null, componentName)
 	let babelSpawnOptions = {
