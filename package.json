@@ -51,9 +51,7 @@
     "compiled",
     ".bowerrc",
     "README.md",
-    "components.json",
-    "mappings.json",
-    "settings.json",
+    "config/*",
     "npmrc",
     "package.json"
   ]
