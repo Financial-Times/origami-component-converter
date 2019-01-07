@@ -29,7 +29,7 @@ import {npm as skeleton} from './skeletons.js'
 import compose from './compose.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
 import chalk from 'chalk'
-import yargs from 'yargs'
+import settings from './settings.js'
 
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(
@@ -76,7 +76,7 @@ export let getAllDependencyNames = (manifest: NpmManifest): string[] =>
 		manifest.dependencies
 	))
 
-export let createComponentName = (componentName: string, npmOrganisation?: string = yargs.argv.npmOrganisation): string =>
+export let createComponentName = (componentName: string, npmOrganisation?: string = settings.npmOrganisation): string =>
 	`@${npmOrganisation}/${componentName}`
 
 export let createDependencyName = (name: string): string => {

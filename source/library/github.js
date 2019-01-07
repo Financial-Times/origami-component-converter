@@ -8,7 +8,7 @@ import {
 	outputFile
 } from 'fs-extra'
 import log from './log.js'
-import yargs from 'yargs'
+import settings from './settings.js'
 import * as workingDirectory from './working-directory.js'
 
 type ReleaseMetadata = {
@@ -26,7 +26,7 @@ let checkResponseGoodness = response =>
 		? response
 		: Promise.reject(response)
 
-export let getBranchTarballUri = (componentName: string, branch: string, githubOrganisation?: string = yargs.argv.githubOrganisation): string =>
+export let getBranchTarballUri = (componentName: string, branch: string, githubOrganisation?: string = settings.githubOrganisation): string =>
 	[
 		'https://github.com',
 		githubOrganisation,
@@ -35,7 +35,7 @@ export let getBranchTarballUri = (componentName: string, branch: string, githubO
 		`${branch}.tar.gz`
 	].join('/')
 
-let getComponentApiUri = (componentName: string, version?: string, githubOrganisation?: string = yargs.argv.githubOrganisation): string =>
+let getComponentApiUri = (componentName: string, version?: string, githubOrganisation?: string = settings.githubOrganisation): string =>
 	[
 		'https://api.github.com/repos',
 		githubOrganisation,
@@ -98,14 +98,16 @@ export let getLatestReleaseMetadata = (componentName: string, version?: string):
 		})
 }
 
-export let extractTarballFromUri = async (uri: string, destination: string): Promise<void> =>
-	new Promise((yay, nay) =>
+export let extractTarballFromUri = async (uri: string, destination: string): Promise<void> => {
+	let cwd = workingDirectory.resolve(destination)
+	await mkdirp(cwd)
+	return new Promise((yay, nay) =>
 		getContentsOfUri(uri)
 			.then(logResponseCode)
 			.then(checkResponseGoodness)
 			.then(response =>
 				response.body.pipe(tar.extract({
-					cwd: destination,
+					cwd,
 					strip: 1,
 					onentry: entry => log(entry.path)
 				}))
@@ -116,6 +118,7 @@ export let extractTarballFromUri = async (uri: string, destination: string): Pro
 			})
 			.catch(nay)
 	)
+}
 
 export let getLatestRelease = async (componentName: string, requestedVersion?: string): Promise<void> => {
 	let metadata = await getLatestReleaseMetadata(componentName, requestedVersion)
