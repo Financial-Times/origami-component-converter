@@ -8,7 +8,7 @@ import {
 	outputFile
 } from 'fs-extra'
 import log from './log.js'
-import convertOptions from './convert-options.js'
+import yargs from 'yargs'
 import * as workingDirectory from './working-directory.js'
 
 type ReleaseMetadata = {
@@ -26,11 +26,7 @@ let checkResponseGoodness = response =>
 		? response
 		: Promise.reject(response)
 
-let fetch = makeFetch.defaults({
-	cacheManager: workingDirectory.resolve('.github-fetch-cache')
-})
-
-let getBranchTarballUri = (componentName: string, branch: string, githubOrganisation?: string = convertOptions.githubOrganisation): string =>
+export let getBranchTarballUri = (componentName: string, branch: string, githubOrganisation?: string = yargs.argv.githubOrganisation): string =>
 	[
 		'https://github.com',
 		githubOrganisation,
@@ -39,19 +35,16 @@ let getBranchTarballUri = (componentName: string, branch: string, githubOrganisa
 		`${branch}.tar.gz`
 	].join('/')
 
-let getComponentApiUri = (componentName: string, version?: string, githubOrganisation?: string = convertOptions.githubOrganisation): string => {
-	if (!version || semver.valid(version)) {
-		return [
-			'https://api.github.com/repos',
-			githubOrganisation,
-			componentName,
-			'releases',
-			version
-				? `tags/v${version}`
-				: 'latest'
-		].join('/')
-	}
-}
+let getComponentApiUri = (componentName: string, version?: string, githubOrganisation?: string = yargs.argv.githubOrganisation): string =>
+	[
+		'https://api.github.com/repos',
+		githubOrganisation,
+		componentName,
+		'releases',
+		version
+			? `tags/v${version}`
+			: 'latest'
+	].join('/')
 
 
 // memo
@@ -65,17 +58,25 @@ let getAuthorization = () => {
 	}())
 }
 
+let getCacheManager = () =>
+	workingDirectory.resolve('.github-fetch-cache')
+
+let getContentsOfUri = (uri: string) =>
+	makeFetch(uri, {
+		headers: {
+			authorization: getAuthorization()
+		},
+		cacheManager: getCacheManager()
+	})
+
 export let getLatestReleaseMetadata = (componentName: string, version?: string): Promise<?ReleaseMetadata> => {
 	let url = getComponentApiUri(componentName, version)
-	let authorization = getAuthorization()
 
 	log(
 		`gonna try getting metadata for ${componentName}${version ? `@${version}` : ''} from ${url}`
 	)
 
-	return fetch(url, {
-		headers: {authorization}
-	})
+	return getContentsOfUri(url)
 		.then(logResponseCode)
 		.then(checkResponseGoodness)
 		.then(response => response.json())
@@ -97,19 +98,27 @@ export let getLatestReleaseMetadata = (componentName: string, version?: string):
 		})
 }
 
+export let extractTarballFromUri = async (uri: string, destination: string): Promise<void> =>
+	new Promise((yay, nay) =>
+		getContentsOfUri(uri)
+			.then(logResponseCode)
+			.then(checkResponseGoodness)
+			.then(response =>
+				response.body.pipe(tar.extract({
+					cwd: destination,
+					strip: 1,
+					onentry: entry => log(entry.path)
+				}))
+			)
+			.then(stream => {
+				stream.on('finish', yay)
+				stream.on('error', nay)
+			})
+			.catch(nay)
+	)
 
 export let getLatestRelease = async (componentName: string, requestedVersion?: string): Promise<void> => {
-	let metadata
-
-	if (!requestedVersion || semver.valid(requestedVersion)) {
-		metadata = await getLatestReleaseMetadata(componentName, requestedVersion)
-	} else {
-		log(`warning, treating version as branchname in ${componentName}@${requestedVersion}`)
-		metadata = {
-			tarballUrl: getBranchTarballUri(componentName, requestedVersion),
-			version: requestedVersion
-		}
-	}
+	let metadata = await getLatestReleaseMetadata(componentName, requestedVersion)
 
 	if (!metadata) {
 		throw `got no release metadata for ${componentName}`
@@ -126,25 +135,5 @@ export let getLatestRelease = async (componentName: string, requestedVersion?: s
 
 	log(`downloading ${componentName}@${metadata.version} from ${metadata.tarballUrl}`)
 
-	let authorization = getAuthorization()
-
-	await new Promise((yay, nay) =>
-		fetch(metadata.tarballUrl, {
-			headers: {authorization}
-		})
-			.then(logResponseCode)
-			.then(checkResponseGoodness)
-			.then(response =>
-				response.body.pipe(tar.extract({
-					cwd: componentDirectory,
-					strip: 1,
-					onentry: entry => log(entry.path)
-				}))
-			)
-			.then(stream => {
-				stream.on('finish', yay)
-				stream.on('error', nay)
-			})
-			.catch(nay)
-	)
+	return extractTarballFromUri(metadata.tarballUrl, componentDirectory)
 }
