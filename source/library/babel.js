@@ -100,12 +100,6 @@ let createBabelBuildString = ({
 let getBabelSpawnEnvironmentPath = () =>
 	`${workingDirectory.resolve('node_modules', '.bin')}:${process.env.PATH || ''}`
 
-// fixme: slowboi
-let babelSpawnEnvironment = {
-	...process.env,
-	PATH: getBabelSpawnEnvironmentPath
-}
-
 type BabelCompileOptions = {
 	test: boolean
 }
@@ -115,7 +109,10 @@ export async function compile (componentName: string, options: BabelCompileOptio
 	let componentResolve = components.resolve.bind(null, componentName)
 	let babelSpawnOptions = {
 		cwd: componentDirectory,
-		env: babelSpawnEnvironment
+		env: {
+			...process.env,
+			PATH: getBabelSpawnEnvironmentPath()
+		}
 	}
 	let mainJsFile = componentResolve('main.js')
 	let sourceDirectory = componentResolve('src')
