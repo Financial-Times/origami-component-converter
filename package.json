@@ -1,5 +1,5 @@
 {
-  "name": "@chee/o-npm",
+  "name": "@chee/occ",
   "version": "0.0.1",
   "description": "cool for cats",
   "main": "compiled/index.js",
@@ -42,7 +42,7 @@
     "git": "git@github.com:chee/origami"
   },
   "bin": {
-    "on": "compiled/index.js"
+    "occ": "compiled/index.js"
   },
   "files": [
     "skeletons",
