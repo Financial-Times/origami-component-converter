@@ -12,7 +12,7 @@ import type {
 } from 'yargs'
 import chalk from 'chalk-animation'
 
-export let command = 'convert <component> <branch> <semver>'
+export let command = 'create <component> <branch> <semver>'
 export let desc = 'fetch an origami component at branch and create an npm version'
 
 export let builder = (yargs: Argv) =>
