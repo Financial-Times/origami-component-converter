@@ -30,3 +30,4 @@ rules:
     - error
     - allow:
       - error
+      - info
