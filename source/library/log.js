@@ -1,8 +1,11 @@
 // @flow
-import args from './args.js'
-import 'colors'
+import yargs from 'yargs'
 
-let userLogLevel = args.v
+let userLogLevel = yargs
+	.count('verbose')
+	.alias('v', 'verbose')
+	.argv
+	.v
 
 export default (message: any, level: number = 1) => {
 	if (userLogLevel >= level) {

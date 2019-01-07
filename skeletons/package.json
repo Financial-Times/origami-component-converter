@@ -1,11 +1,10 @@
 {
-  "name": "COMPONENT_MODULE_NAME",
-  "version": "COMPONENT_VERSION",
-  "description": "COMPONENT_DESCRIPTION",
-  "component": "COMPONENT_ORIGAMI_NAME",
+  "name": "~~component-module-name~~",
+  "version": "~~component-version~~",
+  "description": "~~component-description~~",
+  "component": "~~component-origami-name~~",
   "main": "index.js",
   "scripts": {},
-  "browserslist": "last 2 versions, not ie <11, not ie_mob <12, not op_mini all, not dead",
   "license": "MIT",
   "files": [
     "svg/",
