@@ -13,7 +13,6 @@ import semver from 'semver'
 import hashVersionRegex from './hash-version-regex.js'
 import read from './read-object.js'
 import write from './write-object.js'
-import convertOptions from './convert-options.js'
 import * as components from './components.js'
 import mappings from './mappings.js'
 import log from './log.js'
@@ -30,6 +29,7 @@ import {npm as skeleton} from './skeletons.js'
 import compose from './compose.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
 import chalk from 'chalk'
+import yargs from 'yargs'
 
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(
@@ -76,7 +76,7 @@ export let getAllDependencyNames = (manifest: NpmManifest): string[] =>
 		manifest.dependencies
 	))
 
-export let createComponentName = (componentName: string, npmOrganisation?: string = convertOptions.npmOrganisation): string =>
+export let createComponentName = (componentName: string, npmOrganisation?: string = yargs.argv.npmOrganisation): string =>
 	`@${npmOrganisation}/${componentName}`
 
 export let createDependencyName = (name: string): string => {
@@ -285,6 +285,11 @@ export let createAndWriteManifest = async (componentName: string): Promise<void>
 		createManifest
 	)(bowerManifest)
 }
+
+export let createRegistryArgument = (registry: string): string =>
+	registry
+		? `--registry=${String(registry)}`
+		: ''
 
 export let cleanAndWriteManifest: (string => Promise<void>) = compose(
 	writeManifest,
