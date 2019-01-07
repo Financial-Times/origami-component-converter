@@ -3,7 +3,7 @@ import * as npm from '../library/npm.js'
 import unary from '../library/unary.js'
 
 export let command = 'link'
-export let desc = 'npm link all the deps globally'
+export let describe = 'npm link all the deps globally'
 
 export let handler = async function () {
 	await components.batch('npm link')
