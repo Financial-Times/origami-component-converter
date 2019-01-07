@@ -2,21 +2,13 @@
 import * as fs from 'fs-extra'
 import toposort from 'toposort'
 import * as workingDirectory from './working-directory.js'
-import settings from './settings.js'
 import spawn from './spawn.js'
 import compose from './compose.js'
 import * as bower from './bower.js'
 import unary from './unary.js'
 import splitEvery from './split-every.js'
-import componentNames from './component-names.js'
+import origamiComponentNames from './component-names.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
-import convertOptions from './convert-options.js'
-
-export let targetEntries: [string, ?string][] =
-	convertOptions.components.map(name => name.split('@'))
-
-export let targetNames: string[] =
-	convertOptions.components.map(name => name.split('@')[0])
 
 type Names = {
 	targets: string[],
@@ -25,24 +17,25 @@ type Names = {
 }
 
 export let names: Names = {
-	targets: targetNames,
-	origami: componentNames,
-	all: Array.from(new Set([...targetNames, ...componentNames]))
+	targets: origamiComponentNames,
+	origami: origamiComponentNames,
+	all: origamiComponentNames
+}
+
+export let setTargets = (componentNames: string[]) => {
+	names.targets = componentNames
+	names.all = Array.from(new Set([...names.targets, ...componentNames]))
 }
 
 export let includes = (componentName: string): boolean =>
 	names.all.includes(componentName)
 
-export let componentsDirectory = workingDirectory.resolve(
-	settings.componentsDirectory
-)
-
-export let resolve = (componentName: string, ...files?: string[]): string =>
-	workingDirectory.resolve(
-		componentsDirectory,
-		componentName,
-		...files || []
-	)
+export let resolve = (componentName: string, ...files?: string[]): string => (console.log({componentName, files}),
+workingDirectory.resolve(
+	'components',
+	componentName,
+	...files || []
+))
 
 export async function map (fn: string => any, componentNames?: string[]): Promise<void | any> {
 	componentNames = componentNames || await sort()
