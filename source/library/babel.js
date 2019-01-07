@@ -36,7 +36,6 @@ function createRedirects (aliases: Dictionary, initial: Dictionary = {}): Dictio
 	}, clone(aliases), clone(initial))
 }
 
-
 export function createConfiguration ({aliases}: Options): Configuration {
 	return builder()
 		.plugin('module:babel-plugin-module-resolver', {
