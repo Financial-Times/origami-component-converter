@@ -6,7 +6,7 @@ import getStream from 'get-stream'
 import log from './log.js'
 import compose from './compose.js'
 import chalk from 'chalk'
-import convertOptions from './convert-options.js'
+import * as workingDirectory from './working-directory.js'
 
 type State = 'go' | 'yay' | 'oh no'
 
@@ -24,7 +24,7 @@ export let createPrinter = (command: string, cwd: string) => (state: State) =>
 
 export default (
 	command: string,
-	options: child_process$spawnOpts = {cwd: convertOptions.workingDirectory}
+	options: child_process$spawnOpts = {cwd: workingDirectory.resolve()}
 ): Promise<void | string> => {
 	let print = createPrinter(command, options.cwd || '.')
 
