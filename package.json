@@ -38,7 +38,7 @@
   "scripts": {
     "build": "babel source/ -d compiled/",
     "watch": "npm run-script build -s -- -w",
-    "start": "node ."
+    "start": "npm run build && node $npm_package_main"
   },
   "repository": {
     "git": "git@github.com:chee/origami"
