@@ -52,7 +52,7 @@ let getAuthorization = () => {
 	let authorization
 	return (function () {
 		authorization || (
-			authorization = `token ${process.env.ON_GITHUB_TOKEN || ''}`
+			authorization = `token ${process.env.OCC_GITHUB_TOKEN || ''}`
 		)
 		return authorization
 	}())
