@@ -11,58 +11,54 @@ import type {
 	Argv
 } from 'yargs'
 import chalk from 'chalk-animation'
-import settings from '../library/settings.js'
 
-export let command = 'convert <component> <branch> <at>'
+export let command = 'convert <component> <branch> <semver>'
 export let desc = 'fetch an origami component at branch and create an npm version'
 
 export let builder = (yargs: Argv) =>
 	yargs
 		.positional('component', {
+			default: true,
 			describe: 'the component to operate on',
 			type: 'string'
 		})
 		.positional('branch', {
+			default: true,
 			alias: 'brank',
 			describe: 'the branch to fetch',
 			type: 'string'
 		})
-		.positional('at', {
-			describe: 'the version (or semver increment) to release',
+		.positional('semver', {
+			default: true,
+			describe: 'the version to create',
 			type: 'string'
 		})
-		.option('npm-registry', {
-			default: 'http://localhost:4873',
-			type: 'string',
-			describe: 'the npm registry to use'
-		})
-		.option('npm-organisation', {
-			describe: 'npm organisation to use',
-			default: settings.npmOrganisation
-		})
-		.option('github-organisation', {
-			describe: 'github organisation to use',
-			default: settings.githubOrganisation
-		})
-		.argv
 
-export let handler = async function ဪ (args: Argv) {
-	args.components && components.setTargets(args.components)
+export let handler = async function ဪ (argv: Argv) {
+	let {
+		component,
+		brank,
+		githubOrganisation,
+		semver: version
+	} = argv
+
+	components.setTargets([component])
 	await workingDirectory.copyPackageJson()
 
-	let registryArgument = npm.createRegistryArgument(args.npmRegistry)
-
-	await spawn(`npm install ${registryArgument}`)
-	// await fs.remove(components.resolve())
+	await spawn('npm install')
+	await fs.remove(components.resolve())
 
 	await github.extractTarballFromUri(await github.getBranchTarballUri(
-		args.component,
-		args.brank,
-		args.githubOrganisation
-	))
+		component,
+		brank,
+		githubOrganisation
+	), components.resolve(component))
 
-	await npm.createAndWriteManifest(args.component)
-	await babel.compile(args.component)
+	await fs.outputFile(components.getVersionFilePath(component), version)
+
+	await npm.createAndWriteManifest(component)
+	await babel.compile(component)
+	await npm.cleanAndWriteManifest(component)
 
 	let hooray = chalk.rainbow('oh good')
 	hooray.start()
