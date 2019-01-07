@@ -3,61 +3,68 @@
 import spawn from '../library/spawn.js'
 import * as components from '../library/components.js'
 import * as npm from '../library/npm.js'
-import * as root from '../library/root.js'
 import * as babel from '../library/babel.js'
-import read from '../library/read-object.js'
-import write from '../library/write-object.js'
 import * as fs from 'fs-extra'
 import * as github from '../library/github.js'
+import * as workingDirectory from '../library/working-directory.js'
 import type {
 	Argv
 } from 'yargs'
 import chalk from 'chalk-animation'
-import * as convertOptions from '../library/convert-options.js'
+import settings from '../library/settings.js'
 
-export let command = ['convert', '$0']
-export let desc = 'convert origami components to npm modules and publish'
-export let builder = yargs => yargs.options(convertOptions.options).help()
+export let command = 'convert <component> <branch> <at>'
+export let desc = 'fetch an origami component at branch and create an npm version'
 
-let copyPackageJson = async () => {
-	let rootManifest = await read(root.resolve('package.json'))
-	rootManifest.name = Math.random().toString(36).slice(2)
-	return write('package.json', rootManifest)
-}
+export let builder = (yargs: Argv) =>
+	yargs
+		.positional('component', {
+			describe: 'the component to operate on',
+			type: 'string'
+		})
+		.positional('branch', {
+			alias: 'brank',
+			describe: 'the branch to fetch',
+			type: 'string'
+		})
+		.positional('at', {
+			describe: 'the version (or semver increment) to release',
+			type: 'string'
+		})
+		.option('npm-registry', {
+			default: 'http://localhost:4873',
+			type: 'string',
+			describe: 'the npm registry to use'
+		})
+		.option('npm-organisation', {
+			describe: 'npm organisation to use',
+			default: settings.npmOrganisation
+		})
+		.option('github-organisation', {
+			describe: 'github organisation to use',
+			default: settings.githubOrganisation
+		})
+		.argv
 
 export let handler = async function ဪ (args: Argv) {
-	args.initialise && await copyPackageJson()
+	args.components && components.setTargets(args.components)
+	await workingDirectory.copyPackageJson()
 
-	let registryArgument = args.npmRegistry
-		? `--registry=${String(args.npmRegistry)}`
-		: ''
+	let registryArgument = npm.createRegistryArgument(args.npmRegistry)
 
-	let npmInstallCommand =
-		[
-			'npm install',
-			'--no-package-lock',
-			registryArgument
-		].join(' ')
+	await spawn(`npm install ${registryArgument}`)
+	// await fs.remove(components.resolve())
 
-	args.initialise && await spawn(npmInstallCommand)
-	args.fresh && await fs.remove(components.componentsDirectory)
-	args.download && await components.targetEntries.reduce(
-		(promise, [name, version]) => promise.then(() => version
-			? github.getLatestRelease(name, version)
-			: github.getLatestRelease(name)
-		),
-		Promise.resolve()
-	)
-	args.createManifests && await components.sequence(npm.createAndWriteManifest)
-	args.npmInstall && await components.batch(npmInstallCommand, undefined, 2)
+	await github.extractTarballFromUri(await github.getBranchTarballUri(
+		args.component,
+		args.brank,
+		args.githubOrganisation
+	))
 
-	args.build && await components.sequence(component => babel.compile(component, args))
-	args.cleanManifests && await components.sequence(npm.cleanAndWriteManifest)
-	args.test && await components.batch('obt t', undefined, 1)
-	args.unpublish && await components.batch(`npm unpublish --force ${registryArgument}`)
-	args.publish && await components.batch(`npm publish ${registryArgument}`)
+	await npm.createAndWriteManifest(args.component)
+	await babel.compile(args.component)
 
 	let hooray = chalk.rainbow('oh good')
 	hooray.start()
-	setTimeout(hooray.stop.bind(hooray), 5000)
+	setImmediate(hooray.stop.bind(hooray))
 }
