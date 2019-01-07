@@ -10,7 +10,6 @@ import type {
 	Argv
 } from 'yargs'
 import chalk from 'chalk-animation'
-import settings from '../library/settings.js'
 import origamiComponentNames from '../library/component-names.js'
 import * as workingDirectory from '../library/working-directory.js'
 
@@ -43,16 +42,6 @@ export let options = {
 		describe: 'remove from npm registry',
 		default: false,
 		type: 'boolean'
-	},
-	npmOrganisation: {
-		global: false,
-		describe: 'npm organisation to use',
-		default: settings.npmOrganisation
-	},
-	githubOrganisation: {
-		global: false,
-		describe: 'github organisation to use',
-		default: settings.githubOrganisation
 	},
 	npmRegistry: {
 		default: 'http://localhost:4873',
