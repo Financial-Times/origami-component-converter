@@ -69,7 +69,8 @@ export let handler = async function ဪ (args: Argv) {
 		return Boolean(names.length) &&
 			`npm link ${names}`
 	})
-	args.build && await components.sequence(babel.compile)
+
+	args.build && await components.sequence(component => babel.compile(component, args))
 	args.cleanManifests && await components.sequence(npm.cleanAndWriteManifest)
 	args.test && await components.batch('obt t', undefined, 1)
 	args.unpublish && await components.batch(`npm unpublish --force ${registryArgument}`)

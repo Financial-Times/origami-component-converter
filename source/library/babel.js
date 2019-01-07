@@ -6,11 +6,10 @@ import {
 } from './dictionary.js'
 import {builder} from './babel-builder.js'
 import * as components from './components.js'
-import * as workingDirectory from './working-directory.js'
 import spawn from './spawn.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
 import * as fs from 'fs-extra'
-import args from './args.js'
+import * as path from 'path'
 
 type Item = string | [string, any]
 
@@ -98,7 +97,7 @@ let createBabelBuildString = ({
 	].join(' ')
 
 let babelSpawnEnvironmentPath =
-	`${workingDirectory.binaryDirectory}:${process.env.PATH || ''}`
+	`${path.resolve('node_modules', '.bin')}:${process.env.PATH || ''}`
 
 // fixme: slowboi
 let babelSpawnEnvironment = {
@@ -106,7 +105,11 @@ let babelSpawnEnvironment = {
 	PATH: babelSpawnEnvironmentPath
 }
 
-export async function compile (componentName: string): Promise<any> {
+type BabelCompileOptions = {
+	test: boolean
+}
+
+export async function compile (componentName: string, options: BabelCompileOptions = {test: true}): Promise<any> {
 	let componentDirectory = components.resolve(componentName)
 	let componentResolve = components.resolve.bind(null, componentName)
 	let babelSpawnOptions = {
@@ -135,7 +138,7 @@ export async function compile (componentName: string): Promise<any> {
 		babelSpawnOptions
 	)
 
-	if (args.test && await checkFileIsAccessible(testDirectory)) {
+	if (options.test && await checkFileIsAccessible(testDirectory)) {
 		await checkFileIsAccessible(sourceTestDirectory) &&
 			await fs.remove(sourceTestDirectory)
 		await fs.move(testDirectory, sourceTestDirectory)
