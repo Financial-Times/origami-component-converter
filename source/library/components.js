@@ -30,12 +30,12 @@ export let setTargets = (componentNames: string[]) => {
 export let includes = (componentName: string): boolean =>
 	names.all.includes(componentName)
 
-export let resolve = (componentName: string, ...files?: string[]): string => (console.log({componentName, files}),
-workingDirectory.resolve(
-	'components',
-	componentName,
-	...files || []
-))
+export let resolve = (componentName: string, ...files?: string[]): string =>
+	workingDirectory.resolve(
+		'components',
+		componentName,
+		...files || []
+	)
 
 export async function map (fn: string => any, componentNames?: string[]): Promise<void | any> {
 	componentNames = componentNames || await sort()
