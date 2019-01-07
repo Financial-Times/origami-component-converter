@@ -42,10 +42,11 @@ export function createConfiguration ({aliases}: Options): Configuration {
 		})
 		.override(
 			builder()
-				.preset('module:babel-preset-es3')
 				.preset('@babel/preset-env', {useBuiltIns: false})
 				.plugin('@babel/plugin-transform-modules-commonjs')
 				.plugin('module:babel-plugin-add-module-exports')
+				.plugin('module:babel-plugin-transform-es3-member-expression-literals')
+				.plugin('module:babel-plugin-transform-es3-property-literals')
 				.plugin('module:babel-plugin-import-redirect', {
 					redirect: createRedirects(aliases)
 				})

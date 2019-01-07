@@ -38,7 +38,6 @@ export let handler = async function ဪ (argv: Argv) {
 	let {
 		component,
 		brank,
-		githubOrganisation,
 		semver: version
 	} = argv
 
@@ -50,8 +49,7 @@ export let handler = async function ဪ (argv: Argv) {
 
 	await github.extractTarballFromUri(await github.getBranchTarballUri(
 		component,
-		brank,
-		githubOrganisation
+		brank
 	), components.resolve(component))
 
 	await fs.outputFile(components.getVersionFilePath(component), version)
