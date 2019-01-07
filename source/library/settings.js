@@ -5,8 +5,6 @@ export type Settings = {
 	githubOrganisation: string,
 	/** the name of the npm organisation to publish under */
 	npmOrganisation: string,
-	/** the directory components live in */
-	componentsDirectory: string,
 	/** oh bower registries to have a look at */
 	bowerRegistries: string[]
 }
