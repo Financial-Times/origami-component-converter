@@ -1,6 +1,6 @@
 {
   "name": "@chee/occ",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "origami component converter",
   "main": "compiled/index.js",
   "author": "chee <chee@snoot.club>",
