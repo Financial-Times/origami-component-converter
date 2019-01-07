@@ -1,7 +1,6 @@
 {
 	"githubOrganisation": "financial-times",
 	"npmOrganisation": "financial-times",
-  "componentsDirectory": "components",
   "bowerRegistries": [
     "http://registry.origami.ft.com",
     "https://registry.bower.io"
