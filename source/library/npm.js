@@ -13,13 +13,13 @@ import semver from 'semver'
 import hashVersionRegex from './hash-version-regex.js'
 import read from './read-object.js'
 import write from './write-object.js'
-import args from './args.js'
+import convertOptions from './convert-options.js'
 import * as components from './components.js'
 import mappings from './mappings.js'
 import log from './log.js'
 import * as bower from './bower.js'
 import * as babel from './babel.js'
-import path from 'path'
+import * as workingDirectory from './working-directory.js'
 import {
 	entries,
 	keys,
@@ -29,6 +29,7 @@ import {
 import {npm as skeleton} from './skeletons.js'
 import compose from './compose.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
+import chalk from 'chalk'
 
 export let getManifestPath = (componentName: string): string =>
 	components.resolve(
@@ -75,8 +76,8 @@ export let getAllDependencyNames = (manifest: NpmManifest): string[] =>
 		manifest.dependencies
 	))
 
-export let createComponentName = (componentName: string): string =>
-	`@${args.npmOrganisation}/${componentName}`
+export let createComponentName = (componentName: string, npmOrganisation?: string = convertOptions.npmOrganisation): string =>
+	`@${npmOrganisation}/${componentName}`
 
 export let createDependencyName = (name: string): string => {
 	if (components.includes(name)) {
@@ -149,7 +150,7 @@ let stringifyDependency = ([name, version]: Dependency): string => {
 
 let logChange = (one: Dependency, two: Dependency): string =>
 	log(
-		`${stringifyDependency(one)} -> ${stringifyDependency(two)}`.grey,
+		chalk.gray(`${stringifyDependency(one)} -> ${stringifyDependency(two)}`),
 		2
 	)
 
@@ -208,7 +209,7 @@ export let createManifest = async (bowerManifest: BowerManifest): Promise<NpmMan
 	let npmDependencies = dependencies &&
 		await createDependencies(entries(dependencies))
 
-	log(`creating ${name}@${version} as ${npmName}@${version}`.cyan)
+	log(chalk.cyan(`creating ${name}@${version} as ${npmName}@${version}`))
 
 	return {
 		...skeleton,
@@ -252,7 +253,6 @@ export let cleanManifest = async (manifestPromise: Promise<NpmManifest>): Promis
 	let manifest = {...await manifestPromise}
 
 	manifest.babel && delete manifest.babel
-	manifest.browserslist && delete manifest.browserlist
 
 	return manifest
 }
@@ -267,7 +267,7 @@ export let run = async (componentName: string, scriptName: string): Promise<void
 		{
 			log: logProxy,
 			unsafePerm: true,
-			dir: path.resolve('node_modules'),
+			dir: workingDirectory.resolve('node_modules'),
 			config: {}
 		}
 	)

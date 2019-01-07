@@ -9,7 +9,7 @@ import * as components from './components.js'
 import spawn from './spawn.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
 import * as fs from 'fs-extra'
-import * as path from 'path'
+import * as workingDirectory from './working-directory.js'
 
 type Item = string | [string, any]
 
@@ -97,7 +97,7 @@ let createBabelBuildString = ({
 	].join(' ')
 
 let babelSpawnEnvironmentPath =
-	`${path.resolve('node_modules', '.bin')}:${process.env.PATH || ''}`
+	`${workingDirectory.resolve('node_modules', '.bin')}:${process.env.PATH || ''}`
 
 // fixme: slowboi
 let babelSpawnEnvironment = {

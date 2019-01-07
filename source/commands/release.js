@@ -13,11 +13,24 @@ import type {
 	Argv
 } from 'yargs'
 import chalk from 'chalk-animation'
-import * as convertOptions from '../library/convert-options.js'
 
-export let command = ['convert', '$0']
-export let desc = 'convert origami components to npm modules and publish'
-export let builder = yargs => yargs.options(convertOptions.options).help()
+export let command = 'release <component> <branch> <version>'
+export let desc = 'fetch an origami component at branch and publish to npm'
+export let builder = yargs =>
+	yargs
+		.positional('component', {
+			describe: 'the component to operate on',
+			type: 'string'
+		})
+		.positional('branch', {
+			describe: 'the branch to fetch',
+			type: 'string'
+		})
+		.positional('version', {
+			describe: 'the version (or semver increment) to release',
+			type: 'string'
+		})
+		.help()
 
 let copyPackageJson = async () => {
 	let rootManifest = await read(root.resolve('package.json'))

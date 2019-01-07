@@ -2,15 +2,14 @@
 import * as fs from 'fs-extra'
 
 import compose from './compose.js'
-import path from 'path'
-import args from './args.js'
+import * as workingDirectory from './working-directory.js'
 
 let parse = async (json: Promise<string>): Promise<any> =>
 	JSON.parse(await json)
 
 let read = async (filename: string): Promise<string> =>
 	(await fs.readFile(
-		path.resolve(args.workingDirectory, filename),
+		workingDirectory.resolve(filename),
 		{encoding: 'utf-8'}
 	)).toString()
 

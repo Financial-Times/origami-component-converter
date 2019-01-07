@@ -8,7 +8,7 @@ import {
 	outputFile
 } from 'fs-extra'
 import log from './log.js'
-import args from './args.js'
+import convertOptions from './convert-options.js'
 import * as workingDirectory from './working-directory.js'
 
 type ReleaseMetadata = {
@@ -27,19 +27,32 @@ let checkResponseGoodness = response =>
 		: Promise.reject(response)
 
 let fetch = makeFetch.defaults({
-	cacheManager: workingDirectory.resolve('github-fetch-cache')
+	cacheManager: workingDirectory.resolve('.github-fetch-cache')
 })
 
-let getComponentApiUri = (componentName: string, version?: string): string =>
+let getBranchTarballUri = (componentName: string, branch: string, githubOrganisation?: string = convertOptions.githubOrganisation): string =>
 	[
-		'https://api.github.com/repos',
-		args.githubOrganisation,
+		'https://github.com',
+		githubOrganisation,
 		componentName,
-		'releases',
-		version
-			? `tags/v${version}`
-			: 'latest'
+		'archive',
+		`${branch}.tar.gz`
 	].join('/')
+
+let getComponentApiUri = (componentName: string, version?: string, githubOrganisation?: string = convertOptions.githubOrganisation): string => {
+	if (!version || semver.valid(version)) {
+		return [
+			'https://api.github.com/repos',
+			githubOrganisation,
+			componentName,
+			'releases',
+			version
+				? `tags/v${version}`
+				: 'latest'
+		].join('/')
+	}
+}
+
 
 // memo
 let getAuthorization = () => {
@@ -86,7 +99,17 @@ export let getLatestReleaseMetadata = (componentName: string, version?: string):
 
 
 export let getLatestRelease = async (componentName: string, requestedVersion?: string): Promise<void> => {
-	let metadata = await getLatestReleaseMetadata(componentName, requestedVersion)
+	let metadata
+
+	if (!requestedVersion || semver.valid(requestedVersion)) {
+		metadata = await getLatestReleaseMetadata(componentName, requestedVersion)
+	} else {
+		log(`warning, treating version as branchname in ${componentName}@${requestedVersion}`)
+		metadata = {
+			tarballUrl: getBranchTarballUri(componentName, requestedVersion),
+			version: requestedVersion
+		}
+	}
 
 	if (!metadata) {
 		throw `got no release metadata for ${componentName}`
@@ -96,7 +119,7 @@ export let getLatestRelease = async (componentName: string, requestedVersion?: s
 
 	await mkdirp(componentDirectory)
 
-	await outputFile(
+	metadata.version && await outputFile(
 		components.getVersionFilePath(componentName),
 		metadata.version
 	)
@@ -114,7 +137,6 @@ export let getLatestRelease = async (componentName: string, requestedVersion?: s
 			.then(response =>
 				response.body.pipe(tar.extract({
 					cwd: componentDirectory,
-					// newer: true,
 					strip: 1,
 					onentry: entry => log(entry.path)
 				}))

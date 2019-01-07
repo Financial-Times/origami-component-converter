@@ -5,24 +5,26 @@ import {
 import getStream from 'get-stream'
 import log from './log.js'
 import compose from './compose.js'
-import argv from './args.js'
+import chalk from 'chalk'
+import convertOptions from './convert-options.js'
 
 type State = 'go' | 'yay' | 'oh no'
 
 let getStateColor = (state: State) => {
 	switch (state) {
-	case 'go': return 'magenta'
-	case 'yay': return 'green'
-	case 'oh no': return 'red'
+	case 'go': return chalk.magenta
+	case 'yay': return chalk.green
+	case 'oh no': return chalk.red
+	default: return chalk.cyan
 	}
 }
 
 export let createPrinter = (command: string, cwd: string) => (state: State) =>
-	log(`${state}: ${command} in ${cwd}`[getStateColor(state)])
+	log(getStateColor(state)(`${state}: ${command} in ${cwd}`))
 
 export default (
 	command: string,
-	options: child_process$spawnOpts = {cwd: argv.workingDirectory}
+	options: child_process$spawnOpts = {cwd: convertOptions.workingDirectory}
 ): Promise<void | string> => {
 	let print = createPrinter(command, options.cwd || '.')
 
