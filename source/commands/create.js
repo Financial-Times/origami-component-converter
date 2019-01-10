@@ -10,7 +10,7 @@ import * as workingDirectory from '../library/working-directory.js'
 import type {
 	Argv
 } from 'yargs'
-import chalk from 'chalk-animation'
+import chalk from 'chalk'
 
 export let command = 'create <component> <branch> <semver>'
 export let desc = 'fetch an origami component at branch and create an npm version'
@@ -58,7 +58,5 @@ export let handler = async function ဪ (argv: Argv) {
 	await babel.compile(component)
 	await npm.cleanAndWriteManifest(component)
 
-	let hooray = chalk.rainbow('oh good')
-	hooray.start()
-	setImmediate(hooray.stop.bind(hooray))
+	console.log(chalk.magenta('oh good'))
 }

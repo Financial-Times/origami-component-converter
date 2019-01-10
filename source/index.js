@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 // @flow
-require('dotenv').config()
 import yargs from 'yargs'
 import path from 'path'
 import os from 'os'

@@ -9,9 +9,9 @@ import * as github from '../library/github.js'
 import type {
 	Argv
 } from 'yargs'
-import chalk from 'chalk-animation'
 import origamiComponentNames from '../library/component-names.js'
 import * as workingDirectory from '../library/working-directory.js'
+import chalk from 'chalk'
 
 let parseComponentsArgument = (components: string | Array<string>): string[] =>
 	Array.isArray(components)
@@ -78,7 +78,5 @@ export let handler = async function ဪ (args: Argv) {
 	args.unpublish && await components.batch(`npm unpublish --force ${registryArgument}`)
 	args.publish && await components.batch(`npm publish ${registryArgument}`)
 
-	let hooray = chalk.rainbow('oh good')
-	hooray.start()
-	setTimeout(hooray.stop.bind(hooray), 2222)
+	console.info(chalk.magenta('oh good'))
 }
