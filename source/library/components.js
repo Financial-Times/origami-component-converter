@@ -30,7 +30,7 @@ export let setTargets = (componentNames: string[]) => {
 export let includes = (componentName: string): boolean =>
 	names.all.includes(componentName)
 
-export let resolve = (componentName: string, ...files?: string[]): string =>
+export let resolve = (componentName?: string, ...files?: string[]): string =>
 	componentName
 		? workingDirectory.resolve('components', componentName, ...files)
 		: workingDirectory.resolve('components')

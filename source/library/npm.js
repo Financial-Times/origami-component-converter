@@ -183,7 +183,7 @@ export let createDependencies = async (bowerDependencies: Dependency[]): Promise
 let createAliases = (dependencies: Dictionary): Dictionary => {
 	let dependencyNames = keys(dependencies || {})
 
-	return components.names.all.reduce((aliases, componentName) => {
+	return components.names.all.reduce((aliases: Dictionary, componentName) => {
 		if (dependencyNames.includes(componentName)) {
 			aliases[componentName] = createComponentName(componentName)
 		}
