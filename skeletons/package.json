@@ -17,5 +17,6 @@
     "scss",
     "!bower.json",
     "!.bower.json"
-  ]
+  ],
+  "eslintIgnore": ["index.js", "dist/"]
 }
