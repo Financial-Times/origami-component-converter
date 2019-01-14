@@ -70,7 +70,7 @@ export function createConfiguration ({aliases}: Options): Configuration {
 						// look away. this is a hack to get o-banner to compile. i am very
 						// confused
 						'./fixture/main': './fixture/main',
-						'../main': '../index.js'
+						'../main': '../browser.js'
 					})
 				})
 				.test('./test.src/**')
@@ -131,7 +131,7 @@ export async function compile (componentName: string, options: BabelCompileOptio
 	await checkFileIsAccessible(mainJsFile) && await spawn(
 		createBabelBuildString({
 			source: 'main.js',
-			destination: 'index.js',
+			destination: 'browser.js',
 			type: 'file'
 		}),
 		babelSpawnOptions

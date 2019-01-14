@@ -3,7 +3,7 @@
   "version": "~~component-version~~",
   "description": "~~component-description~~",
   "component": "~~component-origami-name~~",
-  "main": "index.js",
+  "browser": "browser.js",
   "scripts": {},
   "license": "MIT",
   "files": [

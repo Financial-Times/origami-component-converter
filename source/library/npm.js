@@ -59,13 +59,18 @@ export let mergeManifests = (existing: NpmManifest, generated: NpmManifest) => {
 	let dependencies = merge(existing.dependencies || {}, generated.dependencies || {})
 	let devDependencies = merge(existing.devDependencies || {}, generated.devDependencies || {})
 	let scripts = merge(existing.scripts || {}, generated.scripts || {})
+	let {main} = existing
 
-	return {
+	let result = {
 		...generated,
 		scripts,
 		dependencies,
 		devDependencies
 	}
+
+	main && (result.main = main)
+
+	return result
 }
 
 export let getAllDependencyNames = (manifest: NpmManifest): string[] =>

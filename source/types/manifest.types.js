@@ -27,7 +27,9 @@ export type BowerManifest = ComponentManifest & {
 
 export type NpmManifest = ComponentManifest & {
 	/** the component's javascript entry point */
-	main: string,
+	main?: string,
+	/** the component's browser entry point  */
+	browser?: string,
 	/** the component's es6 entry point */
 	module: string,
 	/** the component's precompiled entry point */
