@@ -1,21 +1,36 @@
-// @flow
-export type Dictionary = {
-	[key: string]: string
-}
+/**
+ * @typedef {[string, string]} Entry
+ */
 
-type Pair = [string, string]
+/**
+ * @typedef {Object.<string, string>} Dictionary
+ */
 
-export function clone (object: Dictionary): Dictionary {
-	let next = new object.constructor
+/**
+ * @param {Dictionary} dictionary the dictionary to clone
+ * @returns {Dictionary} a fresh dictionary
+ */
+export function clone(dictionary) {
+	/**
+	 * @type {Dictionary}
+	 */
+	let next = {}
 
-	for (let key in object) {
-		next[key] = object[key]
+	for (let key in dictionary) {
+		next[key] = dictionary[key]
 	}
 
 	return next
 }
 
-export function merge (a: Dictionary, ...rest: Dictionary[]): Dictionary {
+/**
+ * Merge two or more dictionaries
+ *
+ * @param {Dictionary} a a dictionary
+ * @param {...Dictionary} rest more dictionaries
+ * @returns {Dictionary} a fresh dictionary
+ */
+export function merge(a, ...rest) {
 	let object = clone(a)
 
 	rest.forEach(dictionary => {
@@ -27,7 +42,16 @@ export function merge (a: Dictionary, ...rest: Dictionary[]): Dictionary {
 	return object
 }
 
-export function entries (dictionary: Dictionary): Pair[] {
+/**
+ * Get a [key, value] array for a dictionary
+ *
+ * @param {Dictionary} dictionary
+ * @returns {Entry[]}
+ */
+export function entries(dictionary) {
+	/**
+	 * @type {Entry[]}
+	 */
 	let result = []
 
 	for (let key in dictionary) {
@@ -37,7 +61,13 @@ export function entries (dictionary: Dictionary): Pair[] {
 	return result
 }
 
-export function keys (dictionary: Dictionary): string[] {
+/**
+ * Get array of dictionary's keys
+ *
+ * @param {Dictionary} dictionary
+ * @returns {string[]}
+ */
+export function keys(dictionary) {
 	let result = []
 
 	for (let key in dictionary) {
@@ -47,7 +77,13 @@ export function keys (dictionary: Dictionary): string[] {
 	return result
 }
 
-export function values (dictionary: Dictionary): string[] {
+/**
+ * Get array of dictionary's values
+ *
+ * @param {Dictionary} dictionary
+ * @returns {string[]}
+ */
+export function values(dictionary) {
 	let result = []
 
 	for (let key in dictionary) {
@@ -57,25 +93,16 @@ export function values (dictionary: Dictionary): string[] {
 	return result
 }
 
-export function each (fn: ((string, string) => void | any), dictionary: Dictionary): void {
-	for (let key in dictionary) {
-		fn(dictionary[key], key)
-	}
-}
-
-export function eachKey (fn: ((string) => void | any), dictionary: Dictionary): void {
-	for (let key in dictionary) {
-		fn(key)
-	}
-}
-
-export function eachValue (fn: ((string) => void | any), dictionary: Dictionary): void {
-	for (let key in dictionary) {
-		fn(dictionary[key])
-	}
-}
-
-export let reduce = <Result>(fn: (Result, string, string) => Result, dictionary: Dictionary, initialValue: Result): Result => {
+/**
+ * Reduce the contents of a dictionary to a single value
+ *
+ * @template Result
+ * @param {(result: Result, value: string, key: string) => Result} fn
+ * @param {Dictionary} dictionary
+ * @param {Result} initialValue
+ * @returns {Result}
+ */
+export let reduce = (fn, dictionary, initialValue) => {
 	let result = initialValue
 
 	for (let key in dictionary) {
@@ -83,23 +110,4 @@ export let reduce = <Result>(fn: (Result, string, string) => Result, dictionary:
 	}
 
 	return result
-}
-
-
-export function filter (test: ((string, string) => boolean), dictionary: Dictionary): Dictionary {
-	return reduce((dictionary, key, value) => {
-		if (test(dictionary[key], key)) {
-			dictionary[key] = value
-		}
-
-		return dictionary
-	}, dictionary, {})
-}
-
-export function filterKeys (test: ((string) => boolean), dictionary: Dictionary): Dictionary {
-	return filter(key => test(key), dictionary)
-}
-
-export function filterValues (test: ((string) => boolean), dictionary: Dictionary): Dictionary {
-	return filter((_, value) => test(value), dictionary)
 }

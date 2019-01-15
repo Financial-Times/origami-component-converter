@@ -1,3 +1,3 @@
-// @flow
+//
 
-export default (fn: any => any) => (arg: any) => fn(arg)
+export default fn => arg => fn(arg)

@@ -1,5 +1,5 @@
-// @flow
-export default (thing: any): string =>
+//
+export default thing =>
 	JSON.stringify(
 		// object to stringify
 		thing,
@@ -7,6 +7,6 @@ export default (thing: any): string =>
 		null,
 		// spacing to use
 		2
-	)
+	) +
 	// plus a wee newline before EOF
-	+ '\n'
+	"\n"

@@ -1,51 +1,64 @@
-// @flow
+/**
+ * @typedef {import('./babel').Configuration} Configuration
+ * @typedef {import('./babel').Plugin} Plugin
+ * @typedef {import('./babel').Preset} Preset
+ * @typedef {import('./dictionary').Dictionary} Dictionary
+ */
 
-import {
-	clone
-} from './dictionary.js'
-
-import type {Configuration} from './babel'
+import {clone} from "./dictionary.js"
 
 class BuilderItem {
-	name: string
-	options: ?any
-
-	constructor (name: string, options?: any) {
+	/**
+	 * @param {string} name
+	 * @param {any} [options]
+	 */
+	constructor(name, options) {
 		this.name = name
 		this.options = options
 	}
 
-	valueOf () {
-		return this.options
-			? [this.name, this.options]
-			: this.name
+	valueOf() {
+		return this.options ? [this.name, this.options] : this.name
 	}
 
-	toJSON () {
+	toJSON() {
 		return this.valueOf()
 	}
 }
 
 class BuilderList {
-	items: {
-		[string]: any
+	/**
+	 * @param {{items: Dictionary}} [list] a previous builder list to extend
+	 */
+	constructor(list) {
+		this.items = list ? clone(list.items) : {}
 	}
 
-	constructor (list?: BuilderList) {
-		this.items = list
-			? clone(list.items)
-			: {}
-	}
-
-	set (name: string, options?: any) {
+	/**
+	 * set an item
+	 * @param {string} name
+	 * @param {any} [options]
+	 */
+	set(name, options) {
 		this.items[name] = options
+		return this
 	}
 
-	get (name: string) {
+	/**
+	 * get an item
+	 * @param {string} name
+	 * @returns {any}
+	 */
+	get(name) {
 		return this.items[name]
 	}
 
-	map (fn: (string, any) => any): Array<any> {
+	/**
+	 * call a function on each item and return a new set of items
+	 * @param {(key: string, value: any) => any} fn
+	 * @returns {Array}
+	 */
+	map(fn) {
 		let result = []
 
 		for (let key in this.items) {
@@ -55,80 +68,141 @@ class BuilderList {
 		return result
 	}
 
-	remove (name: string): BuilderList {
+	/**
+	 * remove an item
+	 * @param {string} name
+	 * @returns {BuilderList}
+	 */
+	remove(name) {
 		delete this.items[name]
 		return this
 	}
 
-	valueOf () {
-		return this.map((name, options) => options
-			? [name, options]
-			: name
-		)
+	/**
+	 * get this thing as a good array
+	 * @returns {(Preset | Plugin)[]}
+	 */
+	valueOf() {
+		return this.map((name, options) => (options ? [name, options] : name))
 	}
 
-	toJSON () {
+	/**
+	 * get this thing as a good array
+	 * @returns {(Preset | Plugin)[]}
+	 */
+	toJSON() {
 		return this.valueOf()
 	}
 }
 
+/**
+ *
+ */
 export default class BabelBuilder {
-	includeTest: ?(string | string[])
-	excludeTest: ?(string | string[])
+	// includeTest: ?(string | string[])
+	// excludeTest: ?(string | string[])
 
-	plugins: BuilderList
+	// plugins: BuilderList
 
-	presets: BuilderList
+	// presets: BuilderList
 
-	overrides: ?BabelBuilder[]
+	// overrides: ?BabelBuilder[]
 
-	constructor (builder?: BabelBuilder) {
+	/**
+	 * @param {{presets: BuilderList, plugins: BuilderList}} [builder] a previous builder to extend
+	 */
+	constructor(builder) {
 		if (builder) {
 			this.presets = new BuilderList(builder.presets)
 			this.plugins = new BuilderList(builder.plugins)
 		} else {
 			this.presets = new BuilderList()
 			this.plugins = new BuilderList()
+			/**
+			 * @type BabelBuilder[]
+			 */
 			this.overrides = []
 		}
 	}
 
-	preset (name: string, options?: any): BabelBuilder {
+	/**
+	 * Add a preset to the config
+	 * @param {string} name
+	 * @param {any} [options]
+	 * @returns this
+	 */
+	preset(name, options) {
 		this.presets.set(name, options)
 
 		return this
 	}
 
-	getPreset (name: string): ?BuilderItem {
+	/**
+	 * Get a preset item from the config
+	 * @param {string} name
+	 * @returns {BuilderItem}
+	 */
+	getPreset(name) {
 		return this.presets.get(name)
 	}
 
-	plugin (name: string, options?: any): BabelBuilder {
+	/**
+	 * Add a plugin to the config
+	 * @param {string} name
+	 * @param {any} [options]
+	 * @returns {BabelBuilder}
+	 */
+	plugin(name, options) {
 		this.plugins.set(name, options)
-
 		return this
 	}
 
-	getPlugin (name: string): ?BuilderItem {
+	/**
+	 * Get a plugin item from the config
+	 * @param {string} name
+	 * @returns {BuilderItem}
+	 */
+	getPlugin(name) {
 		return this.plugins.get(name)
 	}
 
-	test (test: string | string[]): BabelBuilder {
+	/**
+	 * Set the includeTest pattern
+	 * @param {string | string[]} test
+	 * @returns {BabelBuilder}
+	 */
+	test(test) {
 		this.includeTest = test
 		return this
 	}
 
-	exclude (test: string | string[]): BabelBuilder {
+	/**
+	 * Set the excludeTest pattern
+	 * @param {string | string[]} test
+	 * @returns {BabelBuilder}
+	 */
+	exclude(test) {
 		this.excludeTest = test
 		return this
 	}
 
-	override (override: BabelBuilder): BabelBuilder {
+	/**
+	 * Add an override
+	 * @param {BabelBuilder} override
+	 */
+	override(override) {
 		this.overrides && this.overrides.push(override)
 		return this
 	}
 
-	valueOf (): Configuration {
+	/**
+	 * get this thing as a jolly object
+	 * @returns {Configuration}
+	 */
+	valueOf() {
+		/**
+		 * @type {Configuration}
+		 */
 		let configuration = {}
 		configuration.presets = this.presets.toJSON()
 		configuration.plugins = this.plugins.toJSON()
@@ -144,7 +218,11 @@ export default class BabelBuilder {
 		return configuration
 	}
 
-	toJSON (): Configuration {
+	/**
+	 * get this thing as a jolly object
+	 * @returns {Configuration}
+	 */
+	toJSON() {
 		return this.valueOf()
 	}
 }

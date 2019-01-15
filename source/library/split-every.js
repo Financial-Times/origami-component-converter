@@ -1,6 +1,6 @@
-// @flow
+//
 
-export default function <item>(size: number, items: Array<item>): Array<Array<item>> {
+export default function(size, items) {
 	let array = Array.from(items)
 
 	let groups = []

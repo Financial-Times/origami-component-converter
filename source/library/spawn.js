@@ -1,39 +1,33 @@
-// @flow
-import {
-	spawn
-} from 'child_process'
-import getStream from 'get-stream'
-import log from './log.js'
-import compose from './compose.js'
-import chalk from 'chalk'
-import * as workingDirectory from './working-directory.js'
+//
+import {spawn} from "child_process"
+import getStream from "get-stream"
+import log from "./log.js"
+import compose from "./compose.js"
+import chalk from "chalk"
+import * as workingDirectory from "./working-directory.js"
 
-type State = 'go' | 'yay' | 'oh no'
-
-let getStateColor = (state: State) => {
+let getStateColor = state => {
 	switch (state) {
-	case 'go': return chalk.magenta
-	case 'yay': return chalk.green
-	case 'oh no': return chalk.red
-	default: return chalk.cyan
+		case "go":
+			return chalk.magenta
+		case "yay":
+			return chalk.green
+		case "oh no":
+			return chalk.red
+		default:
+			return chalk.cyan
 	}
 }
 
-export let createPrinter = (command: string, cwd: string) => (state: State) =>
+export let createPrinter = (command, cwd) => state =>
 	log(getStateColor(state)(`${state}: ${command} in ${cwd}`))
 
-export default (
-	command: string,
-	options: child_process$spawnOpts = {cwd: workingDirectory.resolve()}
-): Promise<void | string> => {
-	let print = createPrinter(command, options.cwd || '.')
+export default (command, options = {cwd: workingDirectory.resolve()}) => {
+	let print = createPrinter(command, options.cwd || ".")
 
-	print('go')
+	print("go")
 
-	let [
-		commandName,
-		...args
-	] = command.split(/\s+/)
+	let [commandName, ...args] = command.split(/\s+/)
 
 	let child = spawn(commandName, args, options)
 
@@ -53,12 +47,12 @@ export default (
 			child => child.stderr
 		)
 
-		child.on('exit', code => {
+		child.on("exit", code => {
 			if (code === 0) {
-				print('yay')
+				print("yay")
 				return yay(child)
 			} else {
-				print('oh no')
+				print("oh no")
 				return nay(child)
 			}
 		})

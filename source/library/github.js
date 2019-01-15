@@ -1,67 +1,57 @@
-// @flow
-import makeFetch from 'make-fetch-happen'
-import semver from 'semver'
-import tar from 'tar'
-import * as components from './components.js'
-import {
-	mkdirp,
-	outputFile
-} from 'fs-extra'
-import log from './log.js'
-import settings from './settings.js'
-import * as workingDirectory from './working-directory.js'
+//
+import makeFetch from "make-fetch-happen"
+import semver from "semver"
+import tar from "tar"
+import * as components from "./components.js"
+import {mkdirp, outputFile} from "fs-extra"
+import log from "./log.js"
+import settings from "./settings.js"
+import * as workingDirectory from "./working-directory.js"
 
-type ReleaseMetadata = {
-	version: string,
-	tarballUrl: string
-}
-
-let logResponseCode = response => (
-	log(response.status),
-	response
-)
+let logResponseCode = response => (log(response.status), response)
 
 let checkResponseGoodness = response =>
-	response.ok || response.status === 304
-		? response
-		: Promise.reject(response)
+	response.ok || response.status === 304 ? response : Promise.reject(response)
 
-export let getBranchTarballUri = (componentName: string, branch: string, githubOrganisation?: string = settings.githubOrganisation): string =>
+export let getBranchTarballUri = (
+	componentName,
+	branch,
+	githubOrganisation = settings.githubOrganisation
+) =>
 	[
-		'https://github.com',
+		"https://github.com",
 		githubOrganisation,
 		componentName,
-		'archive',
+		"archive",
 		`${branch}.tar.gz`
-	].join('/')
+	].join("/")
 
-let getComponentApiUri = (componentName: string, version?: string, githubOrganisation?: string = settings.githubOrganisation): string =>
+let getComponentApiUri = (
+	componentName,
+	version,
+	githubOrganisation = settings.githubOrganisation
+) =>
 	[
-		'https://api.github.com/repos',
+		"https://api.github.com/repos",
 		githubOrganisation,
 		componentName,
-		'releases',
-		version
-			? `tags/v${version}`
-			: 'latest'
-	].join('/')
-
+		"releases",
+		version ? `tags/v${version}` : "latest"
+	].join("/")
 
 // memo
 let getAuthorization = () => {
 	let authorization
-	return (function () {
-		authorization || (
-			authorization = `token ${process.env.OCC_GITHUB_TOKEN || ''}`
-		)
+	return (function() {
+		authorization ||
+			(authorization = `token ${process.env.OCC_GITHUB_TOKEN || ""}`)
 		return authorization
-	}())
+	})()
 }
 
-let getCacheManager = () =>
-	workingDirectory.resolve('.github-fetch-cache')
+let getCacheManager = () => workingDirectory.resolve(".github-fetch-cache")
 
-let getContentsOfUri = (uri: string) =>
+let getContentsOfUri = uri =>
 	makeFetch(uri, {
 		headers: {
 			authorization: getAuthorization()
@@ -69,11 +59,13 @@ let getContentsOfUri = (uri: string) =>
 		cacheManager: getCacheManager()
 	})
 
-export let getLatestReleaseMetadata = (componentName: string, version?: string): Promise<?ReleaseMetadata> => {
+export let getLatestReleaseMetadata = (componentName, version) => {
 	let url = getComponentApiUri(componentName, version)
 
 	log(
-		`gonna try getting metadata for ${componentName}${version ? `@${version}` : ''} from ${url}`
+		`gonna try getting metadata for ${componentName}${
+			version ? `@${version}` : ""
+		} from ${url}`
 	)
 
 	return getContentsOfUri(url)
@@ -81,24 +73,28 @@ export let getLatestReleaseMetadata = (componentName: string, version?: string):
 		.then(checkResponseGoodness)
 		.then(response => response.json())
 		.then(data => {
-			return data && {
-				version: semver.clean(data.tag_name || ''),
-				tarballUrl: data.tarball_url
-			}
+			return (
+				data && {
+					version: semver.clean(data.tag_name || ""),
+					tarballUrl: data.tarball_url
+				}
+			)
 		})
 		.catch(async response => {
 			let {message} = await response.json()
-			let rateLimitResetDate = new Date(response.headers.get('x-ratelimit-reset') * 1000)
+			let rateLimitResetDate = new Date(
+				response.headers.get("x-ratelimit-reset") * 1000
+			)
 			console.error(
 				`${componentName}:`,
 				message,
-				'ratelimit reset:',
+				"ratelimit reset:",
 				rateLimitResetDate.toLocaleTimeString()
 			)
 		})
 }
 
-export let extractTarballFromUri = async (uri: string, destination: string): Promise<void> => {
+export let extractTarballFromUri = async (uri, destination) => {
 	let cwd = workingDirectory.resolve(destination)
 	await mkdirp(cwd)
 	return new Promise((yay, nay) =>
@@ -106,21 +102,23 @@ export let extractTarballFromUri = async (uri: string, destination: string): Pro
 			.then(logResponseCode)
 			.then(checkResponseGoodness)
 			.then(response =>
-				response.body.pipe(tar.extract({
-					cwd,
-					strip: 1,
-					onentry: entry => log(entry.path)
-				}))
+				response.body.pipe(
+					tar.extract({
+						cwd,
+						strip: 1,
+						onentry: entry => log(entry.path)
+					})
+				)
 			)
 			.then(stream => {
-				stream.on('finish', yay)
-				stream.on('error', nay)
+				stream.on("finish", yay)
+				stream.on("error", nay)
 			})
 			.catch(nay)
 	)
 }
 
-export let getLatestRelease = async (componentName: string, requestedVersion?: string): Promise<void> => {
+export let getLatestRelease = async (componentName, requestedVersion) => {
 	let metadata = await getLatestReleaseMetadata(componentName, requestedVersion)
 
 	if (!metadata) {
@@ -131,12 +129,17 @@ export let getLatestRelease = async (componentName: string, requestedVersion?: s
 
 	await mkdirp(componentDirectory)
 
-	metadata.version && await outputFile(
-		components.getVersionFilePath(componentName),
-		metadata.version
-	)
+	metadata.version &&
+		(await outputFile(
+			components.getVersionFilePath(componentName),
+			metadata.version
+		))
 
-	log(`downloading ${componentName}@${metadata.version} from ${metadata.tarballUrl}`)
+	log(
+		`downloading ${componentName}@${metadata.version} from ${
+			metadata.tarballUrl
+		}`
+	)
 
 	return extractTarballFromUri(metadata.tarballUrl, componentDirectory)
 }

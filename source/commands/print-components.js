@@ -1,10 +1,10 @@
-// @flow
-import * as components from '../library/components.js'
+//
+import * as components from "../library/components.js"
 
-export let command = 'print-components'
-export let aliases = ['ls']
-export let describe = 'print the names of the components and exit'
-export let handler = async function printComponents () {
+export let command = "print-components"
+export let aliases = ["ls"]
+export let describe = "print the names of the components and exit"
+export let handler = async function printComponents() {
 	let names
 
 	try {
@@ -13,6 +13,5 @@ export let handler = async function printComponents () {
 		names = await components.names.all
 	}
 
-	console.info(names.join('\n'))
+	console.info(names.join("\n"))
 }
-

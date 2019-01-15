@@ -1,5 +1,10 @@
-// @flow
-import yargs from 'yargs'
-import createResolver from './create-resolver.js'
+import * as yargs from "yargs"
+import createResolver from "./create-resolver.js"
 
-export let resolve = (...paths: string[]) => createResolver(yargs.argv.workingDirectory)(...paths)
+/**
+ * Working directory resolve
+ *
+ * @param  {...string} paths the paths you'd like to resolve
+ */
+export let resolve = (...paths) =>
+	createResolver(yargs.argv.workingDirectory)(...paths)

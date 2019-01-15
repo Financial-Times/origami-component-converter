@@ -1,13 +1,9 @@
-// @flow
-import path from 'path'
+//
+import path from "path"
 
-export default (root: string) => (filename?: string, ...filenames?: string[]): string => {
+export default root => (filename, ...filenames) => {
 	if (filename) {
-		return path.resolve(
-			root,
-			filename,
-			...filenames || []
-		)
+		return path.resolve(root, filename, ...(filenames || []))
 	}
 
 	return root
