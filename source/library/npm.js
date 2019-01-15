@@ -25,7 +25,7 @@ import {
 	merge,
 	type Dictionary
 } from './dictionary.js'
-import {npm as skeleton} from './skeletons.js'
+import {componentManifest as skeleton} from './skeletons.js'
 import compose from './compose.js'
 import checkFileIsAccessible from './check-file-is-accessible.js'
 import chalk from 'chalk'

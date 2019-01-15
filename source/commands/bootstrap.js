@@ -6,10 +6,12 @@ import * as npm from '../library/npm.js'
 import * as babel from '../library/babel.js'
 import * as fs from 'fs-extra'
 import * as github from '../library/github.js'
+import {builderManifest} from '../library/skeletons.js'
 import type {
 	Argv
 } from 'yargs'
 import origamiComponentNames from '../library/component-names.js'
+import write from '../library/write-object.js'
 import * as workingDirectory from '../library/working-directory.js'
 import chalk from 'chalk'
 
@@ -60,7 +62,7 @@ export let builder = (yargs: Argv) => yargs.options(options)
 
 export let handler = async function ဪ (args: Argv) {
 	args.components && components.setTargets(args.components)
-	await workingDirectory.copyPackageJson()
+	await write(workingDirectory.resolve('package.json'), builderManifest)
 
 	let registryArgument = npm.createRegistryArgument(args.npmRegistry)
 

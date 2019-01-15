@@ -5,8 +5,5 @@ import type {
 
 import importJson from './import-json.js'
 
-let npm: NpmManifest = importJson('skeletons/package.json')
-
-export {
-	npm
-}
+export let componentManifest: NpmManifest = importJson('skeletons/component/package.json')
+export let builderManifest: NpmManifest = importJson('skeletons/builder/package.json')

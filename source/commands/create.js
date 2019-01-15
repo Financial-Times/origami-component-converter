@@ -7,6 +7,8 @@ import * as babel from '../library/babel.js'
 import * as fs from 'fs-extra'
 import * as github from '../library/github.js'
 import * as workingDirectory from '../library/working-directory.js'
+import write from '../library/write-object.js'
+import {builderManifest} from '../library/skeletons.js'
 import type {
 	Argv
 } from 'yargs'
@@ -42,7 +44,7 @@ export let handler = async function ဪ (argv: Argv) {
 	} = argv
 
 	components.setTargets([component])
-	await workingDirectory.copyPackageJson()
+	await write(workingDirectory.resolve('package.json'), builderManifest)
 
 	await spawn('npm install')
 	await fs.remove(components.resolve())
@@ -58,5 +60,5 @@ export let handler = async function ဪ (argv: Argv) {
 	await babel.compile(component)
 	await npm.cleanAndWriteManifest(component)
 
-	console.log(chalk.magenta('oh good'))
+	console.info(chalk.magenta('oh good'))
 }
