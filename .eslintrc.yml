@@ -1,5 +1,21 @@
 env:
+  es6: true
   node: true
+  mocha: true
 extends:
   - eslint:recommended
-  - eslint-config-origami-components
+  - eslint-config-origami-component
+parserOptions:
+  ecmaVersion: 2018
+  sourceType: module
+rules:
+  prefer-const:
+    - off
+  semi:
+    - error
+    - never
+  no-console:
+    - error
+    - allow:
+      - error
+      - info
