@@ -1,6 +1,6 @@
-import * as components from "../library/components.js"
-import * as npm from "../library/npm.js"
-import unary from "../library/unary.js"
+import * as components from "../lib/components.js"
+import * as npm from "../lib/npm.js"
+import unary from "../lib/unary.js"
 
 export let command = "link"
 export let describe = "npm link all the deps globally"

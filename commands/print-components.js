@@ -1,5 +1,4 @@
-//
-import * as components from "../library/components.js"
+import * as components from "../lib/components.js"
 
 export let command = "print-components"
 export let aliases = ["ls"]

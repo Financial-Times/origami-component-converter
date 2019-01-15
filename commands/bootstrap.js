@@ -1,18 +1,19 @@
 #!/usr/bin/env node
-import spawn from "../library/spawn.js"
-import * as components from "../library/components.js"
-import * as npm from "../library/npm.js"
-import * as babel from "../library/babel.js"
+import spawn from "../lib/spawn.js"
+import * as components from "../lib/components.js"
+import * as npm from "../lib/npm.js"
+import * as babel from "../lib/babel.js"
 import * as fs from "fs-extra"
-import * as github from "../library/github.js"
-import {builderManifest} from "../library/skeletons.js"
-import origamiComponentNames from "../library/component-names.js"
-import write from "../library/write-object.js"
-import * as workingDirectory from "../library/working-directory.js"
+import * as github from "../lib/github.js"
+import {builderManifest} from "../lib/skeletons.js"
+import origamiComponentNames from "../lib/component-names.js"
+import write from "../lib/write-object.js"
+import * as workingDirectory from "../lib/working-directory.js"
 import chalk from "chalk"
 
 /**
  * coerce components argument into an array if it was comma separated
+ *
  * @param {string | string[]} components
  * @returns {string[]}
  */

@@ -1,41 +1,42 @@
 {
-  "name": "@chee/occ",
-  "version": "0.1.4-honk",
-  "description": "origami component converter",
-  "main": "index.js",
-  "author": "chee <chee@snoot.club>",
-  "license": "MPL-2.0",
-  "dependencies": {
-    "chalk": "^2.4.2",
-    "esm": "^3.0.84",
-    "fs-extra": "^7.0.1",
-    "get-stream": "^4.1.0",
-    "make-fetch-happen": "^4.0.1",
-    "npm-lifecycle": "^2.1.0",
-    "read-package-json": "^2.0.13",
-    "semver": "^5.6.0",
-    "tar": "^4.4.8",
-    "toposort": "^2.0.2",
-    "yargs": "^12.0.2"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "watch": "npm run-script build -s -- -w",
-    "start": "npm run build && node $npm_package_main"
-  },
-  "repository": {
-    "git": "git@github.com:chee/origami"
-  },
-  "bin": {
-    "occ": "compiled/index.js"
-  },
-  "files": [
-    "skeletons",
-    "compiled",
-    ".bowerrc",
-    "README.md",
-    "config/*",
-    "npmrc",
-    "package.json"
-  ]
+	"name": "@chee/occ",
+	"version": "0.1.4-honk",
+	"description": "origami component converter",
+	"main": "index.js",
+	"author": "chee <chee@snoot.club>",
+	"license": "MPL-2.0",
+	"dependencies": {
+		"chalk": "^2.4.2",
+		"esm": "^3.0.84",
+		"fs-extra": "^7.0.1",
+		"get-stream": "^4.1.0",
+		"make-fetch-happen": "^4.0.1",
+		"npm-lifecycle": "^2.1.0",
+		"read-package-json": "^2.0.13",
+		"semver": "^5.6.0",
+		"tar": "^4.4.8",
+		"toposort": "^2.0.2",
+		"yargs": "^12.0.2"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"watch": "npm run-script build -s -- -w",
+		"start": "npm run build && node $npm_package_main",
+		"test": "mocha -r esm test/**/*.js"
+	},
+	"repository": {
+		"git": "git@github.com:chee/origami"
+	},
+	"bin": {
+		"occ": "compiled/index.js"
+	},
+	"files": [
+		"skeletons",
+		"compiled",
+		".bowerrc",
+		"README.md",
+		"config/*",
+		"npmrc",
+		"package.json"
+	]
 }
