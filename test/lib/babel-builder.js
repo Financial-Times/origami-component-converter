@@ -187,12 +187,41 @@ describe("Babel Configuration Builder", () => {
 			assert.equal(config.plugins.length, 1)
 		})
 
-		it("returns the same results for toJSON and valueOf", () => {
+		it("returns a correct config", () => {
 			let config = builder()
-			config.preset("its-good")
-			assert.deepStrictEqual(config.valueOf(), config.toJSON())
+			config.preset("preset")
+			config.preset("preset-with-option", {option: true})
+			config.plugin("plugin")
+			config.plugin("plugin-with-option", {option: "replace-this"})
+			config.plugin("plugin-with-option", {option: "cool"})
+			config.override(
+				builder()
+					.test("test")
+					.exclude("exclude")
+					.preset("override-preset-with-option", {header: "wrong"})
+			)
+			assert.deepStrictEqual(config.toJSON(),
+				{
+					presets: [
+						"preset",
+						["preset-with-option", {option: true}]
+					],
+					plugins: [
+						"plugin",
+						["plugin-with-option", {option: "cool"}]
+					],
+					overrides: [
+						{
+							test: "test",
+							exclude: "exclude",
+							plugins: [],
+							presets: [
+								["override-preset-with-option", {header: "wrong"}]
+							]
+						}
+					]
+				}
+			)
 		})
-
-		it("returns a preset when the ")
 	})
 })
