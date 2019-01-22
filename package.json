@@ -18,10 +18,12 @@
 		"toposort": "^2.0.2",
 		"yargs": "^12.0.2"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"mock-require": "^3.0.3"
+	},
 	"scripts": {
 		"watch": "npm run-script build -s -- -w",
-		"start": "npm run build && node $npm_package_main",
+		"start": "node -r esm $npm_package_main",
 		"test": "mocha -r esm test/**/*.js"
 	},
 	"repository": {
