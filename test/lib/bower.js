@@ -30,7 +30,7 @@ describe("bower.js", () => {
 			})
 			bower = mock.reRequire("../../lib/bower.js")
 			bower.getManifestPath(componentName)
-			mock.stopAll()
+			mock.stop("../../lib/components.js")
 		})
 	})
 })
