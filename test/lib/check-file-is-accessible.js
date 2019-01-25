@@ -6,7 +6,7 @@ describe("check file is accessible", () => {
 	mock("fs-extra", {
 		access: (path, mode) => {
 			assert.equal(mode, constants.W_OK | constants.R_OK)
-			return path == "bad"
+			return path === "bad"
 				? Promise.reject()
 				: Promise.resolve()
 		}
