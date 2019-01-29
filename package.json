@@ -30,7 +30,7 @@
 		"git": "git@github.com:chee/origami"
 	},
 	"bin": {
-		"occ": "compiled/index.js"
+		"occ": "./index.js"
 	},
 	"files": [
 		"skeletons",
