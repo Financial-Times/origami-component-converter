@@ -19,12 +19,16 @@
 		"yargs": "^12.0.2"
 	},
 	"devDependencies": {
-		"mock-require": "^3.0.3"
+		"eslint-config-origami-component": "^1.0.0",
+		"expect": "^24.0.0",
+		"mocha": "^5.2.0",
+		"mock-require": "^3.0.3",
+		"snap-shot-it": "^6.2.9"
 	},
 	"scripts": {
 		"watch": "npm run-script build -s -- -w",
 		"start": "node -r esm $npm_package_main",
-		"test": "mocha -r esm test/**/*.js"
+		"test": "mocha -r esm --recursive test"
 	},
 	"repository": {
 		"git": "git@github.com:chee/origami"
