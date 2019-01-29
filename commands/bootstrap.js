@@ -6,16 +6,16 @@ import * as babel from "../lib/babel.js"
 import * as fs from "fs-extra"
 import * as github from "../lib/github.js"
 import {builderManifest} from "../lib/skeletons.js"
-import origamiComponentNames from "../lib/component-names.js"
 import write from "../lib/write-object.js"
 import * as workingDirectory from "../lib/working-directory.js"
 import chalk from "chalk"
+let origamiComponentNames = require("../config/components.json")
 
 /**
  * coerce components argument into an array if it was comma separated
  *
- * @param {string | string[]} components
- * @returns {string[]}
+ * @param {string | string[]} components components args
+ * @returns {string[]} components
  */
 let parseComponentsArgument = components =>
 	Array.isArray(components) ? components : components.split(/,/)
@@ -62,10 +62,6 @@ export let options = {
 	}
 }
 
-/**
- * The builder param for yargs to consume
- * @param {import('yargs')} yargs
- */
 export let builder = yargs => yargs.options(options)
 
 export let handler = async function ဪ(args) {
@@ -77,10 +73,6 @@ export let handler = async function ဪ(args) {
 	await spawn(`npm install ${registryArgument}`)
 	args.cleanFirst && (await fs.remove(components.resolve()))
 	await args.components.reduce(
-		/**
-		 * @param {Promise} promise
-		 * @param {string} name
-		 */
 		(promise, name) => promise.then(() => github.getLatestRelease(name)),
 		Promise.resolve()
 	)
@@ -90,8 +82,8 @@ export let handler = async function ဪ(args) {
 	await components.sequence(npm.cleanAndWriteManifest)
 	args.test && (await components.batch("obt t", undefined, 1))
 	args.unpublish &&
-		(await components.batch(`npm unpublish --force ${registryArgument}`))
-	args.publish && (await components.batch(`npm publish ${registryArgument}`))
+		(await components.sequence(`npm unpublish --force ${registryArgument}`))
+	args.publish && (await components.sequence(`npm publish ${registryArgument}`))
 
 	console.info(chalk.magenta("oh good"))
 }
