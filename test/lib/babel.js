@@ -1,6 +1,5 @@
 import snap from "snap-shot-it"
 import * as babel from "../../lib/babel"
-import expect from "expect"
 
 describe("babel suite", () => {
 	it("returns the same babel config", () => {

@@ -1,11 +1,11 @@
-import assert from "assert"
+import expect from "expect"
 import {constants} from "fs"
 import mock from "mock-require"
 
 describe("check file is accessible", () => {
 	mock("fs-extra", {
 		access: (path, mode) => {
-			assert.equal(mode, constants.W_OK | constants.R_OK)
+			expect(mode).toBe(constants.W_OK | constants.R_OK)
 			return path === "bad"
 				? Promise.reject()
 				: Promise.resolve()
@@ -19,10 +19,10 @@ describe("check file is accessible", () => {
 	})
 
 	it("resolves with `true` if path is read/writeable", async () => {
-		assert.equal(await check("good"), true)
+		expect(await check("good")).toBe(true)
 	})
 
 	it("resolves with `false` if path is not read/writeable", async () => {
-		assert.equal(await check("bad"), false)
+		expect(await check("bad")).toBe(false)
 	})
 })
