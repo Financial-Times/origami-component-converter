@@ -30,6 +30,7 @@ let {argv} = yargs
 	})
 	.epilog("🐕")
 	.demandCommand()
+	.showHelpOnFail(false)
 	.help("h")
 	.alias("h", "help")
 
