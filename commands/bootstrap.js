@@ -62,10 +62,10 @@ export let handler = async function ဪ(args) {
 	await components.sequence(npm.createAndWriteManifest)
 	await components.sequence(componentName => babel.compile(componentName, args))
 	await components.sequence(npm.cleanAndWriteManifest)
-	args.test && (await components.batch("obt t", undefined, 1))
+	args.test && (await components.sequence("obt t"))
 	args.unpublish &&
 		(await components.sequence(`npm unpublish --force ${registryArgument}`))
 	args.publish && (await components.sequence(`npm publish ${registryArgument}`))
 
-	console.info(chalk.magenta("oh good"))
+	console.info(chalk.yellow("hooray!!"))
 }
