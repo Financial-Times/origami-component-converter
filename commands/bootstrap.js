@@ -62,10 +62,17 @@ export let handler = async function ဪ(args) {
 	await components.sequence(npm.createAndWriteManifest)
 	await components.sequence(componentName => babel.compile(componentName, args))
 	await components.sequence(npm.cleanAndWriteManifest)
-	args.test && (await components.sequence("obt t"))
+
 	args.unpublish &&
 		(await components.sequence(`npm unpublish --force ${registryArgument}`))
-	args.publish && (await components.sequence(`npm publish ${registryArgument}`))
+
+		args.publish && (await components.sequence(`npm publish ${registryArgument}`))
+
+	if (args.obt) {
+		await components.sequence("npx obt i --ignore-bower")
+		await components.sequence("npx obt b --ignore-bower")
+		await components.sequence("npx obt t --ignore-bower")
+	}
 
 	console.info(chalk.yellow("hooray!!"))
 }
