@@ -55,12 +55,9 @@ export let handler = async function ဪ(args) {
 
 	await spawn(`npm install ${registryArgument}`)
 	args.cleanFirst && (await fs.remove(components.resolve()))
-	await args.components.reduce(
-		(promise, name) => promise.then(() => github.getLatestRelease(name)),
-		Promise.resolve()
-	)
+	await components.sequence(github.getLatestRelease)
 	await components.sequence(npm.createAndWriteManifest)
-	await components.sequence(componentName => babel.compile(componentName, args))
+	await components.sequence(babel.compile)
 	await components.sequence(npm.cleanAndWriteManifest)
 
 	args.unpublish &&
