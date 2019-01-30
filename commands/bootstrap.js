@@ -10,9 +10,9 @@ import {handler as initHandler} from "./init.js"
 export let command = "bootstrap"
 export let describe = "download, convert and publish all origami components"
 
-let getCommands = ({npmRegistry, unpublish, publish, obt}) => {
+let getCommands = ({registry, unpublish, publish, obt}) => {
 	let createSpawnArgs = name => ({cwd: components.resolve(name)})
-	let registryArgument = npm.createRegistryArgument(npmRegistry)
+	let registryArgument = npm.createRegistryArgument(registry)
 	let npmSpawn = (command, flag) => name =>
 		flag && spawn(
 			`npm ${command} --force ${registryArgument}`,
@@ -80,10 +80,11 @@ let options = {
 		default: false,
 		type: "boolean"
 	},
-	npmRegistry: {
+	registry: {
+		aliases: ["npmRegistry"],
 		default: "http://localhost:4873",
 		type: "string",
-		describe: "the npm registry to use"
+		describe: "the npm registry to use (the default is verdaccio's default)"
 	},
 	order: {
 		default: validOrders[0],
