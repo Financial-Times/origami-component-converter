@@ -68,6 +68,7 @@ export let handler = async function ဪ(argv) {
 	await npm.createAndWriteManifest(component)
 	await babel.compile(component)
 	await npm.cleanAndWriteManifest(component)
+	await npm.removeLockfile(component)
 
 	console.info(chalk.magenta("oh good"))
 }

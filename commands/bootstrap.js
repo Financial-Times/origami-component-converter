@@ -25,6 +25,7 @@ let getCommands = ({registry, unpublish, publish, obt}) => {
 		npm.cleanAndWriteManifest,
 		npmSpawn("unpublish", unpublish),
 		npmSpawn("publish", publish),
+		npm.removeLockfile,
 		name => obt && spawn(
 			"npx obt i --ignore-bower",
 			createSpawnArgs(name)
