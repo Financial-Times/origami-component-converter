@@ -77,8 +77,7 @@ export let handler = async function ဪ(args) {
 		Promise.resolve()
 	)
 	await components.sequence(npm.createAndWriteManifest)
-
-	await components.sequence(component => babel.compile(component, args))
+	await components.sequence(componentName => babel.compile(componentName, args))
 	await components.sequence(npm.cleanAndWriteManifest)
 	args.test && (await components.batch("obt t", undefined, 1))
 	args.unpublish &&

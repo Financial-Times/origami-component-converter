@@ -5,7 +5,7 @@ export let command = "link"
 export let describe = "npm link all the deps globally"
 
 export let handler = async function() {
-	await components.batch("npm link")
+	await components.sequence("npm link")
 	await components.sequence(async name => {
 		if (!name) return false
 		let dependencies = await components.sort([name])
