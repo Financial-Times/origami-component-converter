@@ -9,16 +9,6 @@ import {builderManifest} from "../lib/skeletons.js"
 import write from "../lib/write-object.js"
 import * as workingDirectory from "../lib/working-directory.js"
 import chalk from "chalk"
-let origamiComponentNames = require("../config/components.json")
-
-/**
- * coerce components argument into an array if it was comma separated
- *
- * @param {string | string[]} components components args
- * @returns {string[]} components
- */
-let parseComponentsArgument = components =>
-	Array.isArray(components) ? components : components.split(/,/)
 
 export let command = "bootstrap"
 export let describe = "download, convert and publish all origami components"
@@ -52,13 +42,6 @@ export let options = {
 		default: "http://localhost:4873",
 		type: "string",
 		describe: "the npm registry to use"
-	},
-	components: {
-		global: false,
-		describe: "the components to use",
-		default: origamiComponentNames,
-		coerce: parseComponentsArgument,
-		type: undefined
 	}
 }
 
