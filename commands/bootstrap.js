@@ -3,36 +3,78 @@ import spawn from "../lib/spawn.js"
 import * as components from "../lib/components.js"
 import * as npm from "../lib/npm.js"
 import * as babel from "../lib/babel.js"
-import * as fs from "fs-extra"
 import * as github from "../lib/github.js"
-import {builderManifest} from "../lib/skeletons.js"
-import write from "../lib/write-object.js"
-import * as workingDirectory from "../lib/working-directory.js"
 import chalk from "chalk"
+import {handler as initHandler} from "./init.js"
 
 export let command = "bootstrap"
 export let describe = "download, convert and publish all origami components"
 
+let getCommands = ({npmRegistry, unpublish, publish, obt}) => {
+	let createSpawnArgs = name => ({cwd: components.resolve(name)})
+	let registryArgument = npm.createRegistryArgument(npmRegistry)
+	let npmSpawn = (command, flag) => name =>
+		flag && spawn(
+			`npm ${command} --force ${registryArgument}`,
+			createSpawnArgs(name)
+		).catch(`couldn't unpublish "${name}!"`)
+
+	return [
+		npm.createAndWriteManifest,
+		babel.compile,
+		npm.cleanAndWriteManifest,
+		npmSpawn("unpublish", unpublish),
+		npmSpawn("publish", publish),
+		name => obt && spawn(
+			"npx obt i --ignore-bower",
+			createSpawnArgs(name)
+		),
+		name => obt && spawn(
+			"npx obt t --ignore-bower",
+			createSpawnArgs(name)
+		)
+	]
+}
+
+let orders = {
+	async component (argv) {
+		let commands = getCommands(argv)
+		await components.sequence(async name => {
+			for (let command of commands) {
+				await command(name)
+			}
+		})
+	},
+	async operation (argv) {
+		let commands = getCommands(argv)
+		for (let command of commands) {
+			await components.sequence(command)
+		}
+	}
+}
+
+let validOrders = Object.keys(orders)
+
 /**
  * @type {Object.<string, import('yargs').Options>}
  */
-export let options = {
-	cleanFirst: {
-		global: false,
-		describe: "delete old components/ directory",
-		alias: "c",
-		default: false,
+let options = {
+	init: {
+		describe: "initialise the build directory first",
+		default: true,
+		type: "boolean"
+	},
+	download: {
+		default: true,
 		type: "boolean"
 	},
 	publish: {
-		global: false,
 		alias: "p",
 		describe: "publish to npm registry",
 		default: true,
 		type: "boolean"
 	},
 	unpublish: {
-		global: false,
 		alias: "u",
 		describe: "remove from npm registry",
 		default: false,
@@ -42,34 +84,41 @@ export let options = {
 		default: "http://localhost:4873",
 		type: "string",
 		describe: "the npm registry to use"
+	},
+	order: {
+		default: validOrders[0],
+		type: "string",
+		describe: "the order in which to run the operations",
+		choices: validOrders
 	}
 }
 
 export let builder = yargs => yargs.options(options)
 
-export let handler = async function ဪ(args) {
-	args.components && components.setTargets(args.components)
-	await write(workingDirectory.resolve("package.json"), builderManifest)
+export let handler = async function ဪ(argv) {
+	argv.components && components.setTargets(argv.components)
 
-	let registryArgument = npm.createRegistryArgument(args.npmRegistry)
-
-	await spawn(`npm install ${registryArgument}`)
-	args.cleanFirst && (await fs.remove(components.resolve()))
-	await components.sequence(github.getLatestRelease)
-	await components.sequence(npm.createAndWriteManifest)
-	await components.sequence(babel.compile)
-	await components.sequence(npm.cleanAndWriteManifest)
-
-	args.unpublish &&
-		(await components.sequence(`npm unpublish --force ${registryArgument}`))
-
-		args.publish && (await components.sequence(`npm publish ${registryArgument}`))
-
-	if (args.obt) {
-		await components.sequence("npx obt i --ignore-bower")
-		await components.sequence("npx obt b --ignore-bower")
-		await components.sequence("npx obt t --ignore-bower")
+	if (argv.init) {
+		await initHandler(argv)
 	}
 
-	console.info(chalk.yellow("hooray!!"))
+	// must download everything first, otherwise can't sort
+	// because the sort uses the bower registry.
+	// would be great to do this another way
+	await components.sequence(github.getLatestRelease, components.names.targets)
+
+	let order = orders[argv.order]
+
+	if (!order) {
+		console.info(
+			chalk.bold.red(
+				`no such order! try one of: ${validOrders}`
+			)
+		)
+		process.exit(33)
+	}
+
+	await order(argv)
+
+	console.info(chalk.bold.cyan("hooray!!"))
 }

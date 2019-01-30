@@ -8,6 +8,7 @@ import * as github from "../lib/github.js"
 import * as workingDirectory from "../lib/working-directory.js"
 import write from "../lib/write-object.js"
 import {builderManifest} from "../lib/skeletons.js"
+import {handler as initHandler} from "./init.js"
 
 import chalk from "chalk"
 
@@ -33,11 +34,25 @@ export let builder = yargs =>
 			describe: "the version to create",
 			type: "string"
 		})
+		.option("init", {
+			describe: "initialise the build directory first",
+			default: true,
+			type: "boolean"
+		})
 
 export let handler = async function ဪ(argv) {
-	let {component, brank, semver: version} = argv
-
+	let {
+		init,
+		component,
+		brank,
+		semver: version
+	} = argv
 	components.setTargets([component])
+
+	if (init) {
+		await initHandler(argv)
+	}
+
 	await write(workingDirectory.resolve("package.json"), builderManifest)
 
 	await spawn("npm install")
