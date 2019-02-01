@@ -1,10 +1,10 @@
-let assert = require("assert")
-let mock = require("mock-require")
-let bower = require("../../lib/bower.js")
+import expect from "expect"
+import mock from "mock-require"
 
 describe("bower.js", () => {
 	describe("getAllDependencyNames", () => {
 		it("returns all dependency names", () => {
+			let bower = require("../../lib/bower.js")
 			let dependencyNames = bower.getAllDependencyNames({
 				devDependencies: {
 					a: 1,
@@ -15,7 +15,7 @@ describe("bower.js", () => {
 					d: 4
 				}
 			})
-			assert.deepStrictEqual(dependencyNames, ["a", "b", "c", "d"])
+			expect(dependencyNames).toEqual(["a", "b", "c", "d"])
 		})
 	})
 
@@ -24,11 +24,11 @@ describe("bower.js", () => {
 			let componentName = "component"
 			mock("../../lib/components.js", {
 				resolve: (name, filename) => {
-					assert.equal(name, componentName)
-					assert.equal(filename, "bower.json")
+					expect(name).toBe(componentName)
+					expect(filename).toBe("bower.json")
 				}
 			})
-			bower = mock.reRequire("../../lib/bower.js")
+			let bower = mock.reRequire("../../lib/bower.js")
 			bower.getManifestPath(componentName)
 			mock.stop("../../lib/components.js")
 		})

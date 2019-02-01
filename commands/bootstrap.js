@@ -6,6 +6,7 @@ import * as babel from "../lib/babel.js"
 import * as github from "../lib/github.js"
 import chalk from "chalk"
 import {handler as initHandler} from "./init.js"
+import * as fs from "fs-extra"
 
 export let command = "bootstrap"
 export let describe = "download, convert and publish all origami components"
@@ -107,6 +108,7 @@ export let handler = async function ဪ(argv) {
 	// must download everything first, otherwise can't sort
 	// because the sort uses the bower registry.
 	// would be great to do this another way
+	await components.sequence(name => fs.remove(components.resolve(name)))
 	await components.sequence(github.getLatestRelease, components.names.targets)
 
 	let order = orders[argv.order]
