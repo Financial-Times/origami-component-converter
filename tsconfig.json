@@ -1,8 +1,0 @@
-{
-	"compilerOptions": {
-		"allowJs": true,
-		"lib": ["es2018"],
-		"outFile": "",
-		"module": "system"
-	}
-}
