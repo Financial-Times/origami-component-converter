@@ -12,27 +12,28 @@ import {handler as initHandler} from "./init.js"
 
 import chalk from "chalk"
 
-export let command = "create <component> <branch> <semver>"
+export let command = "create"
 export let desc =
 	"fetch an origami component at branch and create an npm version"
 
 export let builder = yargs =>
 	yargs
-		.positional("component", {
-			default: true,
+		.option("component", {
 			describe: "the component to operate on",
-			type: "string"
+			type: "string",
+			required: true
 		})
-		.positional("branch", {
-			default: true,
+		.option("branch", {
+			default: "master",
 			alias: "brank",
 			describe: "the branch to fetch",
-			type: "string"
+			type: "string",
+			required: true
 		})
-		.positional("semver", {
-			default: true,
-			describe: "the version to create",
-			type: "string"
+		.option("semver", {
+			describe: "the version number to use in the package.json",
+			type: "string",
+			required: true
 		})
 		.option("init", {
 			describe: "initialise the build directory first",
