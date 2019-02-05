@@ -108,7 +108,7 @@ export let handler = async function ဪ(argv) {
 	// must download everything first, otherwise can't sort
 	// because the sort uses the bower registry.
 	// would be great to do this another way
-	await components.sequence(name => fs.remove(components.resolve(name)))
+	await components.sequence(name => fs.remove(components.resolve(name)), components.names.targets)
 	await components.sequence(github.getLatestRelease, components.names.targets)
 
 	let order = orders[argv.order]
