@@ -5,7 +5,7 @@ the *o*rigami *c*omponent *c*onverter
 
 ```sh
 $ npm install --global @chee/occ
-$ occ create o-table master 7.0.6
+$ occ create --component o-table --branch master --semver 7.0.6
 ```
 
 this will:
