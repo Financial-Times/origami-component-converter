@@ -2,7 +2,7 @@ import expect from "expect"
 import path from "path"
 import mock from "mock-require"
 
-describe('working-directory', () => {
+describe("working-directory", () => {
 	let getResolve = () => {
 		mock("yargs", {
 			argv: {

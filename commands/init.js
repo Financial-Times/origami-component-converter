@@ -11,5 +11,4 @@ export let describe = "initialise the build directory"
 export let handler = async () => {
 	await write(workingDirectory.resolve("package.json"), builderManifest)
 	await spawn("npm install")
-	await fs.remove(components.resolve())
 }
