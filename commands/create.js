@@ -54,9 +54,6 @@ export let handler = async function ဪ(argv) {
 		await initHandler(argv)
 	}
 
-	await write(workingDirectory.resolve("package.json"), builderManifest)
-
-	await spawn("npm install")
 	await fs.remove(components.resolve(component))
 
 	await github.extractTarballFromUri(
