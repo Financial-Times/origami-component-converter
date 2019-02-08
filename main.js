@@ -1,8 +1,13 @@
 import yargs from "yargs"
 import path from "path"
 import os from "os"
-import {mkdirp} from "fs-extra"
-let origamiComponentNames = require("./config/components.json")
+import {mkdirp, readJsonSync} from "fs-extra"
+let origamiComponentNames = readJsonSync(
+	path.join(
+		__dirname,
+		"config/components.json"
+	)
+)
 
 /**
  * coerce components argument into an array if it was comma separated
