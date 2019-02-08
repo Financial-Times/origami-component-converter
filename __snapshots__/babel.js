@@ -22,10 +22,7 @@ exports['babel config'] = {
         ]
       ],
       "plugins": [
-        "@babel/plugin-transform-modules-commonjs",
         "module:babel-plugin-add-module-exports",
-        "module:babel-plugin-transform-es3-member-expression-literals",
-        "module:babel-plugin-transform-es3-property-literals",
         [
           "module:babel-plugin-import-redirect",
           {
