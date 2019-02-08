@@ -1,5 +1,5 @@
 # OCC
-the *o*rigami *c*omponent *c*onverter
+the **o**rigami **c**omponent **c**onverter
 
 ## usage
 
