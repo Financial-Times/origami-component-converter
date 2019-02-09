@@ -11,7 +11,10 @@ export let command = "bootstrap"
 export let describe = "download, convert and publish all origami components"
 
 let getCommands = ({registry, unpublish, publish, obt}) => {
-	let createSpawnArgs = name => ({cwd: components.resolve(name)})
+	let createSpawnArgs = name => ({
+		cwd: components.resolve(name),
+		stdio: "pipe"
+	})
 	let registryArgument = npm.createRegistryArgument(registry)
 	let npmSpawn = (command, flag) => name =>
 		flag && spawn(
@@ -21,7 +24,7 @@ let getCommands = ({registry, unpublish, publish, obt}) => {
 
 	return [
 		npm.createAndWriteManifest,
-		babel.compile,
+		name => babel.compile(components.resolve(name)),
 		npm.cleanAndWriteManifest,
 		npmSpawn("unpublish", unpublish),
 		npmSpawn("publish", publish),
@@ -96,10 +99,10 @@ export let handler = async function ဪ(argv) {
 	argv.components && components.setTargets(argv.components)
 
 	// must download everything first, otherwise can't sort
-	// because the sort uses the bower registry.
+	// because the sort uses the bower manifests.
 	// would be great to do this another way
-	await components.sequence(name => fs.remove(components.resolve(name)), components.names.targets)
-	await components.sequence(github.getLatestRelease, components.names.targets)
+	await components.sequence(name => fs.remove(components.resolve(name)), components.names.all)
+	await components.sequence(github.getLatestRelease, components.names.all)
 
 	let order = orders[argv.order]
 
