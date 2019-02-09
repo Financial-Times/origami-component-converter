@@ -23,7 +23,7 @@ let {
 	stdout
 } = process
 
-export let handler = async function ဪ(argv) {
+export let handler = async function (argv) {
 	let input = ""
 
 	stdin.resume()
