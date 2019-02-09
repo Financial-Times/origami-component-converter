@@ -4,7 +4,6 @@
 	"description": "~~component-description~~",
 	"component": "~~component-origami-name~~",
 	"browser": "browser.js",
-	"module": "dist/js/main.mjs"
 	"scripts": {},
 	"license": "MIT",
 	"files": [

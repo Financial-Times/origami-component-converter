@@ -12,8 +12,8 @@ export let builder = yargs =>
 			type: "string",
 			required: true
 		})
-		.option("include-babel-config", {
-			describe: "whether or not to include babel config in the package.json",
+		.option("include-aliases", {
+			describe: "whether or not to include alias config in the package.json",
 			type: "boolean",
 			default: false
 		})
@@ -35,10 +35,7 @@ export let handler = async function (argv) {
 		let bowerManifest = JSON.parse(input)
 		bowerManifest.version = argv.semver
 		let npmManifest = await npm.createManifest(bowerManifest)
-		if (!argv.includeBabelConfig) {
-			delete npmManifest.babel
-		}
-		if (!argv.includeAliasConfig) {
+		if (!argv.includeAliases) {
 			delete npmManifest.aliases
 		}
 		stdout.write(JSON.stringify(npmManifest, null, "\t") + EOL)
