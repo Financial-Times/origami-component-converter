@@ -30,11 +30,6 @@ export let builder = yargs =>
 			type: "string",
 			required: true
 		})
-		.option("init", {
-			describe: "initialise the build directory first",
-			default: true,
-			type: "boolean"
-		})
 
 export let handler = async function ဪ(argv) {
 	let {
