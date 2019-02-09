@@ -29,7 +29,8 @@ exports['babel config'] = {
             "redirect": {
               "alice/src/(.*)": "banana/dist/$1",
               "charlie/src/(.*)": "delta/dist/$1"
-            }
+            },
+            "suppressResolveWarning": true
           }
         ]
       ],
@@ -45,7 +46,8 @@ exports['babel config'] = {
               "./src/(.*)": "./dist/$1",
               "alice/src/(.*)": "banana/dist/$1",
               "charlie/src/(.*)": "delta/dist/$1"
-            }
+            },
+            "suppressResolveWarning": true
           }
         ]
       ],
@@ -64,7 +66,8 @@ exports['babel config'] = {
               "../main": "../browser.js",
               "alice/src/(.*)": "banana/dist/$1",
               "charlie/src/(.*)": "delta/dist/$1"
-            }
+            },
+            "suppressResolveWarning": true
           }
         ]
       ],
