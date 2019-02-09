@@ -1,8 +1,9 @@
 exports['babel config'] = {
+  "filename": "",
   "presets": [],
   "plugins": [
     [
-      "module:babel-plugin-module-resolver",
+      "~root~/node_modules/babel-plugin-module-resolver",
       {
         "alias": {
           "alice": "banana",
@@ -15,16 +16,20 @@ exports['babel config'] = {
     {
       "presets": [
         [
-          "@babel/preset-env",
+          "~root~/node_modules/@babel/preset-env",
           {
-            "useBuiltIns": false
+            "useBuiltIns": false,
+            "targets": {
+              "esmodules": true
+            },
+            "modules": "auto"
           }
         ]
       ],
       "plugins": [
-        "module:babel-plugin-add-module-exports",
+        "~root~/node_modules/babel-plugin-add-module-exports",
         [
-          "module:babel-plugin-import-redirect",
+          "~root~/node_modules/babel-plugin-import-redirect",
           {
             "redirect": {
               "alice/src/(.*)": "banana/dist/$1",
@@ -39,8 +44,9 @@ exports['babel config'] = {
     {
       "presets": [],
       "plugins": [
+        "~root~/node_modules/babel-plugin-add-module-exports",
         [
-          "module:babel-plugin-import-redirect",
+          "~root~/node_modules/babel-plugin-import-redirect",
           {
             "redirect": {
               "./src/(.*)": "./dist/$1",
@@ -57,13 +63,13 @@ exports['babel config'] = {
       "presets": [],
       "plugins": [
         [
-          "module:babel-plugin-import-redirect",
+          "~root~/node_modules/babel-plugin-import-redirect",
           {
             "root": "test",
             "redirect": {
               "../src/(.*)": "../dist/$1",
               "./fixture/main": "./fixture/main",
-              "../main": "../browser.js",
+              "../main": "../browser",
               "alice/src/(.*)": "banana/dist/$1",
               "charlie/src/(.*)": "delta/dist/$1"
             },
