@@ -4,7 +4,6 @@ import * as npm from "../lib/npm.js"
 import * as babel from "../lib/babel.js"
 import * as fs from "fs-extra"
 import * as github from "../lib/github.js"
-import {handler as initHandler} from "./init.js"
 
 import chalk from "chalk"
 
@@ -39,16 +38,11 @@ export let builder = yargs =>
 
 export let handler = async function ဪ(argv) {
 	let {
-		init,
 		component,
 		brank,
 		semver: version
 	} = argv
 	components.setTargets([component])
-
-	if (init) {
-		await initHandler(argv)
-	}
 
 	await fs.remove(components.resolve(component))
 
