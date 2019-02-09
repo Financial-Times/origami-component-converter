@@ -5,7 +5,6 @@ import * as npm from "../lib/npm.js"
 import * as babel from "../lib/babel.js"
 import * as github from "../lib/github.js"
 import chalk from "chalk"
-import {handler as initHandler} from "./init.js"
 import * as fs from "fs-extra"
 
 export let command = "bootstrap"
@@ -61,11 +60,6 @@ let validOrders = Object.keys(orders)
  * @type {Object.<string, import('yargs').Options>}
  */
 let options = {
-	init: {
-		describe: "initialise the build directory first",
-		default: true,
-		type: "boolean"
-	},
 	download: {
 		default: true,
 		type: "boolean"
@@ -83,7 +77,7 @@ let options = {
 		type: "boolean"
 	},
 	registry: {
-		aliases: ["npmRegistry"],
+		alias: ["npmRegistry"],
 		default: "http://localhost:4873",
 		type: "string",
 		describe: "the npm registry to use (the default is verdaccio's default)"
@@ -100,10 +94,6 @@ export let builder = yargs => yargs.options(options)
 
 export let handler = async function ဪ(argv) {
 	argv.components && components.setTargets(argv.components)
-
-	if (argv.init) {
-		await initHandler(argv)
-	}
 
 	// must download everything first, otherwise can't sort
 	// because the sort uses the bower registry.
