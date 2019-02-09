@@ -1,13 +1,9 @@
 #!/usr/bin/env node
-import spawn from "../lib/spawn.js"
 import * as components from "../lib/components.js"
 import * as npm from "../lib/npm.js"
 import * as babel from "../lib/babel.js"
 import * as fs from "fs-extra"
 import * as github from "../lib/github.js"
-import * as workingDirectory from "../lib/working-directory.js"
-import write from "../lib/write-object.js"
-import {builderManifest} from "../lib/skeletons.js"
 import {handler as initHandler} from "./init.js"
 
 import chalk from "chalk"
