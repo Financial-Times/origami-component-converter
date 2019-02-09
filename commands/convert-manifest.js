@@ -38,6 +38,9 @@ export let handler = async function (argv) {
 		if (!argv.includeBabelConfig) {
 			delete npmManifest.babel
 		}
+		if (!argv.includeAliasConfig) {
+			delete npmManifest.aliases
+		}
 		stdout.write(JSON.stringify(npmManifest, null, "\t") + EOL)
 	})
 }
