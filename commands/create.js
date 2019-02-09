@@ -42,6 +42,7 @@ export let handler = async function ဪ(argv) {
 		brank,
 		semver: version
 	} = argv
+
 	components.setTargets([component])
 
 	await fs.remove(components.resolve(component))
@@ -54,7 +55,7 @@ export let handler = async function ဪ(argv) {
 	await fs.outputFile(components.getVersionFilePath(component), version)
 
 	await npm.createAndWriteManifest(component)
-	await babel.compile(component)
+	await babel.compile(components.resolve(component))
 	await npm.cleanAndWriteManifest(component)
 	await npm.removeLockfile(component)
 
