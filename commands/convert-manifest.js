@@ -32,7 +32,7 @@ export let handler = async function (argv) {
 	stdin.on("data", chunk => input += chunk)
 
 	stdin.on("end", async () => {
-		let bowerManifest= JSON.parse(input)
+		let bowerManifest = JSON.parse(input)
 		bowerManifest.version = argv.semver
 		let npmManifest = await npm.createManifest(bowerManifest)
 		if (!argv.includeBabelConfig) {
