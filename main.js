@@ -22,10 +22,8 @@ let {argv} = yargs
 	.wrap(yargs.terminalWidth())
 	.option("components", {
 		global: true,
-		describe: "the components to use",
 		default: origamiComponentNames,
-		coerce: parseComponentsArgument,
-		type: undefined
+		coerce: parseComponentsArgument
 	})
 	.commandDir("./commands")
 	.options("working-directory", {
