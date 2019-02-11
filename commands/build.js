@@ -28,11 +28,8 @@ export let handler = async function build (argv) {
 		directory,
 		semver: version
 	} = argv
-	version = await version
 
 	let resolve = (...paths) => path.resolve(directory, ...paths)
-
-	await fs.outputFile(resolve("version"), version)
 
 	let bowerManifestPath = resolve("bower.json")
 	if (!await fs.pathExists(bowerManifestPath)) {
@@ -46,9 +43,16 @@ export let handler = async function build (argv) {
 	let npmManifest = await npm.createManifest(bowerManifest)
 
 	let npmManifestPath = resolve("package.json")
-	await writeObject(npmManifestPath, npmManifest)
+
+	await npm.writeManifest(
+		npmManifestPath,
+		npmManifest
+	)
+
 	await babel.compile(directory)
 
-	let cleanedNpmManifest = await npm.cleanManifest(npmManifest)
-	await writeObject(npmManifestPath, cleanedNpmManifest)
+	await npm.writeManifest(
+		npmManifestPath,
+		npm.cleanManifest(npmManifest)
+	)
 }
