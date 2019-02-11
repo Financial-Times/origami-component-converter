@@ -45,14 +45,14 @@ export let handler = async function build (argv) {
 	let npmManifestPath = resolve("package.json")
 
 	await npm.writeManifest(
-		npmManifestPath,
-		npmManifest
+		npmManifest,
+		npmManifestPath
 	)
 
 	await babel.compile(directory)
 
 	await npm.writeManifest(
-		npmManifestPath,
-		npm.cleanManifest(npmManifest)
+		npm.cleanManifest(npmManifest),
+		npmManifestPath
 	)
 }
