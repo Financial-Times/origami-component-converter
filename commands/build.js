@@ -40,6 +40,9 @@ export let handler = async function build (argv) {
 	}
 
 	let bowerManifest = await fs.readJson(bowerManifestPath)
+
+	bowerManifest.version = version
+
 	let npmManifest = await npm.createManifest(bowerManifest)
 
 	let npmManifestPath = resolve("package.json")
