@@ -22,7 +22,7 @@ exports['babel config'] = {
             "targets": {
               "esmodules": true
             },
-            "modules": "auto"
+            "modules": "commonjs"
           }
         ]
       ],
