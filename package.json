@@ -1,8 +1,9 @@
 {
-	"name": "@chee/occ",
-	"version": "0.1.5",
+	"name": "occ",
+	"version": "0.2.2",
 	"description": "origami component converter",
 	"main": "index.js",
+	"module": "main.js",
 	"author": "chee <chee@snoot.club>",
 	"license": "MPL-2.0",
 	"dependencies": {
@@ -47,12 +48,11 @@
 		"occ": "./index.js"
 	},
 	"files": [
-		"skeletons",
-		"compiled",
-		".bowerrc",
-		"README.md",
-		"config/*",
-		"npmrc",
-		"package.json"
+		"skeletons/",
+		"commands/",
+		"lib/",
+		"config/",
+		"index.js",
+		"main.js"
 	]
 }
