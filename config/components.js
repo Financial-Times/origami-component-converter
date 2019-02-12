@@ -1,4 +1,4 @@
-[
+export default [
 	"fticons",
 	"o-assets",
 	"o-autoinit",

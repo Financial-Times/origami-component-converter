@@ -3,9 +3,10 @@ import mock from "mock-require"
 
 describe("babel suite", () => {
 	it("returns the same babel config", () => {
-		mock("../../lib/root", {
+		mock("path", {
 			resolve: (...paths) =>
-				"~root~/" + paths.join("/")
+				// .slice(2) because the first two args are getting to root
+				"~root~/" + paths.slice(2).join("/")
 		})
 		let babel = mock.reRequire("../../lib/babel")
 		snap("babel config", babel.createConfiguration({
