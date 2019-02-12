@@ -63,4 +63,6 @@ export let handler = async function build (argv) {
 		npm.cleanManifest(npmManifest),
 		npmManifestPath
 	)
+
+	await fs.remove(resolve("package-lock.json"))
 }
