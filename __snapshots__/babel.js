@@ -2,6 +2,7 @@ exports['babel config'] = {
   "filename": "",
   "presets": [],
   "plugins": [
+    "/Users/chee/Projects/Origami/occ/node_modules/babel-plugin-add-module-exports",
     null
   ],
   "overrides": [
@@ -18,26 +19,8 @@ exports['babel config'] = {
           }
         ]
       ],
-      "plugins": [
-        "/Users/chee/Projects/Origami/occ/node_modules/babel-plugin-add-module-exports",
-        null
-      ],
+      "plugins": [],
       "exclude": "./test.src/**"
-    },
-    {
-      "presets": [],
-      "plugins": [
-        "/Users/chee/Projects/Origami/occ/node_modules/babel-plugin-add-module-exports",
-        null
-      ],
-      "test": "./main.js"
-    },
-    {
-      "presets": [],
-      "plugins": [
-        null
-      ],
-      "test": "./test.src/**"
     }
   ]
 }

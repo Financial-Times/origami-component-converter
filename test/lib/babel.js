@@ -4,6 +4,7 @@ import mock from "mock-require"
 describe("babel suite", () => {
 	it("returns the same babel config", () => {
 		mock("path", {
+			...require("path"),
 			resolve: (...paths) =>
 				// .slice(2) because the first two args are getting to root
 				"~root~/" + paths.slice(2).join("/")
