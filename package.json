@@ -1,6 +1,6 @@
 {
 	"name": "occ",
-	"version": "0.4.1",
+	"version": "0.5.0",
 	"description": "origami component converter",
 	"main": "index.js",
 	"module": "main.js",
