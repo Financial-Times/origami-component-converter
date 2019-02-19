@@ -10,7 +10,7 @@ export default [
 	"o-comment-api",
 	"o-comment-count",
 	"o-comment-ui",
-	"o-comment-utilites",
+	"o-comment-utilities",
 	"o-comments",
 	"o-cookie-message",
 	"o-date",
