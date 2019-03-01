@@ -1,5 +1,6 @@
 export default {
 	name: {
+		"ft-date-format": "@financial-times/ft-date-format",
 		ftdomdelegate: "dom-delegate",
 		prism: "prismjs",
 		pusher: "pusher-js",
