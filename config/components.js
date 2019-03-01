@@ -1,5 +1,4 @@
 export default [
-	"ft-date-format",
 	"fticons",
 	"o-ads",
 	"o-assets",
