@@ -51,6 +51,7 @@ export default [
 	"o-toggle",
 	"o-tooltip",
 	"o-topper",
+	"o-tracking",
 	"o-typography",
 	"o-utils",
 	"o-video",
