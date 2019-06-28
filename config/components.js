@@ -56,5 +56,7 @@ export default [
 	"o-utils",
 	"o-video",
 	"o-viewport",
-	"o-visual-effects"
+	"o-visual-effects",
+	"o-spacing",
+	"o-lazy-load"
 ]
