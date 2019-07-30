@@ -86,3 +86,5 @@ describe("rewrite", () => {
 		expect(rewrite("../../src/lol", aliases)).toBe("../../dist/lol")
 	})
 })
+
+export default {}
