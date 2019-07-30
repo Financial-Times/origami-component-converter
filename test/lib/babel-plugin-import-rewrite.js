@@ -3,7 +3,9 @@ import {
 	replace,
 	rewrite
 } from "../../lib/babel-plugin-import-rewrite.js"
+
 import expect from "expect"
+
 describe("normalize", () => {
 	it("leaves bare paths alone", () => {
 		expect(normalize("x/x")).toBe("x/x")
