@@ -5,6 +5,13 @@ export let command = "convert-manifest"
 export let desc =
 	"read a bower manifest on stdin and write a npm manifest to stdout"
 
+// import for jsdoc
+// eslint-disable-next-line no-unused-vars
+import yargs from "yargs"
+/**
+ * @param {yargs.Argv} yargs the yargs instance passed by outer yargs
+ * @returns {yargs.Argv} the yargs instance to be consumed by outer yargs
+*/
 export let builder = yargs =>
 	yargs
 		.option("semver", {
@@ -23,6 +30,13 @@ let {
 	stdout
 } = process
 
+
+/**
+ * Take a bower.json on `STDIN` and print a package.json on `STDOUT`
+ * 
+ * @param {{includeAliases: boolean, semver: string}} argv the argv created by yargs
+ * @returns {undefined}
+*/
 export let handler = async function (argv) {
 	let input = ""
 
