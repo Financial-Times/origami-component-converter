@@ -1,6 +1,5 @@
 import * as babel from "../../lib/babel"
 import snap from "snap-shot-it"
-import expect from "expect"
 export default {}
 
 describe("createConfiguration", () => {
