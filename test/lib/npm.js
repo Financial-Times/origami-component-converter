@@ -4,19 +4,27 @@ import mappings from "../../config/mappings"
 import snap from "snap-shot-it"
 let specCompliantBowerConfig = require("o-spec-compliant-bower-config/bower.json")
 
+let props = {
+	name: "yeet",
+	version: "0.0.0-yeet",
+}
+
 describe("merge manifests", () => {
 	it("overwrites deps from existing with generated", () => {
 		let existing = {
-			dependencies: {a: 1, b: 2, c: 3}
+			...props,
+			dependencies: {a: "1", b: "2", c: "3"},
 		}
 		let generated = {
-			dependencies: {b: 2, c: 5}
+			...props,
+			dependencies: {b: "2", c: "5"},
 		}
 		expect(npm.mergeManifests(existing, generated)).toEqual({
+			...props,
 			dependencies: {
-				a: 1,
-				b: 2,
-				c: 5,
+				a: "1",
+				b: "2",
+				c: "5",
 			},
 			devDependencies: {},
 			scripts: {},
@@ -25,16 +33,19 @@ describe("merge manifests", () => {
 
 	it("overwrites dev-deps from existing with generated", () => {
 		let existing = {
-			devDependencies: {a: 1, b: 2, c: 3},
+			...props,
+			devDependencies: {a: "1", b: "2", c: "3"},
 		}
 		let generated = {
-			devDependencies: {b: 2, c: 5},
+			...props,
+			devDependencies: {b: "2", c: "5"},
 		}
 		expect(npm.mergeManifests(existing, generated)).toEqual({
+			...props,
 			devDependencies: {
-				a: 1,
-				b: 2,
-				c: 5,
+				a: "1",
+				b: "2",
+				c: "5",
 			},
 			dependencies: {},
 			scripts: {},
@@ -43,12 +54,15 @@ describe("merge manifests", () => {
 
 	it("overwrites scripts from existing manifest with generated", () => {
 		let existing = {
+			...props,
 			scripts: {a: "old", b: "town", c: "yeet"},
 		}
 		let generated = {
+			...props,
 			scripts: {c: "road"},
 		}
 		expect(npm.mergeManifests(existing, generated)).toEqual({
+			...props,
 			scripts: {
 				a: "old",
 				b: "town",
@@ -90,7 +104,6 @@ describe("createDependencyVersion", () => {
 		expect(result).toBe(semver)
 	})
 
-
 	it("throws otherwise", async () => {
 		let nonSemver = "$0.$0.0-0.0.0-0.0.0-yeet$17"
 		let version = `blablahblah#${nonSemver}`
@@ -107,12 +120,24 @@ describe("createManifest", () => {
 
 describe("cleanManifest", async () => {
 	it("removes aliases", async () => {
-		expect(await npm.cleanManifest({aliases: true})).toEqual({})
+		expect(
+			await npm.cleanManifest(
+				Promise.resolve({
+					...props,
+					aliases: {
+						a: "b",
+					},
+				})
+			)
+		).toEqual(props)
 	})
 	it("doesnt mutate the object", async () => {
-		let manifest = {aliases: true}
-		let clean = await npm.cleanManifest()
+		let aliases = {
+			a: "b",
+		}
+		let manifest = {...props, aliases}
+		let clean = await npm.cleanManifest(Promise.resolve(manifest))
 		expect(clean).not.toBe(manifest)
-		expect(manifest.aliases).toBe(true)
+		expect(manifest.aliases).toBe(aliases)
 	})
 })
