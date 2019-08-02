@@ -10,7 +10,7 @@ let props = {
 }
 
 describe("merge manifests", () => {
-	it("overwrites deps from existing with generated", () => {
+	it("prefers deps from the generated over the existing", () => {
 		let existing = {
 			...props,
 			dependencies: {a: "1", b: "2", c: "3"},
@@ -31,7 +31,7 @@ describe("merge manifests", () => {
 		})
 	})
 
-	it("overwrites dev-deps from existing with generated", () => {
+	it("prefers dev-deps from the generated over the existing, () => {
 		let existing = {
 			...props,
 			devDependencies: {a: "1", b: "2", c: "3"},
@@ -52,7 +52,7 @@ describe("merge manifests", () => {
 		})
 	})
 
-	it("overwrites scripts from existing manifest with generated", () => {
+	it("prefers scripts from the generated over the existing, () => {
 		let existing = {
 			...props,
 			scripts: {a: "old", b: "town", c: "yeet"},
