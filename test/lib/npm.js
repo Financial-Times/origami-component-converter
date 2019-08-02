@@ -52,7 +52,7 @@ describe("merge manifests", () => {
 		})
 	})
 
-	it("prefers scripts from the generated over the existing, () => {
+	it("prefers scripts from the generated over the existing", () => {
 		let existing = {
 			...props,
 			scripts: {a: "old", b: "town", c: "yeet"},
