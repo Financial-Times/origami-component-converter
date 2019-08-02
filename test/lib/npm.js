@@ -31,7 +31,7 @@ describe("merge manifests", () => {
 		})
 	})
 
-	it("prefers dev-deps from the generated over the existing, () => {
+	it("prefers dev-deps from the generated over the existing", () => {
 		let existing = {
 			...props,
 			devDependencies: {a: "1", b: "2", c: "3"},
