@@ -1,5 +1,9 @@
 import * as npm from "../../lib/npm"
-import expect from "expect"
+import * as chai from "chai"
+import chaiAsPromised from "chai-as-promised"
+
+chai.use(chaiAsPromised)
+const expect = chai.expect
 import mappings from "../../config/mappings"
 import snap from "snap-shot-it"
 let specCompliantBowerConfig = require("o-spec-compliant-bower-config/bower.json")
@@ -19,7 +23,7 @@ describe("merge manifests", () => {
 			...props,
 			dependencies: {b: "2", c: "5"},
 		}
-		expect(npm.mergeManifests(existing, generated)).toEqual({
+		expect(npm.mergeManifests(existing, generated)).to.eql({
 			...props,
 			dependencies: {
 				a: "1",
@@ -40,7 +44,7 @@ describe("merge manifests", () => {
 			...props,
 			devDependencies: {b: "2", c: "5"},
 		}
-		expect(npm.mergeManifests(existing, generated)).toEqual({
+		expect(npm.mergeManifests(existing, generated)).to.eql({
 			...props,
 			devDependencies: {
 				a: "1",
@@ -61,7 +65,7 @@ describe("merge manifests", () => {
 			...props,
 			scripts: {c: "road"},
 		}
-		expect(npm.mergeManifests(existing, generated)).toEqual({
+		expect(npm.mergeManifests(existing, generated)).to.eql({
 			...props,
 			scripts: {
 				a: "old",
@@ -76,11 +80,11 @@ describe("merge manifests", () => {
 
 describe("createComponentName", () => {
 	it("adds the default npm org", () => {
-		expect(npm.createComponentName("yeet")).toBe("@financial-times/yeet")
+		expect(npm.createComponentName("yeet")).to.eql("@financial-times/yeet")
 	})
 
 	it("accepts another npm org", () => {
-		expect(npm.createComponentName("monkey", "ftlabs")).toBe("@ftlabs/monkey")
+		expect(npm.createComponentName("monkey", "ftlabs")).to.eql("@ftlabs/monkey")
 	})
 })
 
@@ -88,27 +92,27 @@ describe("createDependencyVersion", () => {
 	it("uses version from mapping config", async () => {
 		let [[from, to]] = Object.entries(mappings.version)
 		let result = await npm.createDependencyVersion(["yeet", from])
-		expect(result).toBe(to)
+		expect(result).to.eql(to)
 	})
 
 	it("uses a valid semver if there is one", async () => {
 		let version = "0.0.0-0.0.0-0.0.0-yeet"
 		let result = await npm.createDependencyVersion(["yeet", version])
-		expect(result).toBe(version)
+		expect(result).to.eql(version)
 	})
 
 	it("uses a valid semver if there is one in a hash", async () => {
 		let semver = "0.0.0-0.0.0-0.0.0-yeet"
 		let version = `blablahblah#${semver}`
 		let result = await npm.createDependencyVersion(["yeet", version])
-		expect(result).toBe(semver)
+		expect(result).to.eql(semver)
 	})
 
 	it("throws otherwise", async () => {
 		let nonSemver = "$0.$0.0-0.0.0-0.0.0-yeet$17"
 		let version = `blablahblah#${nonSemver}`
-		expect(npm.createDependencyVersion(["yeet", version])).rejects.toThrow()
-		expect(npm.createDependencyVersion(["yeet", nonSemver])).rejects.toThrow()
+		expect(npm.createDependencyVersion(["yeet", version])).to.eventually.throw()
+		expect(npm.createDependencyVersion(["yeet", nonSemver])).to.eventually.throw()
 	})
 })
 
@@ -129,7 +133,7 @@ describe("cleanManifest", async () => {
 					},
 				})
 			)
-		).toEqual(props)
+		).to.eql(props)
 	})
 	it("doesnt mutate the object", async () => {
 		let aliases = {
@@ -137,7 +141,7 @@ describe("cleanManifest", async () => {
 		}
 		let manifest = {...props, aliases}
 		let clean = await npm.cleanManifest(Promise.resolve(manifest))
-		expect(clean).not.toBe(manifest)
-		expect(manifest.aliases).toBe(aliases)
+		expect(clean).not.to.eql(manifest)
+		expect(manifest.aliases).to.eql(aliases)
 	})
 })
