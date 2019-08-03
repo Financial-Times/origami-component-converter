@@ -17,9 +17,10 @@
 		"yargs": "^12.0.5"
 	},
 	"devDependencies": {
+		"chai": "^4.2.0",
+		"chai-as-promised": "^7.1.1",
 		"eslint": "^5.13.0",
 		"eslint-config-origami-component": "^1.0.0",
-		"expect": "^24.1.0",
 		"mocha": "^5.2.0",
 		"mock-require": "^3.0.3",
 		"node": "^10.16.0",
