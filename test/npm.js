@@ -108,13 +108,11 @@ describe("createDependencyVersion", () => {
 		expect(result).to.eql(semver)
 	})
 
-	it("throws otherwise", async () => {
+	it("throws otherwise", () => {
 		let nonSemver = "$0.$0.0-0.0.0-0.0.0-yeet$17"
-		let version = `blablahblah#${nonSemver}`
-		expect(npm.createDependencyVersion(["yeet", version])).to.eventually.throw()
-		expect(
-			npm.createDependencyVersion(["yeet", nonSemver])
-		).to.eventually.throw()
+		return npm.createDependencyVersion(["yeet", nonSemver]).catch(error => {
+			expect(error.message).to.contain(nonSemver)
+		})
 	})
 })
 
