@@ -1,0 +1,52 @@
+////
+/// @group o-colors
+/// @link http://registry.origami.ft.com/components/o-colors
+////
+
+/// color use cases
+///
+/// These mappings define what we use our colors for.
+///
+/// Use case:           Must be a single word comprising just letters, numbers, and dashes.
+/// Properties:         A Sass map of properties (must be 'border', 'text', 'background', or 'all')
+///                     against palette colors (must be an exact match for a name of a color defined
+///                     in palette.scss).
+///
+/// Special properties: You can use the following special properties to mark use cases:
+///
+///                     _deprecated: <msg>  Emits <msg> as a warning if referenced, but still works
+///
+/// @type map
+$o-colors-usecases: map-merge((
+
+//	<use case>                <properties>
+
+	page:                     (background: 'paper'),
+	box:                      (background: 'wheat'),
+	link:                     (text: 'teal'),
+	link-hover:               (text: 'black-70'),
+	link-title:               (text: 'black-80'),
+	link-title-hover:         (text: 'black-70'),
+	tag-link:                 (text: 'claret'),
+	tag-link-hover:           (text: 'claret-30'),
+	opinion-tag-link:         (text: 'oxford'),
+	opinion-tag-link-hover:   (text: 'oxford-30'),
+	title:                    (text: 'black'),
+	body:                     (text: 'black-80'),
+	muted:                    (text: 'black-20'),
+	opinion:                  (background: 'sky'),
+	hero:                     (background: 'wheat'),
+	hero-opinion:             (background: 'oxford'),
+	hero-highlight:           (background: 'claret'),
+
+	// Section colors
+	section-life-arts:        (all: 'velvet'),
+	section-life-arts-alt:    (all: 'candy'),
+	section-magazine:         (all: 'oxford'),
+	section-magazine-alt:     (all: 'sky'),
+	section-house-home:       (all: 'jade'),
+	section-house-home-alt:   (all: 'wasabi'),
+	section-money:            (all: 'crimson'),
+	section-money-alt:        (all: 'white'),
+
+), $o-colors-usecases);

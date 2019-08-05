@@ -1,0 +1,43 @@
+$o-forms-is-silent: false;
+@import "../../../main";
+
+body {
+	@include oColorsFor(page, background);
+}
+
+.demo {
+	margin: 12px;
+	max-width: 500px;
+}
+
+.demo-inverse {
+	margin-top: 16px;
+	background-color: #262a33;
+	padding: 10px;
+
+	.o-forms {
+		margin: 0;
+	}
+}
+
+$custom-theme: (
+	controls-base: 'claret',
+	controls-checked-base: 'white',
+	controls-negative-checked-background: 'claret-30'
+);
+
+$icon-list: ('grid', 'list');
+
+@include oFormsAddCustom(
+	$input: 'pseudo-radio-link',
+	$class: 'demo-pseudo-radio-link',
+	$icons: $icon-list,
+	$theme: $custom-theme
+);
+
+@include oFormsAddCustom(
+	$input: 'radio',
+	$class: 'demo-radio',
+	$icons: $icon-list,
+	$theme: $custom-theme
+);
