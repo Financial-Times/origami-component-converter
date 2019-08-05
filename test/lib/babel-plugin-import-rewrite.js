@@ -1,10 +1,10 @@
 import {
 	normalize,
 	replace,
-	rewrite
+	rewrite,
 } from "../../lib/babel-plugin-import-rewrite.js"
 
-import { expect } from 'chai';
+import {expect} from "chai"
 
 describe("normalize", () => {
 	it("leaves bare paths alone", () => {
@@ -54,7 +54,7 @@ describe("rewrite", () => {
 	})
 
 	let aliases = {
-		friend: "@special/friend"
+		friend: "@special/friend",
 	}
 
 	it("rewrites aliases", () => {
@@ -66,12 +66,15 @@ describe("rewrite", () => {
 	})
 
 	it("replaces src with dist in aliases", () => {
-		expect(rewrite("friend/src/lol", aliases)).to.eql("@special/friend/dist/lol")
+		expect(rewrite("friend/src/lol", aliases)).to.eql(
+			"@special/friend/dist/lol"
+		)
 	})
 
 	it("replaces longer src paths with dist in aliases", () => {
-		expect(rewrite("friend/src/monkey/lol", aliases))
-			.to.eql("@special/friend/dist/monkey/lol")
+		expect(rewrite("friend/src/monkey/lol", aliases)).to.eql(
+			"@special/friend/dist/monkey/lol"
+		)
 	})
 
 	it("replaces local main with local browser", () => {
