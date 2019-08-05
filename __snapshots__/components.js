@@ -1,4 +1,4 @@
-exports['occ o-colors@4 matches snapshot 1'] = {
+exports['occ o-colors@4.0.0 matches snapshot 1'] = {
   "contents": [
     {
       "stats": {
@@ -453,7 +453,7 @@ exports['occ o-colors@4 matches snapshot 1'] = {
   ]
 }
 
-exports['occ o-forms@7 matches snapshot 1'] = {
+exports['occ o-forms@7.0.0 matches snapshot 1'] = {
   "contents": [
     {
       "stats": {
@@ -1498,7 +1498,7 @@ exports['occ o-forms@7 matches snapshot 1'] = {
   ]
 }
 
-exports['occ o-table@7 matches snapshot 1'] = {
+exports['occ o-table@7.0.0 matches snapshot 1'] = {
   "contents": [
     {
       "stats": {
