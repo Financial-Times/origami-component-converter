@@ -1,0 +1,59 @@
+/// Helper for `o-brand` function.
+/// @access private
+@function _oTableGet($variables, $from: null) {
+    @return oBrandGet($component: 'o-table', $variables: $variables, $from: $from);
+}
+
+/// Helper for `o-brand` function.
+/// @access private
+@function _oTableSupports($variant) {
+    @return oBrandSupportsVariant($component: 'o-table', $variant: $variant);
+}
+
+@if oBrandGetCurrentBrand() == 'master' {
+	@include oBrandDefine('o-table', 'master', (
+		'variables': (
+			table-background: oColorsGetPaletteColor('paper'),
+			table-alternate-background: oColorsGetPaletteColor('wheat'),
+			table-border-color: oColorsGetPaletteColor('black-20'),
+			table-data-color: oColorsGetColorFor(body, text),
+			table-footnote-color: oColorsGetPaletteColor('black-60'),
+			'flat': (
+				table-item-alternate-background: oColorsMix('wheat', 'paper', 40)
+			)
+		),
+		'supports-variants': (
+			'stripes',
+			'compact'
+		)
+	));
+}
+
+@if oBrandGetCurrentBrand() == 'internal' {
+	@include oBrandDefine('o-table', 'internal', (
+		'variables': (
+			table-background: oColorsGetPaletteColor('white'),
+			table-alternate-background: oColorsGetPaletteColor('slate-white-5'),
+			table-border-color: oColorsGetPaletteColor('black-20'),
+			table-data-color: oColorsGetColorFor(body, text),
+			table-footnote-color: oColorsGetPaletteColor('black-60'),
+			'flat': (
+				table-item-alternate-background: oColorsGetPaletteColor('slate-white-5')
+			)
+		),
+		'supports-variants': (
+			'stripes',
+			'compact',
+			'row-headings'
+		)
+	));
+}
+
+@if oBrandGetCurrentBrand() == 'whitelabel' {
+	@include oBrandDefine('o-table', 'whitelabel', (
+		'variables': (),
+		'supports-variants': (
+			'compact'
+		)
+	));
+}

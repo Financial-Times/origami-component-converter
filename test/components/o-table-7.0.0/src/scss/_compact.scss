@@ -1,0 +1,18 @@
+/// Make a table 'compact'
+/// @access private
+@mixin _oTableCompact {
+	.o-table--compact {
+		th {
+			@include oTypographySansBold(0);
+		}
+
+		td {
+			@include oTypographySans(0);
+		}
+
+		th,
+		td {
+			padding: 4px 10px;
+		}
+	}
+}

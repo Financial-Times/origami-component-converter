@@ -1,0 +1,16 @@
+$o-table-is-silent: false;
+@import "./../../main";
+
+// Default font and styles
+html {
+	font-family: BentonSans, sans-serif;
+	background: oColorsGetColorFor('page', 'background');
+}
+
+.o-table-demo-constrain {
+	max-width: 600px;
+}
+
+.o-table-demo-pad {
+	padding-bottom: 1000px;
+}
