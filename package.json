@@ -30,7 +30,7 @@
 	"scripts": {
 		"watch": "npm run-script build -s -- -w",
 		"start": "node -r esm $npm_package_main",
-		"test": "mocha -r esm --recursive test",
+		"test": "mocha -r esm test",
 		"pretty": "prettier index.js main.js lib/**/*.js test/**/*.js --write"
 	},
 	"repository": {

@@ -1,4 +1,4 @@
-import * as babel from "../../lib/babel"
+import * as babel from "../lib/babel"
 import snap from "snap-shot-it"
 export default {}
 

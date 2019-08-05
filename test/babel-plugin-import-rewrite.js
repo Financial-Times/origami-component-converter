@@ -2,7 +2,7 @@ import {
 	normalize,
 	replace,
 	rewrite,
-} from "../../lib/babel-plugin-import-rewrite.js"
+} from "../lib/babel-plugin-import-rewrite.js"
 
 import {expect} from "chai"
 
