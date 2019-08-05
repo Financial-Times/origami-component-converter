@@ -4,15 +4,15 @@ import {handler as convertComponent} from "../commands/build"
 import {resolve as resolvePath} from "path"
 
 let components = [
-	["o-colors@4", "4.0.0"],
-	["o-forms@7", "7.0.0"],
-	["o-table@7", "7.0.0"],
+	["o-colors", "4.0.0"],
+	["o-forms", "7.0.0"],
+	["o-table", "7.0.0"],
 ]
 
 components.forEach(([name, semver]) => {
-	describe(`occ ${name}`, () => {
+	describe(`occ ${name}@${semver}`, () => {
 		it("matches snapshot", async () => {
-			let directory = resolvePath(__dirname, "components", name)
+			let directory = resolvePath(__dirname, "components", `${name}-${semver}`)
 			await convertComponent({
 				directory,
 				semver,
