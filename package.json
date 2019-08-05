@@ -33,7 +33,7 @@
 		"start": "node -r esm $npm_package_main",
 		"run-tests": "mocha -r esm test",
 		"clean-test-components": "echo 'cleaning test/components'; git clean -df -- test/components; git checkout -- test/components/",
-		"test": "npm run-script --silent clean-test-components; npm run-script --silent run-tests; npm run-script --slient clean-test-components",
+		"test": "npm run-script --silent clean-test-components; npm run-script --silent run-tests; npm run-script --silent clean-test-components",
 		"pretty": "prettier index.js main.js lib/**/*.js test/**/*.js --write"
 	},
 	"repository": {
