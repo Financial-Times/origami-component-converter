@@ -1,10 +1,10 @@
-import * as npm from "../../lib/npm"
+import * as npm from "../lib/npm"
 import * as chai from "chai"
 import chaiAsPromised from "chai-as-promised"
 
 chai.use(chaiAsPromised)
 const expect = chai.expect
-import mappings from "../../config/mappings"
+import mappings from "../config/mappings"
 import snap from "snap-shot-it"
 let specCompliantBowerConfig = require("o-spec-compliant-bower-config/bower.json")
 

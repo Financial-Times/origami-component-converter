@@ -1,4 +1,4 @@
-import * as skeletons from "../../lib/skeletons"
+import * as skeletons from "../lib/skeletons"
 import snap from "snap-shot-it"
 
 describe("skeletons.js", () => {
