@@ -24,6 +24,9 @@ export let builder = yargs =>
 				return path.resolve(process.cwd(), directory)
 			}
 		})
+		.option("name", {
+			describe: "the name of the component"
+		})
 		.positional("semver", {
 			describe: "the version number to use in the package.json",
 			type: "string",
@@ -38,6 +41,7 @@ export let builder = yargs =>
  */
 export let handler = async function build(argv) {
 	let {
+		name,
 		directory,
 		semver: version
 	} = argv
@@ -50,6 +54,13 @@ export let handler = async function build(argv) {
 	}
 
 	let bowerManifest = await fs.readJson(bowerManifestPath)
+	
+	if (name) {
+		bowerManifest.name = name
+	} else {
+		console.error("Warning: Building a component without passing a `--name` is deprecated!")
+		console.error("We'll use the name from the bower manifest this time.")
+	}
 
 	bowerManifest.version = version
 
