@@ -13,21 +13,24 @@ import yargs from "yargs"
 /**
  * @param {yargs.Argv} yargs the yargs instance passed by outer yargs
  * @returns {yargs.Argv} the yargs instance to be consumed by outer yargs
-*/
+ */
 export let builder = yargs =>
-	yargs.option()
+	yargs
 		.option("cwd", {
 			alias: ["directory"],
 			describe: "the directory to build",
 			default: process.cwd(),
 			coerce(directory) {
 				return path.resolve(process.cwd(), directory)
-			}
+			},
+		})
+		.option("name", {
+			describe: "the name of the component",
 		})
 		.positional("semver", {
 			describe: "the version number to use in the package.json",
 			type: "string",
-			required: true
+			required: true,
 		})
 /**
  * Take the bower.json from the directory, and generate a package.json (including aliases)
@@ -37,19 +40,25 @@ export let builder = yargs =>
  * @returns {undefined}
  */
 export let handler = async function build(argv) {
-	let {
-		directory,
-		semver: version
-	} = argv
+	let {name, directory, semver: version} = argv
 
 	let resolve = (...paths) => path.resolve(directory, ...paths)
 
 	let bowerManifestPath = resolve("bower.json")
-	if (!await fs.pathExists(bowerManifestPath)) {
+	if (!(await fs.pathExists(bowerManifestPath))) {
 		return Promise.reject(new Error("no bower.json"))
 	}
 
 	let bowerManifest = await fs.readJson(bowerManifestPath)
+
+	if (name) {
+		bowerManifest.name = name
+	} else {
+		console.error(
+			"Warning: Building a component without passing a `--name` is deprecated!"
+		)
+		console.error("We'll use the name from the bower manifest this time.")
+	}
 
 	bowerManifest.version = version
 
@@ -59,23 +68,15 @@ export let handler = async function build(argv) {
 	let previousManifestExists = await fs.pathExists(npmManifestPath)
 
 	let npmManifest = npm.mergeManifests(
-		previousManifestExists
-			? await fs.readJson(npmManifestPath)
-			: {},
+		previousManifestExists ? await fs.readJson(npmManifestPath) : {},
 		await npm.createManifest(bowerManifest)
 	)
 
-	await npm.writeManifest(
-		npmManifest,
-		npmManifestPath
-	)
+	await npm.writeManifest(npmManifest, npmManifestPath)
 
 	await babel.compile(directory)
 
-	await npm.writeManifest(
-		npm.cleanManifest(npmManifest),
-		npmManifestPath
-	)
+	await npm.writeManifest(npm.cleanManifest(npmManifest), npmManifestPath)
 
 	await fs.remove(resolve("package-lock.json"))
 }
