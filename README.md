@@ -30,3 +30,5 @@ $ latest_version=$(git tag | sort -V | tail -1 | grep -Eo '\d+\.\d+\.\d+')
 $ npx occ $latest
 $ npm publish --access public
 ```
+
+If the above code does not work for your component, please contact Origami via Slack (#origami-support) or opening an issue on this repository.
