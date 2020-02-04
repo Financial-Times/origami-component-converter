@@ -19,6 +19,11 @@ export let builder = yargs =>
 			type: "string",
 			required: true
 		})
+		.option("repository", {
+			describe: "the repository url to use in the package.json",
+			type: "string",
+			required: false
+		})
 		.option("include-aliases", {
 			describe: "whether or not to include alias config in the package.json",
 			type: "boolean",
@@ -51,6 +56,13 @@ export let handler = async function (argv) {
 		let npmManifest = await npm.createManifest(bowerManifest)
 		if (!argv.includeAliases) {
 			delete npmManifest.aliases
+		}
+		const repository = argv.repository
+		if (repository) {
+			npmManifest.repository = {
+				type: "git",
+				url: repository,
+			}
 		}
 		stdout.write(JSON.stringify(npmManifest, null, "\t") + EOL)
 	})
