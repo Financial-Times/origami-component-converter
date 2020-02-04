@@ -27,6 +27,11 @@ export let builder = yargs =>
 		.option("name", {
 			describe: "the name of the component",
 		})
+		.option("repository", {
+			describe: "the repository url to use in the package.json",
+			type: "string",
+			required: false,
+		})
 		.positional("semver", {
 			describe: "the version number to use in the package.json",
 			type: "string",
@@ -67,9 +72,19 @@ export let handler = async function build(argv) {
 	// We'll want to merge some fields from any existing manifests
 	let previousManifestExists = await fs.pathExists(npmManifestPath)
 
+	let convertedNpmManifest
+	const repository = argv.repository || process.env.CIRCLE_REPOSITORY_URL
+	if (repository) {
+		convertedNpmManifest = await npm.createManifest(
+			bowerManifest,
+			repository
+		)
+	} else {
+		convertedNpmManifest = await npm.createManifest(bowerManifest)
+	}
 	let npmManifest = npm.mergeManifests(
 		previousManifestExists ? await fs.readJson(npmManifestPath) : {},
-		await npm.createManifest(bowerManifest)
+		convertedNpmManifest
 	)
 
 	await npm.writeManifest(npmManifest, npmManifestPath)
