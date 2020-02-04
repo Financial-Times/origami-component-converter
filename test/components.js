@@ -13,6 +13,7 @@ components.forEach(([name, semver]) => {
 	describe(`occ ${name}@${semver}`, () => {
 		it("matches snapshot", async () => {
 			let directory = resolvePath(__dirname, "components", `${name}-${semver}`)
+			delete process.env.CIRCLE_REPOSITORY_URL
 			await convertComponent({
 				directory,
 				semver,
