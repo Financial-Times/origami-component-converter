@@ -57,7 +57,7 @@ export let handler = async function (argv) {
 		if (!argv.includeAliases) {
 			delete npmManifest.aliases
 		}
-		const repository = argv.repository
+		const repository = argv.repository || process.env.CIRCLE_REPOSITORY_URL
 		if (repository) {
 			npmManifest.repository = {
 				type: "git",
