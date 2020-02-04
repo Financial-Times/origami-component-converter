@@ -14,7 +14,7 @@ First, it converts the [bower.json](https://github.com/bower/spec/blob/59c8f0e8f
 * rewrite dependencies from the `bower.json` to their npm names
 * create a map of aliases for the upcoming compile step
 
-Then, it compiles the javascript to commonjs using babel. The [babel-plugin-import-rewrite](./lib/babel-plugin-import-rewrite.js) plugin uses the generated aliases field to rewrite any dependencies whose names differ between bower and npm.
+Then, it compiles the javascript to esm using babel. The [babel-plugin-import-rewrite](./lib/babel-plugin-import-rewrite.js) plugin uses the generated aliases field to rewrite any dependencies whose names differ between bower and npm.
 
 We remove the aliases field, and then the package is ready to publish.
 

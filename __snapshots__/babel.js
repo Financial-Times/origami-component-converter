@@ -15,7 +15,7 @@ exports['createConfiguration creates the correct configuration 1'] = {
             "targets": {
               "esmodules": true
             },
-            "modules": "commonjs"
+            "modules": false
           }
         ]
       ],
@@ -42,7 +42,7 @@ exports['createConfiguration creates the correct configuration 2'] = {
             "targets": {
               "esmodules": true
             },
-            "modules": "commonjs"
+            "modules": false
           }
         ]
       ],
@@ -96,7 +96,7 @@ exports['createConfiguration creates the correct configuration 4'] = {
             "targets": {
               "esmodules": true
             },
-            "modules": "commonjs"
+            "modules": false
           }
         ]
       ],
@@ -123,7 +123,7 @@ exports['createConfiguration creates the correct configuration 5'] = {
             "targets": {
               "esmodules": true
             },
-            "modules": "commonjs"
+            "modules": false
           }
         ]
       ],
