@@ -58,5 +58,7 @@ export default [
 	"o-viewport",
 	"o-visual-effects",
 	"o-spacing",
-	"o-lazy-load"
+	"o-lazy-load",
+	"o-editorial-typography",
+	"o-editorial-layout",
 ]

@@ -1,6 +1,6 @@
 {
 	"name": "occ",
-	"version": "0.14.1",
+	"version": "1.0.0",
 	"description": "origami component converter",
 	"main": "index.js",
 	"module": "main.js",
@@ -23,17 +23,17 @@
 		"eslint": "^5.13.0",
 		"eslint-config-origami-component": "^1.0.0",
 		"mocha": "^5.2.0",
-		"node": "^10.16.0",
 		"o-spec-compliant-bower-config": "github:Financial-Times/o-test-component#v1.0.29",
 		"prettier": "^1.18.2",
 		"snap-shot-it": "^7.8.0"
 	},
 	"scripts": {
+		"lint": "eslint .",
 		"watch": "npm run-script build -s -- -w",
 		"start": "node -r esm $npm_package_main",
 		"run-tests": "mocha -r esm test",
 		"clean-test-components": "echo 'cleaning test/components'; git clean -df -- test/components; git checkout -- test/components/",
-		"test": "npm run-script --silent clean-test-components; npm run-script --silent run-tests; npm run-script --silent clean-test-components",
+		"test": "npm run-script --silent clean-test-components && npm run-script --silent run-tests; ret=$?; npm run-script --silent clean-test-components; exit $ret",
 		"pretty": "prettier index.js main.js lib/**/*.js test/**/*.js --write"
 	},
 	"repository": {

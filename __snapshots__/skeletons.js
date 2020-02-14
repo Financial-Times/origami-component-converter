@@ -9,6 +9,8 @@ exports['skeletons.js is the same as last time 1'] = {
     "main.scss",
     "img",
     "*.json",
+    "*.js",
+    "!main.js",
     "scss",
     "!bower.json",
     "!.bower.json"

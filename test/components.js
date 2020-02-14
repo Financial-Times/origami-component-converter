@@ -11,13 +11,36 @@ let components = [
 
 components.forEach(([name, semver]) => {
 	describe(`occ ${name}@${semver}`, () => {
-		it("matches snapshot", async () => {
-			let directory = resolvePath(__dirname, "components", `${name}-${semver}`)
-			await convertComponent({
-				directory,
-				semver,
+		context("without CIRCLE_REPOSITORY_URL set", function() {
+			it("matches snapshot", async () => {
+				let directory = resolvePath(
+					__dirname,
+					"components",
+					`${name}-${semver}`
+				)
+				delete process.env.CIRCLE_REPOSITORY_URL
+				await convertComponent({
+					directory,
+					semver,
+				})
+				snap(serializeDirectory(directory))
 			})
-			snap(serializeDirectory(directory))
+		})
+
+		context("with CIRCLE_REPOSITORY_URL set", function() {
+			it("matches snapshot", async () => {
+				let directory = resolvePath(
+					__dirname,
+					"components",
+					`${name}-${semver}`
+				)
+				process.env.CIRCLE_REPOSITORY_URL = "https://origami.ft.com"
+				await convertComponent({
+					directory,
+					semver,
+				})
+				snap(serializeDirectory(directory))
+			})
 		})
 	})
 })
