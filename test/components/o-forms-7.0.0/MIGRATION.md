@@ -9,7 +9,7 @@ All Sass mixins have been removed, and have been replaced with two public mixins
 - `oForms()`
 - `oFormsAddCustom()`
 
-The primary mixin makes an options map public, which allows you to output styles specific to the elements that you want to use in your form. `o-forms` [no longer supports custom classes](https://github.com/Financial-Times/origami-proposals/issues/4). 
+The primary mixin makes an options map public, which allows you to output styles specific to the elements that you want to use in your form. `o-forms` [no longer supports custom classes](https://github.com/Financial-Times/origami/issues/4). 
 
 The following example would output small text inputs and regular checkboxes:
 
