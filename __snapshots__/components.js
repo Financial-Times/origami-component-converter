@@ -1,5 +1,295 @@
-exports['occ o-colors@4.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+exports['occ ignore-in-bower-manifest-only ignore-in-bower-manifest-only without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
   "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": ".\na\nb*\nc"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "bower.json",
+      "contents": "{\n\t\"name\": \"ignore-in-bower-manifest\",\n\t\"ignore\": [\".\", \"a\", \"b*\", \"c\"]\n}\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "package.json",
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/ignore-in-bower-manifest\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"ignore-in-bower-manifest\",\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+    }
+  ]
+}
+
+exports['occ ignore-in-bower-manifest-only ignore-in-bower-manifest-only with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+  "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": ".\na\nb*\nc.\na\nb*\nc"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "bower.json",
+      "contents": "{\n\t\"name\": \"ignore-in-bower-manifest\",\n\t\"ignore\": [\".\", \"a\", \"b*\", \"c\"]\n}\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "package.json",
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/ignore-in-bower-manifest\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"ignore-in-bower-manifest\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+    }
+  ]
+}
+
+exports['occ ignore-in-every-file ignore-in-every-file without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+  "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": "3-npmignore\n4-npmignore\n1-bower\n2-bower5-gitignore\n6-gitignore\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "bower.json",
+      "contents": "{\n\t\"name\": \"ignore-in-every-file\",\n\t\"ignore\": [\n\t\t\"1-bower\",\n\t\t\"2-bower\"\n\t]\n}\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "package.json",
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/ignore-in-every-file\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"ignore-in-every-file\",\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+    }
+  ]
+}
+
+exports['occ ignore-in-every-file ignore-in-every-file with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+  "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": "3-npmignore\n4-npmignore\n1-bower\n2-bower5-gitignore\n6-gitignore\n1-bower\n2-bower5-gitignore\n6-gitignore\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "bower.json",
+      "contents": "{\n\t\"name\": \"ignore-in-every-file\",\n\t\"ignore\": [\n\t\t\"1-bower\",\n\t\t\"2-bower\"\n\t]\n}\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "package.json",
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/ignore-in-every-file\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"ignore-in-every-file\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+    }
+  ]
+}
+
+exports['occ ignore-in-gitignore-only ignore-in-gitignore-only without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+  "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": "an-item/*\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "bower.json",
+      "contents": "{\n\t\"name\": \"ignore-in-gitignore\"\n}\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "package.json",
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/ignore-in-gitignore\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"ignore-in-gitignore\",\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+    }
+  ]
+}
+
+exports['occ ignore-in-gitignore-only ignore-in-gitignore-only with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+  "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": "an-item/*\nan-item/*\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "bower.json",
+      "contents": "{\n\t\"name\": \"ignore-in-gitignore\"\n}\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "package.json",
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/ignore-in-gitignore\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"ignore-in-gitignore\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+    }
+  ]
+}
+
+exports['occ ignore-in-npmignore-only ignore-in-npmignore-only without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+  "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": "b*\nhonk\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "bower.json",
+      "contents": "{\n\t\"name\": \"ignore-in-npmignore\"\n}\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "package.json",
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/ignore-in-npmignore\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"ignore-in-npmignore\",\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+    }
+  ]
+}
+
+exports['occ ignore-in-npmignore-only ignore-in-npmignore-only with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+  "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": "b*\nhonk\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "bower.json",
+      "contents": "{\n\t\"name\": \"ignore-in-npmignore\"\n}\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": "package.json",
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/ignore-in-npmignore\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"ignore-in-npmignore\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+    }
+  ]
+}
+
+exports['occ o-colors-4.0.0 o-colors-4.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+  "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": "test\n.travis.yml.idea/\n.sass-cache/\nbuild/\ntest/output/\ndemos/local\n.DS_Store\nnode_modules/\n"
+    },
     {
       "stats": {
         "isDirectory": false,
@@ -278,7 +568,7 @@ exports['occ o-colors@4.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1
         "isSocket": false
       },
       "path": "package.json",
-      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"files\": [\n\t\t\"svg/\",\n\t\t\"dist/\",\n\t\t\"browser.js\",\n\t\t\"src/\",\n\t\t\"!src/**/*.js\",\n\t\t\"main.scss\",\n\t\t\"img\",\n\t\t\"*.json\",\n\t\t\"*.js\",\n\t\t\"!main.js\",\n\t\t\"scss\",\n\t\t\"!bower.json\",\n\t\t\"!.bower.json\"\n\t],\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-colors\",\n\t\"version\": \"4.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"o-colors\",\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-colors\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"o-colors\",\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
     },
     {
       "stats": {
@@ -453,8 +743,18 @@ exports['occ o-colors@4.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1
   ]
 }
 
-exports['occ o-colors@4.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+exports['occ o-colors-4.0.0 o-colors-4.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
   "contents": [
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": "test\n.travis.yml.idea/\n.sass-cache/\nbuild/\ntest/output/\ndemos/local\n.DS_Store\nnode_modules/\ntest\n.travis.yml.idea/\n.sass-cache/\nbuild/\ntest/output/\ndemos/local\n.DS_Store\nnode_modules/\n"
+    },
     {
       "stats": {
         "isDirectory": false,
@@ -733,7 +1033,7 @@ exports['occ o-colors@4.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] 
         "isSocket": false
       },
       "path": "package.json",
-      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"files\": [\n\t\t\"svg/\",\n\t\t\"dist/\",\n\t\t\"browser.js\",\n\t\t\"src/\",\n\t\t\"!src/**/*.js\",\n\t\t\"main.scss\",\n\t\t\"img\",\n\t\t\"*.json\",\n\t\t\"*.js\",\n\t\t\"!main.js\",\n\t\t\"scss\",\n\t\t\"!bower.json\",\n\t\t\"!.bower.json\"\n\t],\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-colors\",\n\t\"version\": \"4.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"o-colors\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-colors\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {},\n\t\"component\": \"o-colors\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
     },
     {
       "stats": {
@@ -908,7 +1208,7 @@ exports['occ o-colors@4.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] 
   ]
 }
 
-exports['occ o-forms@7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+exports['occ o-forms-7.0.0 o-forms-7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
   "contents": [
     {
       "stats": {
@@ -937,6 +1237,16 @@ exports['occ o-forms@7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'
         "isSymbolicLink": false,
         "isSocket": false
       },
+      "path": ".npmignore",
+      "contents": ".idea/\n.sass-cache/\nbower_components/\nbuild/\ncoverage/\ndemos/local/\nnode_modules/\n/bin\n/.classpath\n/.project\n.DS_Store\n.env\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
       "path": "ACCESSIBILITY.md",
       "contents": "# Form Accessibility\n\nForms can present a challenge when it comes to accessibility, most specifically in terms of Assitive Technology (in this case screen readers, which we will refer to as 'AT' going forward).\n\n`o-forms` has been tested with our [contrast checker](https://registry.origami.ft.com/components/o-colors#demo-contrast-ratio-checker) to make sure that our colour contrasts meet [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/) requirements, so this document is going to walk through `aria` attributes we recommend using.\n\n### Table of Contents:\n- [Single Inputs](#single-inputs)\n- [Multiple Inputs](#multiple-inputs)\n- [Form Validation](#form-validation)\n\n## Single inputs\n`o-forms` considers these types of input 'single input fields`:\n- `input[type=text]` \n- `input[type=password]`\n- `select`\n- `textarea`\n\nThe base structure for all of these types of input is as follows:\n```html\n<label>\n\t<span class=\"o-forms-title\">\n\t\t<span class=\"o-forms-title__main\">\n\t\t\tLabel to describe the input here\n\t\t</span>\n\t</span>\n\n\t<!-- the input container below accepts a number of different modifiers, which are outlined in the README -->\n\t<span class=\"o-forms-input\"> \n\t\t<input type=\"text\"/>\n\t\t<!-- or --> \n\t\t<input type=\"password\"/>\n\t\t<!-- or --> \n\t\t<textarea></textarea>\n\t\t<!-- or -->\n\t\t<select>...</select> \n\t</span>\n</label>\n```\nAT will read this markup correctly by identifying the type of input declared, and the label for it. As long as our markup is semantic, this should be read out as intended. \n\n## Multiple inputs\n`o-forms` considers these types of input 'multiple input fields`:\n- `input[type=radio]` \n- `input[type=checkbox]`\n\nEssentially, if there is more than one input, they should be grouped with their input siblings.\n\nThe base structure for these types of input (ignoring some modifiers) is:\n```html\n<div class=\"o-forms-field\">\n\t<span class=\"o-forms-title\">\n\t\t<span class=\"o-forms-title__main\">Group Title</span>\n\t\t<span class=\"o-forms-title__prompt\">Group info</span>\n\t</span>\n\n\t<span class=\"o-forms-input o-forms-input--checkbox\">\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox1\" checked>\n\t\t\t<span class=\"o-forms-input__label\">Checkbox 1</span>\n\t\t</label>\n\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox2\">\n\t\t\t<span class=\"o-forms-input__label\">Checkbox 2</span>\n\t\t</label>\n\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox3\" checked>\n\t\t\t<span class=\"o-forms-input__label\">Checkbox 3</span>\n\t\t</label>\n\t</span>\n</div>\n```\nOur approach to grouping input elements mimicks the structure of a `<fieldset>` with a `<legend>` and multiple `<input>`s. \n\nWe chose not to work with a fieldset because they are [especially difficult to style consistently](https://thatemil.com/blog/2015/01/03/reset-your-fieldset/) _and_ we wanted to provide visual flexibility for our users.\n\nBut in doing this, we've lost the `<fieldset>`'s semantic structure, which ATs rely on to read out correctly.\n\nHow to make our mimicked stucture more semantic? Enter `aria` (and `role`) attributes!\n\nThere are five attributes we recommend implementing in multiple input fields:\n- [`role=\"group\"`](#role-group)\n- [`aria-labelledby` & `aria-describedby`](#aria-labelledby--aria-describedby)\n- [`aria-label` & `aria-hidden`](#aria-label--aria-hidden)\n\n#### `role=\"group\"`\n\nThis role should be set on the parent `<div>`:\n```diff\n-<div class=\"o-forms-field\">\n+<div class=\"o-forms-field\" role=\"group\">\n\t...\n</div>\n```\nThis denominates the `<div>` as the element that holds a group of inputs, similar to the behaviour of a `<fieldset>`.  \n[According to MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_group_role): \n>'A group should be used to form a logical collection of items with related functionality ...'\n\n#### `aria-labelledby` & `aria-describedby`\nThis attribute should also be added to the parent `<div>`. It accepts an id, which should be set on `<span class=\"o-forms-title__main\">`:\n```diff\n-<div class=\"o-forms-field\">\n+<div class=\"o-forms-field\" role=\"group\" aria-labelledby=\"example-group-title\">\n\t<span class=\"o-forms-title\">\n-\t\t<span class=\"o-forms-title__main\">Group Title</span>\n+\t\t<span class=\"o-forms-title__main\" id=\"example-group-title\">Group Title</span>\n\t\t<span class=\"o-forms-title__prompt\">Group info</span>\n\t</span>\n\t...\n</div>\n```\n\nUsing `aria-labelledby` will help us simulate the behaviour that a `<legend>` is responsible for, which is linking a title to a group. This difference is important because we have more than one input in a group, and each one of those inputs has their own label, independent of the group title. \n\nIf we are using \"prompt\" text to provide further explanation about the group, we should use `aria-describedby`, with an id of its own, to provide that description, e.g.:\n```diff\n-<div class=\"o-forms-field\" role=\"group\" aria-labelledby=\"example-group-title\">\n+<div class=\"o-forms-field\" role=\"group\" aria-labelledby=\"example-group-title\" aria-describedby=\"example-group-info\">\n\t<span class=\"o-forms-title\">\n\t\t<span class=\"o-forms-title__main\" id=\"example-group-title\">Group Title</span>\n-\t\t<span class=\"o-forms-title__prompt\">Group info</span>\n+\t\t<span class=\"o-forms-title__prompt\" id=\"example-group-info\">Group info</span>\n\t\t...\n\t</span>\n\t...\n</div>\n```\n\n`aria-labelledby` and `aria-describedby` are similar attributes, though semantically they provide different functionality.\nYou can [read more about them on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute):\n\n>A label provides essential information about an object, while a description provides extended information that the user might need.\n\n#### `aria-label` & `aria-hidden`\n\nIndependently of whether or not a group of inputs is in a `<fieldset>` or a `<div>`, their structure exhibits a peculiar type of behaviour: AT will focus on the `<input>`, read out its label, and then focus on the label text, and read that out again. To avoid focusing on the label to provide a more natural 'tabbing' experience, we recommend combining `aria-label` and `aria-hidden` on the grouped inputs:\n\n```diff\n<label>\n-\t<input type=\"checkbox\" name=\"default\" value=\"checkbox1\" checked=>\n+\t<input type=\"checkbox\" name=\"default\" value=\"checkbox1\" checked aria-label=\"Checkbox 1\">\n-\t<span class=\"o-forms-input__label\">Checkbox 1</span>\n+\t<span class=\"o-forms-input__label\" aria-hidden=\"true\">Checkbox 1</span>\n</label>\n```\n\nBy defining what the label of the input is and hiding the actual label from the AT, we'll make the transition between inputs far smoother. \n\n_Note 1: `aria-label` also accepts an id if you would rather set an id on the input's label_\n\n_Note 2: `aria-hidden` is sometimes used as a CSS selector to visually hide/show elements. However, it's primary functionality is to hide the contents of an element from the AT_\n\n\n#### Example\n\nPutting everything we've just seen together, our multiple input field should look like this:\n```html\n<div class=\"o-forms-field\" role=\"group\" aria-labelledby=\"example-group-title\" aria-describedby=\"example-group-info\">\n\t<span class=\"o-forms-title\">\n\t\t<span class=\"o-forms-title__main\" id=\"example-group-title\">Group Title</span>\n\t\t<span class=\"o-forms-title__prompt\" id=\"example-group-info\">Group Info</span>\n\t</span>\n\t<span class=\"o-forms-input o-forms-input--checkbox\">\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox1\" checked aria-label=\"Checkbox 1\">\n\t\t\t<span class=\"o-forms-input__label\" aria-hidden=\"true\">Checkbox 1</span>\n\t\t</label>\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox2\" checked aria-label=\"Checkbox 2\">\n\t\t\t<span class=\"o-forms-input__label\" aria-hidden=\"true\">Checkbox 2</span>\n\t\t</label>\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox3\" checked aria-label=\"Checkbox 3\">\n\t\t\t<span class=\"o-forms-input__label\" aria-hidden=\"true\">Checkbox 3</span>\n\t\t</label>\n\t<span>\n</div>\n```\n\n## Form Validation\n\n_Phew_. Now that we've covered static attributes for our form elements, let's jump into dynamic form validation. There are many approaches to validating in an accessible way, and none are infallible due to the nature of ATs, but we'll cover what we've considered so far.\n\n#### Native browser validation\n\nBrowsers have native form validation. This could mean different implementation details for different browsers, but overall, a browser will check input fields in a form against the [ValidityState interface](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState), which checks for pattern matches, whether input is present in a required field, among a few other conditions.\n\nThis means that invalid inputs will recieve messages tailored to describe the condition that has _not_ been met. These messages are presented in the language that the user has chosen for their browser. In addition to that, the browser will shift focus onto the first invalid input. Depending on the browser, the AT will read out the generated error message. \n\nThe main problem with this approach is that there is no guarantee that the experience is consistent. Since browsers process this information differently and interact with screen readers differently, relying on native validation could lead to confusing behaviour for ATs. \n\n\n#### Non native validation\n\nWe do _not_ style the tool tip that the browser's message appears in, so frequently forms are given the `novalidate` attribute, which doesn't run any native validation on submit. This means that the messages can be overriden and styled according to the FT's design and the behaviour determined by the product's needs.\n\nPrimarily because of this, we've chosen to default to non-native validation, using [custom errors](./README.md#custom-errors) and to producing an [error summary](#error-summary) instead.\n\n#### `aria-live` regions\n\nAt its core, `aria-live` is an attribute that can be set to an area of a document to denote that the AT should announce changes to that area. It is possible to determine what kind of changes it should recognise (additions, changes to text, etc), how forceful it should be in informing the user of the change (polite, assertive), alongside a few more advanced features.\n\n`o-forms` cannot handle this attribute for you, and it can create an incoherent experience across browsers, so we generate an [error summary](#error-summary) instead.\n\nIf you choose not to use the error summary functionality that comes with `o-forms`, please consider adding the `aria-live` attribute to your markup, keeping the following in mind:\n- this attribute accepts three politeness settings: off, polite or assertive. We recommend using polite, which will avoid interfering with any other actions the AT may be reading out.\n- `aria-live` needs to be set on the markup so that the AT can register it when the document loads. Dynamically added regions won't be recognised. \n\t- this means `o-forms` cannot add it to a form or its elements\n- it shoud **not** be set to the document `<body>`, as it could overrun the AT with unnecessary information. \n\t- in forms with many inputs we might end up with many live regions\n- the information a region relays can get lost or confusing amidst a users interaction with the page\n\t- the validation–and change to the region–could happen on blur, on change, on input, on submit, &c\n\nYou can read more about [`aria-live` on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions).\n\n#### Error summary\n\nGDS has a [very good reference](https://design-system.service.gov.uk/components/error-summary/) for error handling.\n\nOverall, it outlines that:\n- There should be a summary of errors at the top of a page\n- The focus should be shifted to that summary\n- Each error should link to the input that is invalid\n- Each invalid input should *also* have the error beneath/beside/above it\n\nThis means that not only will ATs have clear access to what has happend on the page, but it will be clear for any other user of the product's form.\n\n`o-forms` implements this behaviour for you if the [error summary options is enabled](./README#form-instance)\n\nIf you would like help implementing anything you've read here, please [get in touch with the team](./README.md#contact). \n"
     },
@@ -948,7 +1258,7 @@ exports['occ o-forms@7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'
         "isSocket": false
       },
       "path": "MIGRATION.md",
-      "contents": "\n## Migration Guide\n\n### Migrating from v6 to v7\n\nVersion 7 introduces a complete redesign to the `o-forms` markup, Sass and JavaScript API, and makes small design changes and additions.\n\nAll Sass mixins have been removed, and have been replaced with two public mixins:\n- `oForms()`\n- `oFormsAddCustom()`\n\nThe primary mixin makes an options map public, which allows you to output styles specific to the elements that you want to use in your form. `o-forms` [no longer supports custom classes](https://github.com/Financial-Times/origami-proposals/issues/4). \n\nThe following example would output small text inputs and regular checkboxes:\n\n```diff\n-@include oFormsBaseFeatures();\n-@include oFormsRadioCheckboxFeatures();\n-@include oFormsSmallFeature();\n\n+@include oForms($opts: (\n+\t'elements': (\n+\t\t'text', \n+\t\t'checkbox'\n+\t),\n+\t'features': (\n+\t\t'small'\n+\t)\n+))\n```\n\nThe customisation mixin outputs a custom modifier, and can be applied as follows:\n```diff\n-.o-forms__radio-button.o-forms__radio-button--my-theme {\n-\t@include oFormsRadioButtonsStyledTheme($theme: $my-theme);\n-}\n\n+@include oFormsAddCustom(\n+\t$input: 'radio',\n+\t$class: 'my-theme',\n+\t$theme: $my-theme\n+);\n\n// the custom class modifier will be: .o-forms-input--my-theme\n```\n\nThe markup has been changed entirely to accomodate the following structure:\n```\n┌— field container (.o-forms-field) —————┐\n|      (one of div or label)             |\n|                                        |\n|  ┌ title container (.o-forms-title) ┐  |\n|  |    (group titles or              |  |\n|  |     individual input labels)     |  |\n|  └——————————————————————————————————┘  |\n|                                        |\n|  ┌ input container (.o-forms-input) ┐  |\n|  |    (group inputs or              |  |\n|  |     individual inputs)           |  |\n|  └——————————————————————————————————┘  |\n└————————————————————————————————————————┘\n```\n\nThe root `o-forms` class is no longer used. Instead, there are modifiers for each type of container (field, title, input) illustrated above, and some modifiers that only work for specific inputs:\n- Field container modifiers:\n\t- `.o-forms-field--optional`\n\t- `.o-forms-field--inline`\n\t- `.o-forms-field--inverse`\n- Title container modifiers:\n\t- `.o-forms-title`\n\t- `.o-forms-title--shrink`\n\t- `.o-forms-title--vertical-center`\n- Input container modifiers:\n\t- `.o-forms-input--pseudo-radio-box`\n\t- `.o-forms-input--checkbox`\n\t- `.o-forms-input--date`\n\t- `.o-forms-input--inline`\n\t- `.o-forms-input--invalid`\n\t- `.o-forms-input--radio-box`\n\t- `.o-forms-input--radio-round`\n\t- `.o-forms-input--select`\n\t- `.o-forms-input--text-area`\n\t- `.o-forms-input--text-input`\n\t- `.o-forms-input--toggle`\n\t- `.o-forms-input--valid`\n\n\nThe JavaScript for `o-forms` now accepts two options:\n- `useBrowserValidation`: whether to use the browsers validtion and error messages. Defaults to `false`\n- `errorSummary`: whether to display a summary of invalid fields on form submit. Defaults to `true`\n\n### Migrating from v5 to v6\nVersion 6 uses a new major version of o-loading. Make sure your project is compatible with o-loading@3.0.0\n\n### Migrating from v4 to v5\n\nVersion 5 makes some design improvements including tightening up the spacing around checkboxes and radio buttons. It also provides many [new mixins](#sass) to make it easier to output `o-forms` features granularly.\n\n#### Checkboxes & Radios\n- Wrap groups of checkboxes and radios in `.o-forms__group` for correct vertical spacing.\n- `oFormsRadioCheckbox` no longer outputs all styles for checkboxes and radios, only what is shared between them. Use `oFormsRadioCheckboxFeatures` instead.\n- It is no longer possible to modify the complete selector of radios, checkboxes, or their labels. The base `.o-forms` class may still be updated using the `$class` argument.\n\n#### Prefix, Suffix\n- Prefixes have been removed entirely. We recommend using additional label information and feedback in form validation instead.\n- Suffix buttons now use standard `o-buttons` styling.\n- Check your uses of suffixs still display correctly. In the case of button suffixes it may be necessary to apply the extra `o-buttons` classes `.o-buttons--secondary` and `.o-buttons--big`.\n- The mixins `oFormsAffixButton`, `oFormsAffixCheckbox`, `oFormsPrefixSuffix` have been removed. Use `oFormsSuffixFeature` for suffix classes including the affix wrapper (as documented above).\n\n#### Toggles\n- `.o-forms__checkbox-toggle` has been renamed `.o-forms__toggle`.\n- The `oFormsCheckboxToggleSize` mixin has been removed due to lack of use.\n\n#### Wrappers and Messages\n- Wrappers have been renamed to sections. Their class names have also been updated to conform to the BEM naming convention (as optional containers their name should not contain `__` as they are not elements of a block).\n\t- `.o-forms__wrapper` becomes `.o-forms-section`.\n\t- `.o-forms__wrapper--highlight` becomes `.o-forms-section--highlight`.\n\t- `.o-forms__wrapper--error` which becomes `.o-forms-section--error`.\n\t- The `oFormsMessage` mixin now only outputs minimal message styles, uses should be replaced with `oFormsSectionFeature`.\n- Messages are now child elements of a section and must not be used independently.\n\t- Wrap messages within a form section `.o-forms-section` if they are not already. They should be the first child of the section.\n\t- Remove the class `.o-forms__message--error`. A message now infers that it is an error message based on its parent section `.o-forms-section--error`.\n\n#### Other changes\n- `oFormsFullWidth` has been removed. Use `oFormsWideFeature` for classes to remove form max width restrictions.\n- There is a new dependancy on `o-icons`. Build your project to confirm that it is compatible.\n\nPlease [contact us](#contact) if you have any queries.\n\n### Migrating from v3 to v4\n- A dependency on [o-typography](http://github.com/financial-times/o-typography) v5 has been introduced. This will break any builds that use o-typography <v5. __Resolution__: Update to o-typography v5.\n- The o-colors dependency has been updated to `^4`. This could create bower conflicts which should be resolved by updating to the newest release of o-colors.\n- The design for o-forms has changed in v4. This could create issues on your pages which make use of o-forms. Ensure that the updated design does not break the layout on your webpage.\n\n----\n\n### Migrating from v2 to v3\n\nThe main change in `v2` is that classes provided by `o-forms` now conform more strictly to the [BEM naming convention][bem]. All form field classes now follow the element convention, so `o-forms-text` is now `o-forms__text`.\n\nThere is also now a main block class of `o-forms` which replaces the previous `o-forms-group` class. Full class changes are below:\n\n- `o-forms-group` becomes `o-forms`\n- Search templates for `o-forms-xxxxx` and replace with `o-forms__xxxxx`\n\nAn example of the changes should be:\n\n```diff\n-<div class=\"o-forms-group\">\n+<div class=\"o-forms\">\n\n-<label class=\"o-forms-label\"></label>\n+<label class=\"o-forms__label\"></label>\n\n-<input type=\"radio\" class=\"o-forms-radio\" />\n+<input type=\"radio\" class=\"o-forms__radio\" />\n\n-<input type=\"checkbox\" class=\"o-forms-checkbox\" />\n+<input type=\"checkbox\" class=\"o-forms__checkbox\" />\n\n-<input type=\"text\" class=\"o-forms-text\" />\n+<input type=\"text\" class=\"o-forms__text\" />\n```\n\nAny modifier classes like `o-forms--error` have remained the same.\n\n\n### Migrating to v1\n\n#### 1. Module name change\n\n`o-ft-forms` becomes `o-forms` in v1.\n\n1. Search `o-ft-forms` and replace with `o-forms`\n2. Search `oFtForms` and replace with `oForms`\n\n#### 2. Web fonts and icons\n\nIn the v0.x.x of o-forms, the module loaded webfonts itself and was setting its own font-family.\n\nThe module now inherits the `font-family` set in your application and doesn't embed web fonts anymore.\n\nSolution: products must load webfonts themselves (tipically, with [o-fonts](https://github.com/Financial-Times/o-fonts) and [o-ft-icons](https://github.com/Financial-Times/o-ft-icons)).\n\n```html\n<!-- Load web fonts and icons with @font-face declarations  -->\n<link rel=\"stylesheet\" href=\"https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-fonts@^3.0.0,o-icons@^5.0.0\" />\n\n<!-- Set the font family on the whole document -->\n<style>\n\thtml {\n\t\tfont-family: BentonSans, sans-serif;\n\t}\n</style>\n```\n\n\n#### 3. Helper classes name changes\n\nThe most important change is with input elements, that now have their own classes:\n\n```diff\n-<input type=\"radio\" class=\"o-ft-forms__field\" />\n+<input type=\"radio\" class=\"o-forms-radio\" />\n\n-<input type=\"checkbox\" class=\"o-ft-forms__field\" />\n+<input type=\"checkbox\" class=\"o-forms-checkbox\" />\n\n-<input type=\"text\" class=\"o-ft-forms__field\" />\n+<input type=\"text\" class=\"o-forms-text\" />\n```\n\n- `o-ft-forms__field-group` > `o-forms-group`\n- `o-ft-forms__field--textarea` becomes `o-forms-textarea`\n- `o-ft-forms__field--select` becomes `o-forms-select`\n- Any `o-ft-forms__xxxx` becomes `o-forms-xxxx`\n- Search templates for `o-ft-forms__global-message--error` and replace with `o-forms-message o-forms-message--error`\n- Search templates for `o-forms-error-wrapper` and replace with `o-forms-wrapper o-forms-wrapper--error`\n\n`o-ft-forms__section` is deprecated: sections (previously `<fieldset class=\"o-ft-forms__section\">`) have to be styled at a product level. Since fieldsets have browser-specific styling issues, prefer `<div>` elements.\n\n#### 4. Mixins and placeholder classes\n\nIf using placeholder classes or extending styles using `oFormsClass` and `oFormsPlaceholderOptionalSelector`, use normal selectors, and include the matching mixins, documented in the [SassDoc documentation of the module](http://sassdoc.webservices.ft.com/v1/sassdoc/o-forms).\n"
+      "contents": "\n## Migration Guide\n\n### Migrating from v6 to v7\n\nVersion 7 introduces a complete redesign to the `o-forms` markup, Sass and JavaScript API, and makes small design changes and additions.\n\nAll Sass mixins have been removed, and have been replaced with two public mixins:\n- `oForms()`\n- `oFormsAddCustom()`\n\nThe primary mixin makes an options map public, which allows you to output styles specific to the elements that you want to use in your form. `o-forms` [no longer supports custom classes](https://github.com/Financial-Times/origami/issues/4). \n\nThe following example would output small text inputs and regular checkboxes:\n\n```diff\n-@include oFormsBaseFeatures();\n-@include oFormsRadioCheckboxFeatures();\n-@include oFormsSmallFeature();\n\n+@include oForms($opts: (\n+\t'elements': (\n+\t\t'text', \n+\t\t'checkbox'\n+\t),\n+\t'features': (\n+\t\t'small'\n+\t)\n+))\n```\n\nThe customisation mixin outputs a custom modifier, and can be applied as follows:\n```diff\n-.o-forms__radio-button.o-forms__radio-button--my-theme {\n-\t@include oFormsRadioButtonsStyledTheme($theme: $my-theme);\n-}\n\n+@include oFormsAddCustom(\n+\t$input: 'radio',\n+\t$class: 'my-theme',\n+\t$theme: $my-theme\n+);\n\n// the custom class modifier will be: .o-forms-input--my-theme\n```\n\nThe markup has been changed entirely to accomodate the following structure:\n```\n┌— field container (.o-forms-field) —————┐\n|      (one of div or label)             |\n|                                        |\n|  ┌ title container (.o-forms-title) ┐  |\n|  |    (group titles or              |  |\n|  |     individual input labels)     |  |\n|  └——————————————————————————————————┘  |\n|                                        |\n|  ┌ input container (.o-forms-input) ┐  |\n|  |    (group inputs or              |  |\n|  |     individual inputs)           |  |\n|  └——————————————————————————————————┘  |\n└————————————————————————————————————————┘\n```\n\nThe root `o-forms` class is no longer used. Instead, there are modifiers for each type of container (field, title, input) illustrated above, and some modifiers that only work for specific inputs:\n- Field container modifiers:\n\t- `.o-forms-field--optional`\n\t- `.o-forms-field--inline`\n\t- `.o-forms-field--inverse`\n- Title container modifiers:\n\t- `.o-forms-title`\n\t- `.o-forms-title--shrink`\n\t- `.o-forms-title--vertical-center`\n- Input container modifiers:\n\t- `.o-forms-input--pseudo-radio-box`\n\t- `.o-forms-input--checkbox`\n\t- `.o-forms-input--date`\n\t- `.o-forms-input--inline`\n\t- `.o-forms-input--invalid`\n\t- `.o-forms-input--radio-box`\n\t- `.o-forms-input--radio-round`\n\t- `.o-forms-input--select`\n\t- `.o-forms-input--text-area`\n\t- `.o-forms-input--text-input`\n\t- `.o-forms-input--toggle`\n\t- `.o-forms-input--valid`\n\n\nThe JavaScript for `o-forms` now accepts two options:\n- `useBrowserValidation`: whether to use the browsers validtion and error messages. Defaults to `false`\n- `errorSummary`: whether to display a summary of invalid fields on form submit. Defaults to `true`\n\n### Migrating from v5 to v6\nVersion 6 uses a new major version of o-loading. Make sure your project is compatible with o-loading@3.0.0\n\n### Migrating from v4 to v5\n\nVersion 5 makes some design improvements including tightening up the spacing around checkboxes and radio buttons. It also provides many [new mixins](#sass) to make it easier to output `o-forms` features granularly.\n\n#### Checkboxes & Radios\n- Wrap groups of checkboxes and radios in `.o-forms__group` for correct vertical spacing.\n- `oFormsRadioCheckbox` no longer outputs all styles for checkboxes and radios, only what is shared between them. Use `oFormsRadioCheckboxFeatures` instead.\n- It is no longer possible to modify the complete selector of radios, checkboxes, or their labels. The base `.o-forms` class may still be updated using the `$class` argument.\n\n#### Prefix, Suffix\n- Prefixes have been removed entirely. We recommend using additional label information and feedback in form validation instead.\n- Suffix buttons now use standard `o-buttons` styling.\n- Check your uses of suffixs still display correctly. In the case of button suffixes it may be necessary to apply the extra `o-buttons` classes `.o-buttons--secondary` and `.o-buttons--big`.\n- The mixins `oFormsAffixButton`, `oFormsAffixCheckbox`, `oFormsPrefixSuffix` have been removed. Use `oFormsSuffixFeature` for suffix classes including the affix wrapper (as documented above).\n\n#### Toggles\n- `.o-forms__checkbox-toggle` has been renamed `.o-forms__toggle`.\n- The `oFormsCheckboxToggleSize` mixin has been removed due to lack of use.\n\n#### Wrappers and Messages\n- Wrappers have been renamed to sections. Their class names have also been updated to conform to the BEM naming convention (as optional containers their name should not contain `__` as they are not elements of a block).\n\t- `.o-forms__wrapper` becomes `.o-forms-section`.\n\t- `.o-forms__wrapper--highlight` becomes `.o-forms-section--highlight`.\n\t- `.o-forms__wrapper--error` which becomes `.o-forms-section--error`.\n\t- The `oFormsMessage` mixin now only outputs minimal message styles, uses should be replaced with `oFormsSectionFeature`.\n- Messages are now child elements of a section and must not be used independently.\n\t- Wrap messages within a form section `.o-forms-section` if they are not already. They should be the first child of the section.\n\t- Remove the class `.o-forms__message--error`. A message now infers that it is an error message based on its parent section `.o-forms-section--error`.\n\n#### Other changes\n- `oFormsFullWidth` has been removed. Use `oFormsWideFeature` for classes to remove form max width restrictions.\n- There is a new dependancy on `o-icons`. Build your project to confirm that it is compatible.\n\nPlease [contact us](#contact) if you have any queries.\n\n### Migrating from v3 to v4\n- A dependency on [o-typography](http://github.com/financial-times/o-typography) v5 has been introduced. This will break any builds that use o-typography <v5. __Resolution__: Update to o-typography v5.\n- The o-colors dependency has been updated to `^4`. This could create bower conflicts which should be resolved by updating to the newest release of o-colors.\n- The design for o-forms has changed in v4. This could create issues on your pages which make use of o-forms. Ensure that the updated design does not break the layout on your webpage.\n\n----\n\n### Migrating from v2 to v3\n\nThe main change in `v2` is that classes provided by `o-forms` now conform more strictly to the [BEM naming convention][bem]. All form field classes now follow the element convention, so `o-forms-text` is now `o-forms__text`.\n\nThere is also now a main block class of `o-forms` which replaces the previous `o-forms-group` class. Full class changes are below:\n\n- `o-forms-group` becomes `o-forms`\n- Search templates for `o-forms-xxxxx` and replace with `o-forms__xxxxx`\n\nAn example of the changes should be:\n\n```diff\n-<div class=\"o-forms-group\">\n+<div class=\"o-forms\">\n\n-<label class=\"o-forms-label\"></label>\n+<label class=\"o-forms__label\"></label>\n\n-<input type=\"radio\" class=\"o-forms-radio\" />\n+<input type=\"radio\" class=\"o-forms__radio\" />\n\n-<input type=\"checkbox\" class=\"o-forms-checkbox\" />\n+<input type=\"checkbox\" class=\"o-forms__checkbox\" />\n\n-<input type=\"text\" class=\"o-forms-text\" />\n+<input type=\"text\" class=\"o-forms__text\" />\n```\n\nAny modifier classes like `o-forms--error` have remained the same.\n\n\n### Migrating to v1\n\n#### 1. Module name change\n\n`o-ft-forms` becomes `o-forms` in v1.\n\n1. Search `o-ft-forms` and replace with `o-forms`\n2. Search `oFtForms` and replace with `oForms`\n\n#### 2. Web fonts and icons\n\nIn the v0.x.x of o-forms, the module loaded webfonts itself and was setting its own font-family.\n\nThe module now inherits the `font-family` set in your application and doesn't embed web fonts anymore.\n\nSolution: products must load webfonts themselves (tipically, with [o-fonts](https://github.com/Financial-Times/o-fonts) and [o-ft-icons](https://github.com/Financial-Times/o-ft-icons)).\n\n```html\n<!-- Load web fonts and icons with @font-face declarations  -->\n<link rel=\"stylesheet\" href=\"https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-fonts@^3.0.0,o-icons@^5.0.0\" />\n\n<!-- Set the font family on the whole document -->\n<style>\n\thtml {\n\t\tfont-family: BentonSans, sans-serif;\n\t}\n</style>\n```\n\n\n#### 3. Helper classes name changes\n\nThe most important change is with input elements, that now have their own classes:\n\n```diff\n-<input type=\"radio\" class=\"o-ft-forms__field\" />\n+<input type=\"radio\" class=\"o-forms-radio\" />\n\n-<input type=\"checkbox\" class=\"o-ft-forms__field\" />\n+<input type=\"checkbox\" class=\"o-forms-checkbox\" />\n\n-<input type=\"text\" class=\"o-ft-forms__field\" />\n+<input type=\"text\" class=\"o-forms-text\" />\n```\n\n- `o-ft-forms__field-group` > `o-forms-group`\n- `o-ft-forms__field--textarea` becomes `o-forms-textarea`\n- `o-ft-forms__field--select` becomes `o-forms-select`\n- Any `o-ft-forms__xxxx` becomes `o-forms-xxxx`\n- Search templates for `o-ft-forms__global-message--error` and replace with `o-forms-message o-forms-message--error`\n- Search templates for `o-forms-error-wrapper` and replace with `o-forms-wrapper o-forms-wrapper--error`\n\n`o-ft-forms__section` is deprecated: sections (previously `<fieldset class=\"o-ft-forms__section\">`) have to be styled at a product level. Since fieldsets have browser-specific styling issues, prefer `<div>` elements.\n\n#### 4. Mixins and placeholder classes\n\nIf using placeholder classes or extending styles using `oFormsClass` and `oFormsPlaceholderOptionalSelector`, use normal selectors, and include the matching mixins, documented in the [SassDoc documentation of the module](http://sassdoc.webservices.ft.com/v1/sassdoc/o-forms).\n"
     },
     {
       "stats": {
@@ -1528,7 +1838,7 @@ exports['occ o-forms@7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'
         "isSocket": false
       },
       "path": "package.json",
-      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"files\": [\n\t\t\"svg/\",\n\t\t\"dist/\",\n\t\t\"browser.js\",\n\t\t\"src/\",\n\t\t\"!src/**/*.js\",\n\t\t\"main.scss\",\n\t\t\"img\",\n\t\t\"*.json\",\n\t\t\"*.js\",\n\t\t\"!main.js\",\n\t\t\"scss\",\n\t\t\"!bower.json\",\n\t\t\"!.bower.json\"\n\t],\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-forms\",\n\t\"version\": \"7.0.0\",\n\t\"dependencies\": {\n\t\t\"@financial-times/o-brand\": \"^3.2.3\",\n\t\t\"@financial-times/o-colors\": \"^4.0.1\",\n\t\t\"@financial-times/o-grid\": \"^4.0.0\",\n\t\t\"@financial-times/o-icons\": \"^5.7.0\",\n\t\t\"@financial-times/o-loading\": \"^3.0.0\",\n\t\t\"@financial-times/o-normalise\": \"^1.6.2\",\n\t\t\"@financial-times/o-typography\": \"^5.11.3\"\n\t},\n\t\"component\": \"o-forms\",\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-forms\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {\n\t\t\"@financial-times/o-brand\": \"^3.2.3\",\n\t\t\"@financial-times/o-colors\": \"^4.0.1\",\n\t\t\"@financial-times/o-grid\": \"^4.0.0\",\n\t\t\"@financial-times/o-icons\": \"^5.7.0\",\n\t\t\"@financial-times/o-loading\": \"^3.0.0\",\n\t\t\"@financial-times/o-normalise\": \"^1.6.2\",\n\t\t\"@financial-times/o-typography\": \"^5.11.3\"\n\t},\n\t\"component\": \"o-forms\",\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
     },
     {
       "stats": {
@@ -1953,7 +2263,7 @@ exports['occ o-forms@7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'
   ]
 }
 
-exports['occ o-forms@7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+exports['occ o-forms-7.0.0 o-forms-7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
   "contents": [
     {
       "stats": {
@@ -1982,6 +2292,16 @@ exports['occ o-forms@7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] =
         "isSymbolicLink": false,
         "isSocket": false
       },
+      "path": ".npmignore",
+      "contents": ".idea/\n.sass-cache/\nbower_components/\nbuild/\ncoverage/\ndemos/local/\nnode_modules/\n/bin\n/.classpath\n/.project\n.DS_Store\n.env\n.idea/\n.sass-cache/\nbower_components/\nbuild/\ncoverage/\ndemos/local/\nnode_modules/\n/bin\n/.classpath\n/.project\n.DS_Store\n.env\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
       "path": "ACCESSIBILITY.md",
       "contents": "# Form Accessibility\n\nForms can present a challenge when it comes to accessibility, most specifically in terms of Assitive Technology (in this case screen readers, which we will refer to as 'AT' going forward).\n\n`o-forms` has been tested with our [contrast checker](https://registry.origami.ft.com/components/o-colors#demo-contrast-ratio-checker) to make sure that our colour contrasts meet [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/) requirements, so this document is going to walk through `aria` attributes we recommend using.\n\n### Table of Contents:\n- [Single Inputs](#single-inputs)\n- [Multiple Inputs](#multiple-inputs)\n- [Form Validation](#form-validation)\n\n## Single inputs\n`o-forms` considers these types of input 'single input fields`:\n- `input[type=text]` \n- `input[type=password]`\n- `select`\n- `textarea`\n\nThe base structure for all of these types of input is as follows:\n```html\n<label>\n\t<span class=\"o-forms-title\">\n\t\t<span class=\"o-forms-title__main\">\n\t\t\tLabel to describe the input here\n\t\t</span>\n\t</span>\n\n\t<!-- the input container below accepts a number of different modifiers, which are outlined in the README -->\n\t<span class=\"o-forms-input\"> \n\t\t<input type=\"text\"/>\n\t\t<!-- or --> \n\t\t<input type=\"password\"/>\n\t\t<!-- or --> \n\t\t<textarea></textarea>\n\t\t<!-- or -->\n\t\t<select>...</select> \n\t</span>\n</label>\n```\nAT will read this markup correctly by identifying the type of input declared, and the label for it. As long as our markup is semantic, this should be read out as intended. \n\n## Multiple inputs\n`o-forms` considers these types of input 'multiple input fields`:\n- `input[type=radio]` \n- `input[type=checkbox]`\n\nEssentially, if there is more than one input, they should be grouped with their input siblings.\n\nThe base structure for these types of input (ignoring some modifiers) is:\n```html\n<div class=\"o-forms-field\">\n\t<span class=\"o-forms-title\">\n\t\t<span class=\"o-forms-title__main\">Group Title</span>\n\t\t<span class=\"o-forms-title__prompt\">Group info</span>\n\t</span>\n\n\t<span class=\"o-forms-input o-forms-input--checkbox\">\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox1\" checked>\n\t\t\t<span class=\"o-forms-input__label\">Checkbox 1</span>\n\t\t</label>\n\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox2\">\n\t\t\t<span class=\"o-forms-input__label\">Checkbox 2</span>\n\t\t</label>\n\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox3\" checked>\n\t\t\t<span class=\"o-forms-input__label\">Checkbox 3</span>\n\t\t</label>\n\t</span>\n</div>\n```\nOur approach to grouping input elements mimicks the structure of a `<fieldset>` with a `<legend>` and multiple `<input>`s. \n\nWe chose not to work with a fieldset because they are [especially difficult to style consistently](https://thatemil.com/blog/2015/01/03/reset-your-fieldset/) _and_ we wanted to provide visual flexibility for our users.\n\nBut in doing this, we've lost the `<fieldset>`'s semantic structure, which ATs rely on to read out correctly.\n\nHow to make our mimicked stucture more semantic? Enter `aria` (and `role`) attributes!\n\nThere are five attributes we recommend implementing in multiple input fields:\n- [`role=\"group\"`](#role-group)\n- [`aria-labelledby` & `aria-describedby`](#aria-labelledby--aria-describedby)\n- [`aria-label` & `aria-hidden`](#aria-label--aria-hidden)\n\n#### `role=\"group\"`\n\nThis role should be set on the parent `<div>`:\n```diff\n-<div class=\"o-forms-field\">\n+<div class=\"o-forms-field\" role=\"group\">\n\t...\n</div>\n```\nThis denominates the `<div>` as the element that holds a group of inputs, similar to the behaviour of a `<fieldset>`.  \n[According to MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_group_role): \n>'A group should be used to form a logical collection of items with related functionality ...'\n\n#### `aria-labelledby` & `aria-describedby`\nThis attribute should also be added to the parent `<div>`. It accepts an id, which should be set on `<span class=\"o-forms-title__main\">`:\n```diff\n-<div class=\"o-forms-field\">\n+<div class=\"o-forms-field\" role=\"group\" aria-labelledby=\"example-group-title\">\n\t<span class=\"o-forms-title\">\n-\t\t<span class=\"o-forms-title__main\">Group Title</span>\n+\t\t<span class=\"o-forms-title__main\" id=\"example-group-title\">Group Title</span>\n\t\t<span class=\"o-forms-title__prompt\">Group info</span>\n\t</span>\n\t...\n</div>\n```\n\nUsing `aria-labelledby` will help us simulate the behaviour that a `<legend>` is responsible for, which is linking a title to a group. This difference is important because we have more than one input in a group, and each one of those inputs has their own label, independent of the group title. \n\nIf we are using \"prompt\" text to provide further explanation about the group, we should use `aria-describedby`, with an id of its own, to provide that description, e.g.:\n```diff\n-<div class=\"o-forms-field\" role=\"group\" aria-labelledby=\"example-group-title\">\n+<div class=\"o-forms-field\" role=\"group\" aria-labelledby=\"example-group-title\" aria-describedby=\"example-group-info\">\n\t<span class=\"o-forms-title\">\n\t\t<span class=\"o-forms-title__main\" id=\"example-group-title\">Group Title</span>\n-\t\t<span class=\"o-forms-title__prompt\">Group info</span>\n+\t\t<span class=\"o-forms-title__prompt\" id=\"example-group-info\">Group info</span>\n\t\t...\n\t</span>\n\t...\n</div>\n```\n\n`aria-labelledby` and `aria-describedby` are similar attributes, though semantically they provide different functionality.\nYou can [read more about them on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute):\n\n>A label provides essential information about an object, while a description provides extended information that the user might need.\n\n#### `aria-label` & `aria-hidden`\n\nIndependently of whether or not a group of inputs is in a `<fieldset>` or a `<div>`, their structure exhibits a peculiar type of behaviour: AT will focus on the `<input>`, read out its label, and then focus on the label text, and read that out again. To avoid focusing on the label to provide a more natural 'tabbing' experience, we recommend combining `aria-label` and `aria-hidden` on the grouped inputs:\n\n```diff\n<label>\n-\t<input type=\"checkbox\" name=\"default\" value=\"checkbox1\" checked=>\n+\t<input type=\"checkbox\" name=\"default\" value=\"checkbox1\" checked aria-label=\"Checkbox 1\">\n-\t<span class=\"o-forms-input__label\">Checkbox 1</span>\n+\t<span class=\"o-forms-input__label\" aria-hidden=\"true\">Checkbox 1</span>\n</label>\n```\n\nBy defining what the label of the input is and hiding the actual label from the AT, we'll make the transition between inputs far smoother. \n\n_Note 1: `aria-label` also accepts an id if you would rather set an id on the input's label_\n\n_Note 2: `aria-hidden` is sometimes used as a CSS selector to visually hide/show elements. However, it's primary functionality is to hide the contents of an element from the AT_\n\n\n#### Example\n\nPutting everything we've just seen together, our multiple input field should look like this:\n```html\n<div class=\"o-forms-field\" role=\"group\" aria-labelledby=\"example-group-title\" aria-describedby=\"example-group-info\">\n\t<span class=\"o-forms-title\">\n\t\t<span class=\"o-forms-title__main\" id=\"example-group-title\">Group Title</span>\n\t\t<span class=\"o-forms-title__prompt\" id=\"example-group-info\">Group Info</span>\n\t</span>\n\t<span class=\"o-forms-input o-forms-input--checkbox\">\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox1\" checked aria-label=\"Checkbox 1\">\n\t\t\t<span class=\"o-forms-input__label\" aria-hidden=\"true\">Checkbox 1</span>\n\t\t</label>\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox2\" checked aria-label=\"Checkbox 2\">\n\t\t\t<span class=\"o-forms-input__label\" aria-hidden=\"true\">Checkbox 2</span>\n\t\t</label>\n\t\t<label>\n\t\t\t<input type=\"checkbox\" name=\"default\" value=\"checkbox3\" checked aria-label=\"Checkbox 3\">\n\t\t\t<span class=\"o-forms-input__label\" aria-hidden=\"true\">Checkbox 3</span>\n\t\t</label>\n\t<span>\n</div>\n```\n\n## Form Validation\n\n_Phew_. Now that we've covered static attributes for our form elements, let's jump into dynamic form validation. There are many approaches to validating in an accessible way, and none are infallible due to the nature of ATs, but we'll cover what we've considered so far.\n\n#### Native browser validation\n\nBrowsers have native form validation. This could mean different implementation details for different browsers, but overall, a browser will check input fields in a form against the [ValidityState interface](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState), which checks for pattern matches, whether input is present in a required field, among a few other conditions.\n\nThis means that invalid inputs will recieve messages tailored to describe the condition that has _not_ been met. These messages are presented in the language that the user has chosen for their browser. In addition to that, the browser will shift focus onto the first invalid input. Depending on the browser, the AT will read out the generated error message. \n\nThe main problem with this approach is that there is no guarantee that the experience is consistent. Since browsers process this information differently and interact with screen readers differently, relying on native validation could lead to confusing behaviour for ATs. \n\n\n#### Non native validation\n\nWe do _not_ style the tool tip that the browser's message appears in, so frequently forms are given the `novalidate` attribute, which doesn't run any native validation on submit. This means that the messages can be overriden and styled according to the FT's design and the behaviour determined by the product's needs.\n\nPrimarily because of this, we've chosen to default to non-native validation, using [custom errors](./README.md#custom-errors) and to producing an [error summary](#error-summary) instead.\n\n#### `aria-live` regions\n\nAt its core, `aria-live` is an attribute that can be set to an area of a document to denote that the AT should announce changes to that area. It is possible to determine what kind of changes it should recognise (additions, changes to text, etc), how forceful it should be in informing the user of the change (polite, assertive), alongside a few more advanced features.\n\n`o-forms` cannot handle this attribute for you, and it can create an incoherent experience across browsers, so we generate an [error summary](#error-summary) instead.\n\nIf you choose not to use the error summary functionality that comes with `o-forms`, please consider adding the `aria-live` attribute to your markup, keeping the following in mind:\n- this attribute accepts three politeness settings: off, polite or assertive. We recommend using polite, which will avoid interfering with any other actions the AT may be reading out.\n- `aria-live` needs to be set on the markup so that the AT can register it when the document loads. Dynamically added regions won't be recognised. \n\t- this means `o-forms` cannot add it to a form or its elements\n- it shoud **not** be set to the document `<body>`, as it could overrun the AT with unnecessary information. \n\t- in forms with many inputs we might end up with many live regions\n- the information a region relays can get lost or confusing amidst a users interaction with the page\n\t- the validation–and change to the region–could happen on blur, on change, on input, on submit, &c\n\nYou can read more about [`aria-live` on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions).\n\n#### Error summary\n\nGDS has a [very good reference](https://design-system.service.gov.uk/components/error-summary/) for error handling.\n\nOverall, it outlines that:\n- There should be a summary of errors at the top of a page\n- The focus should be shifted to that summary\n- Each error should link to the input that is invalid\n- Each invalid input should *also* have the error beneath/beside/above it\n\nThis means that not only will ATs have clear access to what has happend on the page, but it will be clear for any other user of the product's form.\n\n`o-forms` implements this behaviour for you if the [error summary options is enabled](./README#form-instance)\n\nIf you would like help implementing anything you've read here, please [get in touch with the team](./README.md#contact). \n"
     },
@@ -1993,7 +2313,7 @@ exports['occ o-forms@7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] =
         "isSocket": false
       },
       "path": "MIGRATION.md",
-      "contents": "\n## Migration Guide\n\n### Migrating from v6 to v7\n\nVersion 7 introduces a complete redesign to the `o-forms` markup, Sass and JavaScript API, and makes small design changes and additions.\n\nAll Sass mixins have been removed, and have been replaced with two public mixins:\n- `oForms()`\n- `oFormsAddCustom()`\n\nThe primary mixin makes an options map public, which allows you to output styles specific to the elements that you want to use in your form. `o-forms` [no longer supports custom classes](https://github.com/Financial-Times/origami-proposals/issues/4). \n\nThe following example would output small text inputs and regular checkboxes:\n\n```diff\n-@include oFormsBaseFeatures();\n-@include oFormsRadioCheckboxFeatures();\n-@include oFormsSmallFeature();\n\n+@include oForms($opts: (\n+\t'elements': (\n+\t\t'text', \n+\t\t'checkbox'\n+\t),\n+\t'features': (\n+\t\t'small'\n+\t)\n+))\n```\n\nThe customisation mixin outputs a custom modifier, and can be applied as follows:\n```diff\n-.o-forms__radio-button.o-forms__radio-button--my-theme {\n-\t@include oFormsRadioButtonsStyledTheme($theme: $my-theme);\n-}\n\n+@include oFormsAddCustom(\n+\t$input: 'radio',\n+\t$class: 'my-theme',\n+\t$theme: $my-theme\n+);\n\n// the custom class modifier will be: .o-forms-input--my-theme\n```\n\nThe markup has been changed entirely to accomodate the following structure:\n```\n┌— field container (.o-forms-field) —————┐\n|      (one of div or label)             |\n|                                        |\n|  ┌ title container (.o-forms-title) ┐  |\n|  |    (group titles or              |  |\n|  |     individual input labels)     |  |\n|  └——————————————————————————————————┘  |\n|                                        |\n|  ┌ input container (.o-forms-input) ┐  |\n|  |    (group inputs or              |  |\n|  |     individual inputs)           |  |\n|  └——————————————————————————————————┘  |\n└————————————————————————————————————————┘\n```\n\nThe root `o-forms` class is no longer used. Instead, there are modifiers for each type of container (field, title, input) illustrated above, and some modifiers that only work for specific inputs:\n- Field container modifiers:\n\t- `.o-forms-field--optional`\n\t- `.o-forms-field--inline`\n\t- `.o-forms-field--inverse`\n- Title container modifiers:\n\t- `.o-forms-title`\n\t- `.o-forms-title--shrink`\n\t- `.o-forms-title--vertical-center`\n- Input container modifiers:\n\t- `.o-forms-input--pseudo-radio-box`\n\t- `.o-forms-input--checkbox`\n\t- `.o-forms-input--date`\n\t- `.o-forms-input--inline`\n\t- `.o-forms-input--invalid`\n\t- `.o-forms-input--radio-box`\n\t- `.o-forms-input--radio-round`\n\t- `.o-forms-input--select`\n\t- `.o-forms-input--text-area`\n\t- `.o-forms-input--text-input`\n\t- `.o-forms-input--toggle`\n\t- `.o-forms-input--valid`\n\n\nThe JavaScript for `o-forms` now accepts two options:\n- `useBrowserValidation`: whether to use the browsers validtion and error messages. Defaults to `false`\n- `errorSummary`: whether to display a summary of invalid fields on form submit. Defaults to `true`\n\n### Migrating from v5 to v6\nVersion 6 uses a new major version of o-loading. Make sure your project is compatible with o-loading@3.0.0\n\n### Migrating from v4 to v5\n\nVersion 5 makes some design improvements including tightening up the spacing around checkboxes and radio buttons. It also provides many [new mixins](#sass) to make it easier to output `o-forms` features granularly.\n\n#### Checkboxes & Radios\n- Wrap groups of checkboxes and radios in `.o-forms__group` for correct vertical spacing.\n- `oFormsRadioCheckbox` no longer outputs all styles for checkboxes and radios, only what is shared between them. Use `oFormsRadioCheckboxFeatures` instead.\n- It is no longer possible to modify the complete selector of radios, checkboxes, or their labels. The base `.o-forms` class may still be updated using the `$class` argument.\n\n#### Prefix, Suffix\n- Prefixes have been removed entirely. We recommend using additional label information and feedback in form validation instead.\n- Suffix buttons now use standard `o-buttons` styling.\n- Check your uses of suffixs still display correctly. In the case of button suffixes it may be necessary to apply the extra `o-buttons` classes `.o-buttons--secondary` and `.o-buttons--big`.\n- The mixins `oFormsAffixButton`, `oFormsAffixCheckbox`, `oFormsPrefixSuffix` have been removed. Use `oFormsSuffixFeature` for suffix classes including the affix wrapper (as documented above).\n\n#### Toggles\n- `.o-forms__checkbox-toggle` has been renamed `.o-forms__toggle`.\n- The `oFormsCheckboxToggleSize` mixin has been removed due to lack of use.\n\n#### Wrappers and Messages\n- Wrappers have been renamed to sections. Their class names have also been updated to conform to the BEM naming convention (as optional containers their name should not contain `__` as they are not elements of a block).\n\t- `.o-forms__wrapper` becomes `.o-forms-section`.\n\t- `.o-forms__wrapper--highlight` becomes `.o-forms-section--highlight`.\n\t- `.o-forms__wrapper--error` which becomes `.o-forms-section--error`.\n\t- The `oFormsMessage` mixin now only outputs minimal message styles, uses should be replaced with `oFormsSectionFeature`.\n- Messages are now child elements of a section and must not be used independently.\n\t- Wrap messages within a form section `.o-forms-section` if they are not already. They should be the first child of the section.\n\t- Remove the class `.o-forms__message--error`. A message now infers that it is an error message based on its parent section `.o-forms-section--error`.\n\n#### Other changes\n- `oFormsFullWidth` has been removed. Use `oFormsWideFeature` for classes to remove form max width restrictions.\n- There is a new dependancy on `o-icons`. Build your project to confirm that it is compatible.\n\nPlease [contact us](#contact) if you have any queries.\n\n### Migrating from v3 to v4\n- A dependency on [o-typography](http://github.com/financial-times/o-typography) v5 has been introduced. This will break any builds that use o-typography <v5. __Resolution__: Update to o-typography v5.\n- The o-colors dependency has been updated to `^4`. This could create bower conflicts which should be resolved by updating to the newest release of o-colors.\n- The design for o-forms has changed in v4. This could create issues on your pages which make use of o-forms. Ensure that the updated design does not break the layout on your webpage.\n\n----\n\n### Migrating from v2 to v3\n\nThe main change in `v2` is that classes provided by `o-forms` now conform more strictly to the [BEM naming convention][bem]. All form field classes now follow the element convention, so `o-forms-text` is now `o-forms__text`.\n\nThere is also now a main block class of `o-forms` which replaces the previous `o-forms-group` class. Full class changes are below:\n\n- `o-forms-group` becomes `o-forms`\n- Search templates for `o-forms-xxxxx` and replace with `o-forms__xxxxx`\n\nAn example of the changes should be:\n\n```diff\n-<div class=\"o-forms-group\">\n+<div class=\"o-forms\">\n\n-<label class=\"o-forms-label\"></label>\n+<label class=\"o-forms__label\"></label>\n\n-<input type=\"radio\" class=\"o-forms-radio\" />\n+<input type=\"radio\" class=\"o-forms__radio\" />\n\n-<input type=\"checkbox\" class=\"o-forms-checkbox\" />\n+<input type=\"checkbox\" class=\"o-forms__checkbox\" />\n\n-<input type=\"text\" class=\"o-forms-text\" />\n+<input type=\"text\" class=\"o-forms__text\" />\n```\n\nAny modifier classes like `o-forms--error` have remained the same.\n\n\n### Migrating to v1\n\n#### 1. Module name change\n\n`o-ft-forms` becomes `o-forms` in v1.\n\n1. Search `o-ft-forms` and replace with `o-forms`\n2. Search `oFtForms` and replace with `oForms`\n\n#### 2. Web fonts and icons\n\nIn the v0.x.x of o-forms, the module loaded webfonts itself and was setting its own font-family.\n\nThe module now inherits the `font-family` set in your application and doesn't embed web fonts anymore.\n\nSolution: products must load webfonts themselves (tipically, with [o-fonts](https://github.com/Financial-Times/o-fonts) and [o-ft-icons](https://github.com/Financial-Times/o-ft-icons)).\n\n```html\n<!-- Load web fonts and icons with @font-face declarations  -->\n<link rel=\"stylesheet\" href=\"https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-fonts@^3.0.0,o-icons@^5.0.0\" />\n\n<!-- Set the font family on the whole document -->\n<style>\n\thtml {\n\t\tfont-family: BentonSans, sans-serif;\n\t}\n</style>\n```\n\n\n#### 3. Helper classes name changes\n\nThe most important change is with input elements, that now have their own classes:\n\n```diff\n-<input type=\"radio\" class=\"o-ft-forms__field\" />\n+<input type=\"radio\" class=\"o-forms-radio\" />\n\n-<input type=\"checkbox\" class=\"o-ft-forms__field\" />\n+<input type=\"checkbox\" class=\"o-forms-checkbox\" />\n\n-<input type=\"text\" class=\"o-ft-forms__field\" />\n+<input type=\"text\" class=\"o-forms-text\" />\n```\n\n- `o-ft-forms__field-group` > `o-forms-group`\n- `o-ft-forms__field--textarea` becomes `o-forms-textarea`\n- `o-ft-forms__field--select` becomes `o-forms-select`\n- Any `o-ft-forms__xxxx` becomes `o-forms-xxxx`\n- Search templates for `o-ft-forms__global-message--error` and replace with `o-forms-message o-forms-message--error`\n- Search templates for `o-forms-error-wrapper` and replace with `o-forms-wrapper o-forms-wrapper--error`\n\n`o-ft-forms__section` is deprecated: sections (previously `<fieldset class=\"o-ft-forms__section\">`) have to be styled at a product level. Since fieldsets have browser-specific styling issues, prefer `<div>` elements.\n\n#### 4. Mixins and placeholder classes\n\nIf using placeholder classes or extending styles using `oFormsClass` and `oFormsPlaceholderOptionalSelector`, use normal selectors, and include the matching mixins, documented in the [SassDoc documentation of the module](http://sassdoc.webservices.ft.com/v1/sassdoc/o-forms).\n"
+      "contents": "\n## Migration Guide\n\n### Migrating from v6 to v7\n\nVersion 7 introduces a complete redesign to the `o-forms` markup, Sass and JavaScript API, and makes small design changes and additions.\n\nAll Sass mixins have been removed, and have been replaced with two public mixins:\n- `oForms()`\n- `oFormsAddCustom()`\n\nThe primary mixin makes an options map public, which allows you to output styles specific to the elements that you want to use in your form. `o-forms` [no longer supports custom classes](https://github.com/Financial-Times/origami/issues/4). \n\nThe following example would output small text inputs and regular checkboxes:\n\n```diff\n-@include oFormsBaseFeatures();\n-@include oFormsRadioCheckboxFeatures();\n-@include oFormsSmallFeature();\n\n+@include oForms($opts: (\n+\t'elements': (\n+\t\t'text', \n+\t\t'checkbox'\n+\t),\n+\t'features': (\n+\t\t'small'\n+\t)\n+))\n```\n\nThe customisation mixin outputs a custom modifier, and can be applied as follows:\n```diff\n-.o-forms__radio-button.o-forms__radio-button--my-theme {\n-\t@include oFormsRadioButtonsStyledTheme($theme: $my-theme);\n-}\n\n+@include oFormsAddCustom(\n+\t$input: 'radio',\n+\t$class: 'my-theme',\n+\t$theme: $my-theme\n+);\n\n// the custom class modifier will be: .o-forms-input--my-theme\n```\n\nThe markup has been changed entirely to accomodate the following structure:\n```\n┌— field container (.o-forms-field) —————┐\n|      (one of div or label)             |\n|                                        |\n|  ┌ title container (.o-forms-title) ┐  |\n|  |    (group titles or              |  |\n|  |     individual input labels)     |  |\n|  └——————————————————————————————————┘  |\n|                                        |\n|  ┌ input container (.o-forms-input) ┐  |\n|  |    (group inputs or              |  |\n|  |     individual inputs)           |  |\n|  └——————————————————————————————————┘  |\n└————————————————————————————————————————┘\n```\n\nThe root `o-forms` class is no longer used. Instead, there are modifiers for each type of container (field, title, input) illustrated above, and some modifiers that only work for specific inputs:\n- Field container modifiers:\n\t- `.o-forms-field--optional`\n\t- `.o-forms-field--inline`\n\t- `.o-forms-field--inverse`\n- Title container modifiers:\n\t- `.o-forms-title`\n\t- `.o-forms-title--shrink`\n\t- `.o-forms-title--vertical-center`\n- Input container modifiers:\n\t- `.o-forms-input--pseudo-radio-box`\n\t- `.o-forms-input--checkbox`\n\t- `.o-forms-input--date`\n\t- `.o-forms-input--inline`\n\t- `.o-forms-input--invalid`\n\t- `.o-forms-input--radio-box`\n\t- `.o-forms-input--radio-round`\n\t- `.o-forms-input--select`\n\t- `.o-forms-input--text-area`\n\t- `.o-forms-input--text-input`\n\t- `.o-forms-input--toggle`\n\t- `.o-forms-input--valid`\n\n\nThe JavaScript for `o-forms` now accepts two options:\n- `useBrowserValidation`: whether to use the browsers validtion and error messages. Defaults to `false`\n- `errorSummary`: whether to display a summary of invalid fields on form submit. Defaults to `true`\n\n### Migrating from v5 to v6\nVersion 6 uses a new major version of o-loading. Make sure your project is compatible with o-loading@3.0.0\n\n### Migrating from v4 to v5\n\nVersion 5 makes some design improvements including tightening up the spacing around checkboxes and radio buttons. It also provides many [new mixins](#sass) to make it easier to output `o-forms` features granularly.\n\n#### Checkboxes & Radios\n- Wrap groups of checkboxes and radios in `.o-forms__group` for correct vertical spacing.\n- `oFormsRadioCheckbox` no longer outputs all styles for checkboxes and radios, only what is shared between them. Use `oFormsRadioCheckboxFeatures` instead.\n- It is no longer possible to modify the complete selector of radios, checkboxes, or their labels. The base `.o-forms` class may still be updated using the `$class` argument.\n\n#### Prefix, Suffix\n- Prefixes have been removed entirely. We recommend using additional label information and feedback in form validation instead.\n- Suffix buttons now use standard `o-buttons` styling.\n- Check your uses of suffixs still display correctly. In the case of button suffixes it may be necessary to apply the extra `o-buttons` classes `.o-buttons--secondary` and `.o-buttons--big`.\n- The mixins `oFormsAffixButton`, `oFormsAffixCheckbox`, `oFormsPrefixSuffix` have been removed. Use `oFormsSuffixFeature` for suffix classes including the affix wrapper (as documented above).\n\n#### Toggles\n- `.o-forms__checkbox-toggle` has been renamed `.o-forms__toggle`.\n- The `oFormsCheckboxToggleSize` mixin has been removed due to lack of use.\n\n#### Wrappers and Messages\n- Wrappers have been renamed to sections. Their class names have also been updated to conform to the BEM naming convention (as optional containers their name should not contain `__` as they are not elements of a block).\n\t- `.o-forms__wrapper` becomes `.o-forms-section`.\n\t- `.o-forms__wrapper--highlight` becomes `.o-forms-section--highlight`.\n\t- `.o-forms__wrapper--error` which becomes `.o-forms-section--error`.\n\t- The `oFormsMessage` mixin now only outputs minimal message styles, uses should be replaced with `oFormsSectionFeature`.\n- Messages are now child elements of a section and must not be used independently.\n\t- Wrap messages within a form section `.o-forms-section` if they are not already. They should be the first child of the section.\n\t- Remove the class `.o-forms__message--error`. A message now infers that it is an error message based on its parent section `.o-forms-section--error`.\n\n#### Other changes\n- `oFormsFullWidth` has been removed. Use `oFormsWideFeature` for classes to remove form max width restrictions.\n- There is a new dependancy on `o-icons`. Build your project to confirm that it is compatible.\n\nPlease [contact us](#contact) if you have any queries.\n\n### Migrating from v3 to v4\n- A dependency on [o-typography](http://github.com/financial-times/o-typography) v5 has been introduced. This will break any builds that use o-typography <v5. __Resolution__: Update to o-typography v5.\n- The o-colors dependency has been updated to `^4`. This could create bower conflicts which should be resolved by updating to the newest release of o-colors.\n- The design for o-forms has changed in v4. This could create issues on your pages which make use of o-forms. Ensure that the updated design does not break the layout on your webpage.\n\n----\n\n### Migrating from v2 to v3\n\nThe main change in `v2` is that classes provided by `o-forms` now conform more strictly to the [BEM naming convention][bem]. All form field classes now follow the element convention, so `o-forms-text` is now `o-forms__text`.\n\nThere is also now a main block class of `o-forms` which replaces the previous `o-forms-group` class. Full class changes are below:\n\n- `o-forms-group` becomes `o-forms`\n- Search templates for `o-forms-xxxxx` and replace with `o-forms__xxxxx`\n\nAn example of the changes should be:\n\n```diff\n-<div class=\"o-forms-group\">\n+<div class=\"o-forms\">\n\n-<label class=\"o-forms-label\"></label>\n+<label class=\"o-forms__label\"></label>\n\n-<input type=\"radio\" class=\"o-forms-radio\" />\n+<input type=\"radio\" class=\"o-forms__radio\" />\n\n-<input type=\"checkbox\" class=\"o-forms-checkbox\" />\n+<input type=\"checkbox\" class=\"o-forms__checkbox\" />\n\n-<input type=\"text\" class=\"o-forms-text\" />\n+<input type=\"text\" class=\"o-forms__text\" />\n```\n\nAny modifier classes like `o-forms--error` have remained the same.\n\n\n### Migrating to v1\n\n#### 1. Module name change\n\n`o-ft-forms` becomes `o-forms` in v1.\n\n1. Search `o-ft-forms` and replace with `o-forms`\n2. Search `oFtForms` and replace with `oForms`\n\n#### 2. Web fonts and icons\n\nIn the v0.x.x of o-forms, the module loaded webfonts itself and was setting its own font-family.\n\nThe module now inherits the `font-family` set in your application and doesn't embed web fonts anymore.\n\nSolution: products must load webfonts themselves (tipically, with [o-fonts](https://github.com/Financial-Times/o-fonts) and [o-ft-icons](https://github.com/Financial-Times/o-ft-icons)).\n\n```html\n<!-- Load web fonts and icons with @font-face declarations  -->\n<link rel=\"stylesheet\" href=\"https://www.ft.com/__origami/service/build/v2/bundles/css?modules=o-fonts@^3.0.0,o-icons@^5.0.0\" />\n\n<!-- Set the font family on the whole document -->\n<style>\n\thtml {\n\t\tfont-family: BentonSans, sans-serif;\n\t}\n</style>\n```\n\n\n#### 3. Helper classes name changes\n\nThe most important change is with input elements, that now have their own classes:\n\n```diff\n-<input type=\"radio\" class=\"o-ft-forms__field\" />\n+<input type=\"radio\" class=\"o-forms-radio\" />\n\n-<input type=\"checkbox\" class=\"o-ft-forms__field\" />\n+<input type=\"checkbox\" class=\"o-forms-checkbox\" />\n\n-<input type=\"text\" class=\"o-ft-forms__field\" />\n+<input type=\"text\" class=\"o-forms-text\" />\n```\n\n- `o-ft-forms__field-group` > `o-forms-group`\n- `o-ft-forms__field--textarea` becomes `o-forms-textarea`\n- `o-ft-forms__field--select` becomes `o-forms-select`\n- Any `o-ft-forms__xxxx` becomes `o-forms-xxxx`\n- Search templates for `o-ft-forms__global-message--error` and replace with `o-forms-message o-forms-message--error`\n- Search templates for `o-forms-error-wrapper` and replace with `o-forms-wrapper o-forms-wrapper--error`\n\n`o-ft-forms__section` is deprecated: sections (previously `<fieldset class=\"o-ft-forms__section\">`) have to be styled at a product level. Since fieldsets have browser-specific styling issues, prefer `<div>` elements.\n\n#### 4. Mixins and placeholder classes\n\nIf using placeholder classes or extending styles using `oFormsClass` and `oFormsPlaceholderOptionalSelector`, use normal selectors, and include the matching mixins, documented in the [SassDoc documentation of the module](http://sassdoc.webservices.ft.com/v1/sassdoc/o-forms).\n"
     },
     {
       "stats": {
@@ -2573,7 +2893,7 @@ exports['occ o-forms@7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] =
         "isSocket": false
       },
       "path": "package.json",
-      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"files\": [\n\t\t\"svg/\",\n\t\t\"dist/\",\n\t\t\"browser.js\",\n\t\t\"src/\",\n\t\t\"!src/**/*.js\",\n\t\t\"main.scss\",\n\t\t\"img\",\n\t\t\"*.json\",\n\t\t\"*.js\",\n\t\t\"!main.js\",\n\t\t\"scss\",\n\t\t\"!bower.json\",\n\t\t\"!.bower.json\"\n\t],\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-forms\",\n\t\"version\": \"7.0.0\",\n\t\"dependencies\": {\n\t\t\"@financial-times/o-brand\": \"^3.2.3\",\n\t\t\"@financial-times/o-colors\": \"^4.0.1\",\n\t\t\"@financial-times/o-grid\": \"^4.0.0\",\n\t\t\"@financial-times/o-icons\": \"^5.7.0\",\n\t\t\"@financial-times/o-loading\": \"^3.0.0\",\n\t\t\"@financial-times/o-normalise\": \"^1.6.2\",\n\t\t\"@financial-times/o-typography\": \"^5.11.3\"\n\t},\n\t\"component\": \"o-forms\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-forms\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {\n\t\t\"@financial-times/o-brand\": \"^3.2.3\",\n\t\t\"@financial-times/o-colors\": \"^4.0.1\",\n\t\t\"@financial-times/o-grid\": \"^4.0.0\",\n\t\t\"@financial-times/o-icons\": \"^5.7.0\",\n\t\t\"@financial-times/o-loading\": \"^3.0.0\",\n\t\t\"@financial-times/o-normalise\": \"^1.6.2\",\n\t\t\"@financial-times/o-typography\": \"^5.11.3\"\n\t},\n\t\"component\": \"o-forms\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {},\n\t\"devDependencies\": {}\n}\n"
     },
     {
       "stats": {
@@ -2998,7 +3318,7 @@ exports['occ o-forms@7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] =
   ]
 }
 
-exports['occ o-table@7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+exports['occ o-table-7.0.0 o-table-7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
   "contents": [
     {
       "stats": {
@@ -3019,6 +3339,16 @@ exports['occ o-table@7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'
       },
       "path": ".circleci/config.yml",
       "contents": "version: 2\njobs:\n  test:\n    docker:\n      - image: circleci/node:8-browsers\n    steps:\n      - checkout\n      - run:\n          name: Ensure package.json exists for caching\n          command: if [[ ! -f package.json ]]; then echo \"{}\" > package.json; fi\n      - restore_cache:\n          key: dependency-cache-{{ checksum \"package.json\" }}-{{ checksum \"bower.json\" }}\n      - run:\n          name: Install dependencies\n          command: npx origami-build-tools@^7 install\n      - save_cache:\n          key: dependency-cache-{{ checksum \"package.json\" }}-{{ checksum \"bower.json\" }}\n          paths:\n            - node_modules\n            - bower_components\n      - run:\n          name: Build accessibility testing demo\n          command: npx origami-build-tools@^7 demo --demo-filter pa11y --suppress-errors\n      - run:\n          name: Run linters\n          command: npx origami-build-tools@^7 verify\n      - run:\n          name: Run tests\n          command: npx origami-build-tools@^7 test\nworkflows:\n  version: 2\n  test:\n    jobs:\n      - test\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": ".gitignore\nbuild\ntest\nkarma.conf.js\npackage.json.idea/\n.jshintrc\n.sass-cache/\nbower_components/\nbuild/\ndemos/local/\nnode_modules/\n.editorconfig\n.DS_Store\n"
     },
     {
       "stats": {
@@ -3478,7 +3808,7 @@ exports['occ o-table@7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'
         "isSocket": false
       },
       "path": "package.json",
-      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"files\": [\n\t\t\"svg/\",\n\t\t\"dist/\",\n\t\t\"browser.js\",\n\t\t\"src/\",\n\t\t\"!src/**/*.js\",\n\t\t\"main.scss\",\n\t\t\"img\",\n\t\t\"*.json\",\n\t\t\"*.js\",\n\t\t\"!main.js\",\n\t\t\"scss\",\n\t\t\"!bower.json\",\n\t\t\"!.bower.json\"\n\t],\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-table\",\n\t\"version\": \"7.0.0\",\n\t\"dependencies\": {\n\t\t\"@financial-times/o-colors\": \"^4.0.0\",\n\t\t\"@financial-times/o-grid\": \"^4.0.6\",\n\t\t\"@financial-times/o-icons\": \">=4.0.0 <6\",\n\t\t\"@financial-times/o-typography\": \"^5.0.0\",\n\t\t\"@financial-times/o-brand\": \"^3.1.1\",\n\t\t\"@financial-times/o-visual-effects\": \"^2.0.3\",\n\t\t\"@financial-times/o-buttons\": \"^5.14.0\",\n\t\t\"dom-delegate\": \"^2.2.0\"\n\t},\n\t\"component\": \"o-table\",\n\t\"scripts\": {\n\t\t\"heroku-postbuild\": \"npx origami-build-tools install && npm i serve && npx origami-build-tools demo\",\n\t\t\"start\": \"serve -l $PORT\"\n\t},\n\t\"devDependencies\": {}\n}\n"
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-table\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {\n\t\t\"@financial-times/o-colors\": \"^4.0.0\",\n\t\t\"@financial-times/o-grid\": \"^4.0.6\",\n\t\t\"@financial-times/o-icons\": \">=4.0.0 <6\",\n\t\t\"@financial-times/o-typography\": \"^5.0.0\",\n\t\t\"@financial-times/o-brand\": \"^3.1.1\",\n\t\t\"@financial-times/o-visual-effects\": \"^2.0.3\",\n\t\t\"@financial-times/o-buttons\": \"^5.14.0\",\n\t\t\"dom-delegate\": \"^2.2.0\"\n\t},\n\t\"component\": \"o-table\",\n\t\"scripts\": {\n\t\t\"heroku-postbuild\": \"npx origami-build-tools install && npm i serve && npx origami-build-tools demo\",\n\t\t\"start\": \"serve -l $PORT\"\n\t},\n\t\"devDependencies\": {}\n}\n"
     },
     {
       "stats": {
@@ -3993,7 +4323,7 @@ exports['occ o-table@7.0.0 without CIRCLE_REPOSITORY_URL set matches snapshot 1'
   ]
 }
 
-exports['occ o-table@7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
+exports['occ o-table-7.0.0 o-table-7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] = {
   "contents": [
     {
       "stats": {
@@ -4014,6 +4344,16 @@ exports['occ o-table@7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] =
       },
       "path": ".circleci/config.yml",
       "contents": "version: 2\njobs:\n  test:\n    docker:\n      - image: circleci/node:8-browsers\n    steps:\n      - checkout\n      - run:\n          name: Ensure package.json exists for caching\n          command: if [[ ! -f package.json ]]; then echo \"{}\" > package.json; fi\n      - restore_cache:\n          key: dependency-cache-{{ checksum \"package.json\" }}-{{ checksum \"bower.json\" }}\n      - run:\n          name: Install dependencies\n          command: npx origami-build-tools@^7 install\n      - save_cache:\n          key: dependency-cache-{{ checksum \"package.json\" }}-{{ checksum \"bower.json\" }}\n          paths:\n            - node_modules\n            - bower_components\n      - run:\n          name: Build accessibility testing demo\n          command: npx origami-build-tools@^7 demo --demo-filter pa11y --suppress-errors\n      - run:\n          name: Run linters\n          command: npx origami-build-tools@^7 verify\n      - run:\n          name: Run tests\n          command: npx origami-build-tools@^7 test\nworkflows:\n  version: 2\n  test:\n    jobs:\n      - test\n"
+    },
+    {
+      "stats": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymbolicLink": false,
+        "isSocket": false
+      },
+      "path": ".npmignore",
+      "contents": ".gitignore\nbuild\ntest\nkarma.conf.js\npackage.json.idea/\n.jshintrc\n.sass-cache/\nbower_components/\nbuild/\ndemos/local/\nnode_modules/\n.editorconfig\n.DS_Store\n.gitignore\nbuild\ntest\nkarma.conf.js\npackage.json.idea/\n.jshintrc\n.sass-cache/\nbower_components/\nbuild/\ndemos/local/\nnode_modules/\n.editorconfig\n.DS_Store\n"
     },
     {
       "stats": {
@@ -4473,7 +4813,7 @@ exports['occ o-table@7.0.0 with CIRCLE_REPOSITORY_URL set matches snapshot 1'] =
         "isSocket": false
       },
       "path": "package.json",
-      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"files\": [\n\t\t\"svg/\",\n\t\t\"dist/\",\n\t\t\"browser.js\",\n\t\t\"src/\",\n\t\t\"!src/**/*.js\",\n\t\t\"main.scss\",\n\t\t\"img\",\n\t\t\"*.json\",\n\t\t\"*.js\",\n\t\t\"!main.js\",\n\t\t\"scss\",\n\t\t\"!bower.json\",\n\t\t\"!.bower.json\"\n\t],\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-table\",\n\t\"version\": \"7.0.0\",\n\t\"dependencies\": {\n\t\t\"@financial-times/o-colors\": \"^4.0.0\",\n\t\t\"@financial-times/o-grid\": \"^4.0.6\",\n\t\t\"@financial-times/o-icons\": \">=4.0.0 <6\",\n\t\t\"@financial-times/o-typography\": \"^5.0.0\",\n\t\t\"@financial-times/o-brand\": \"^3.1.1\",\n\t\t\"@financial-times/o-visual-effects\": \"^2.0.3\",\n\t\t\"@financial-times/o-buttons\": \"^5.14.0\",\n\t\t\"dom-delegate\": \"^2.2.0\"\n\t},\n\t\"component\": \"o-table\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {\n\t\t\"heroku-postbuild\": \"npx origami-build-tools install && npm i serve && npx origami-build-tools demo\",\n\t\t\"start\": \"serve -l $PORT\"\n\t},\n\t\"devDependencies\": {}\n}\n"
+      "contents": "{\n\t\"browser\": \"browser.js\",\n\t\"eslintIgnore\": [\n\t\t\"browser.js\",\n\t\t\"dist/\"\n\t],\n\t\"keywords\": [\n\t\t\"origami\",\n\t\t\"component\",\n\t\t\"ft\"\n\t],\n\t\"name\": \"@financial-times/o-table\",\n\t\"version\": \"0.0.0\",\n\t\"dependencies\": {\n\t\t\"@financial-times/o-colors\": \"^4.0.0\",\n\t\t\"@financial-times/o-grid\": \"^4.0.6\",\n\t\t\"@financial-times/o-icons\": \">=4.0.0 <6\",\n\t\t\"@financial-times/o-typography\": \"^5.0.0\",\n\t\t\"@financial-times/o-brand\": \"^3.1.1\",\n\t\t\"@financial-times/o-visual-effects\": \"^2.0.3\",\n\t\t\"@financial-times/o-buttons\": \"^5.14.0\",\n\t\t\"dom-delegate\": \"^2.2.0\"\n\t},\n\t\"component\": \"o-table\",\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t\"url\": \"https://origami.ft.com\"\n\t},\n\t\"scripts\": {\n\t\t\"heroku-postbuild\": \"npx origami-build-tools install && npm i serve && npx origami-build-tools demo\",\n\t\t\"start\": \"serve -l $PORT\"\n\t},\n\t\"devDependencies\": {}\n}\n"
     },
     {
       "stats": {

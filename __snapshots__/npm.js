@@ -1,6 +1,6 @@
 exports['createManifest without a repository parameter creates the same manifest as last time 1'] = {
   "browser": "browser.js",
-	"eslintIgnore": [
+  "eslintIgnore": [
     "browser.js",
     "dist/"
   ],
@@ -21,21 +21,6 @@ exports['createManifest without a repository parameter creates the same manifest
 
 exports['createManifest with a repository parameter creates the same manifest as last time 1'] = {
   "browser": "browser.js",
-  "files": [
-    "svg/",
-    "dist/",
-    "browser.js",
-    "src/",
-    "!src/**/*.js",
-    "main.scss",
-    "img",
-    "*.json",
-    "*.js",
-    "!main.js",
-    "scss",
-    "!bower.json",
-    "!.bower.json"
-  ],
   "eslintIgnore": [
     "browser.js",
     "dist/"
