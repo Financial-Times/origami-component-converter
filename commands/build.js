@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import * as npm from "../lib/npm.js"
 import * as babel from "../lib/babel.js"
+import * as ignore from "../lib/ignore.js"
 import * as fs from "fs-extra"
 import path from "path"
 
@@ -90,6 +91,7 @@ export let handler = async function build(argv) {
 	await npm.writeManifest(npmManifest, npmManifestPath)
 
 	await babel.compile(directory)
+	await ignore.create(directory, npmManifest)
 
 	await npm.writeManifest(npm.cleanManifest(npmManifest), npmManifestPath)
 
