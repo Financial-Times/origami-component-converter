@@ -1,21 +1,6 @@
 exports['skeletons.js is the same as last time 1'] = {
   "browser": "browser.js",
-  "files": [
-    "svg/",
-    "dist/",
-    "browser.js",
-    "src/",
-    "!src/**/*.js",
-    "main.scss",
-    "img",
-    "*.json",
-    "*.js",
-    "!main.js",
-    "scss",
-    "!bower.json",
-    "!.bower.json"
-  ],
-  "eslintIgnore": [
+	"eslintIgnore": [
     "browser.js",
     "dist/"
   ],
