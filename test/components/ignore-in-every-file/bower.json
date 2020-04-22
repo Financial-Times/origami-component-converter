@@ -1,0 +1,7 @@
+{
+	"name": "ignore-in-every-file",
+	"ignore": [
+		"1-bower",
+		"2-bower"
+	]
+}
