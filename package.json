@@ -9,13 +9,14 @@
   "dependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
+    "@financial-times/origami-repo-data-client": "^1.6.3",
     "babel-plugin-add-module-exports": "^1.0.0",
     "esm": "^3.2.4",
     "fs-extra": "^7.0.1",
     "just-merge": "^1.1.0",
     "semver": "^5.6.0",
-    "yargs": "^13.1.0",
-    "snyk": "^1.316.2"
+    "snyk": "^1.316.2",
+    "yargs": "^13.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
