@@ -24,7 +24,7 @@
     "directory-snapshot": "0.0.5",
     "eslint": "^7.3.1",
     "eslint-config-origami-component": "^1.0.0",
-    "mocha": "^5.2.0",
+    "mocha": "^8.0.1",
     "o-spec-compliant-bower-config": "github:Financial-Times/o-test-component#v1.0.29",
     "prettier": "^2.0.5",
     "snap-shot-it": "^7.8.0"
