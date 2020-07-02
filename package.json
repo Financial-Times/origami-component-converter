@@ -12,7 +12,7 @@
     "@financial-times/origami-repo-data-client": "^1.6.3",
     "babel-plugin-add-module-exports": "^1.0.0",
     "esm": "^3.2.4",
-    "fs-extra": "^7.0.1",
+    "fs-extra": "^9.0.1",
     "just-merge": "^1.1.0",
     "semver": "^7.3.2",
     "snyk": "^1.350.0",
