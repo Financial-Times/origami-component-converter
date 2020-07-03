@@ -3,8 +3,6 @@ name: npm audit fix
 on:
   schedule:
     - cron: 0 10 * * * # Runs at 10:00 UTC every day
-  push:
-    branches: master
 
 jobs:
   npm-audit-fix:
