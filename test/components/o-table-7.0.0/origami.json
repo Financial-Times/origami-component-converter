@@ -14,9 +14,6 @@
 		"slack": "financialtimes/ft-origami"
 	},
 	"supportStatus": "active",
-	"ci": {
-		"circle": "https://circleci.com/api/v1/project/Financial-Times/o-table"
-	},
 	"browserFeatures": {
 		"required": [
 			"IntersectionObserver",

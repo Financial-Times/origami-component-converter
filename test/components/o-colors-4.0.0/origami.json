@@ -11,9 +11,6 @@
 		"js": "demos/src/demo.js",
 		"dependencies": "o-buttons@^4.5.4"
 	},
-	"ci": {
-		"circle": "https://circleci.com/api/v1/project/Financial-Times/o-colors"
-	},
 	"demos": [
 		{
 			"name": "palette",
