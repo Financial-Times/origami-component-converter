@@ -1,4 +1,4 @@
-# o-colors [![Build Status](https://circleci.com/gh/Financial-Times/o-colors.png?style=shield&circle-token=0d3884dacba2fdd8aec8afbd2eaa84c79040ddd5)](https://circleci.com/gh/Financial-Times/o-colors)
+# o-colors
 
 The color palette for the FT masterbrand and sub-brand products.
 
