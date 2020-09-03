@@ -19,3 +19,5 @@ rules:
     - allow:
       - error
       - info
+  no-await-in-loop:
+    - off
