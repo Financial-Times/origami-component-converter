@@ -42,8 +42,7 @@ export let builder = yargs =>
  * Take the bower.json from the directory, and generate a package.json (including aliases)
  * Then compile that javascript from `src` to `dist`, rewriting the aliases
  * Then remove the aliases from the manifest
- * @param {{directory: string, semver: string}} argv the arguments understood by yargs
- * @returns {undefined}
+ * @returns {Promise.<void>} promise which resolves when the npm version has been built
  */
 export let handler = async function build(argv) {
 	let {name, directory, semver: version} = argv
