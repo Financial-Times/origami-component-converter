@@ -35,7 +35,7 @@ let {stdin, stdout} = process
 /**
  * Take a bower.json on `STDIN` and print a package.json on `STDOUT`
  *
- * @param {{includeAliases: boolean, semver: string}} argv the argv created by yargs
+ * @param {{includeAliases: boolean, semver: string, repository:? string}} argv the argv created by yargs
  * @returns {Promise.<void>}
  */
 export let handler = async function(argv) {
