@@ -45,7 +45,9 @@ export let handler = async function(argv) {
 	stdin.resume()
 	stdin.setEncoding("utf-8")
 
-	stdin.on("data", chunk => (input += chunk))
+	stdin.on("data", chunk => {
+		input += chunk
+	})
 
 	stdin.on("end", async () => {
 		let bowerManifest = JSON.parse(input)
