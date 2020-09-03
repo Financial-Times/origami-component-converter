@@ -38,6 +38,7 @@ let {stdin, stdout} = process
  * @param {{includeAliases: boolean, semver: string, repository:? string}} argv the argv created by yargs
  * @returns {Promise.<void>}
  */
+// eslint-disable-next-line require-await
 export let handler = async function(argv) {
 	let input = ""
 
