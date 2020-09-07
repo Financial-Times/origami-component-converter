@@ -13,6 +13,7 @@ exports['createManifest without a repository parameter creates the same manifest
   "component": "o-test-component",
   "aliases": {
     "ft-date-format": "@financial-times/ft-date-format",
+    "n-map-content-to-topper": "@financial-times/n-map-content-to-topper",
     "prism": "prismjs",
     "pusher": "pusher-js",
     "hogan": "hogan.js"
@@ -34,6 +35,7 @@ exports['createManifest with a repository parameter creates the same manifest as
   "component": "o-test-component",
   "aliases": {
     "ft-date-format": "@financial-times/ft-date-format",
+    "n-map-content-to-topper": "@financial-times/n-map-content-to-topper",
     "prism": "prismjs",
     "pusher": "pusher-js",
     "hogan": "hogan.js"
