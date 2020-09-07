@@ -2,7 +2,6 @@ exports['createConfiguration creates the correct configuration 1'] = {
   "filename": "",
   "presets": [],
   "plugins": [
-    null,
     null
   ],
   "overrides": [
@@ -29,7 +28,6 @@ exports['createConfiguration creates the correct configuration 2'] = {
   "filename": "",
   "presets": [],
   "plugins": [
-    null,
     null
   ],
   "overrides": [
@@ -83,7 +81,6 @@ exports['createConfiguration creates the correct configuration 4'] = {
   "filename": "",
   "presets": [],
   "plugins": [
-    null,
     null
   ],
   "overrides": [
@@ -110,7 +107,6 @@ exports['createConfiguration creates the correct configuration 5'] = {
   "filename": "lol",
   "presets": [],
   "plugins": [
-    null,
     null
   ],
   "overrides": [
