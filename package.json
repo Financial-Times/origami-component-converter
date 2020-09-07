@@ -23,7 +23,7 @@
     "chai-as-promised": "^7.1.1",
     "directory-snapshot": "0.0.5",
     "eslint": "^7.3.1",
-    "eslint-config-origami-component": "^1.0.0",
+    "eslint-config-origami-component": "^2.1.0",
     "mocha": "^8.0.1",
     "o-spec-compliant-bower-config": "github:Financial-Times/o-test-component#v1.0.29",
     "prettier": "^2.0.5",
