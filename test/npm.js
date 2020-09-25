@@ -125,15 +125,20 @@ describe("createDependencyVersion", () => {
 })
 
 describe("createManifest", () => {
-	context("without a repository parameter", function() {
+	context("without a repository parameter", function () {
 		it("creates the same manifest as last time", async () => {
 			snap(await npm.createManifest(specCompliantBowerConfig))
 		})
 	})
 
-	context("with a repository parameter", function() {
+	context("with a repository parameter", function () {
 		it("creates the same manifest as last time", async () => {
-			snap(await npm.createManifest(specCompliantBowerConfig, "https://origami.ft.com"))
+			snap(
+				await npm.createManifest(
+					specCompliantBowerConfig,
+					"https://origami.ft.com"
+				)
+			)
 		})
 	})
 })

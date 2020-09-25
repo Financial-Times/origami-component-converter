@@ -8,7 +8,7 @@ let components = fs.readdirSync(resolvePath(__dirname, "components"))
 
 components.forEach(item => {
 	describe(`occ ${item}`, () => {
-		context(`${item} without CIRCLE_REPOSITORY_URL set`, function() {
+		context(`${item} without CIRCLE_REPOSITORY_URL set`, function () {
 			it("matches snapshot", async () => {
 				delete process.env.CIRCLE_REPOSITORY_URL
 				let directory = resolvePath(__dirname, "components", item)
@@ -20,7 +20,7 @@ components.forEach(item => {
 			})
 		})
 
-		context(`${item} with CIRCLE_REPOSITORY_URL set`, function() {
+		context(`${item} with CIRCLE_REPOSITORY_URL set`, function () {
 			it("matches snapshot", async () => {
 				process.env.CIRCLE_REPOSITORY_URL = "https://origami.ft.com"
 				let directory = resolvePath(__dirname, "components", item)
