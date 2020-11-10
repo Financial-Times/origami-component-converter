@@ -1,6 +1,6 @@
 {
   "description": "The tool that puts origami components on npm",
-  "origamiType": null,
+  "origamiType": "cli",
   "origamiVersion": 1,
   "keywords": [
     "origami",
