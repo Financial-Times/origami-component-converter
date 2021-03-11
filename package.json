@@ -26,7 +26,7 @@
     "eslint": "^7.20.0",
     "eslint-config-origami-component": "^2.1.1",
     "mocha": "^8.3.0",
-    "o-spec-compliant-bower-config": "github:Financial-Times/o-test-component#v1.0.29",
+    "o-spec-compliant-bower-config": "github:Financial-Times/o-test-component#v2.0.15",
     "prettier": "^2.2.1",
     "snap-shot-it": "^7.9.6"
   },
