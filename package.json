@@ -16,7 +16,7 @@
     "just-merge": "^1.1.0",
     "o-test-component": "github:Financial-Times/o-test-component#v1.0.29",
     "semver": "^7.3.4",
-    "snyk": "^1.425.4",
+    "snyk": "^1.465.0",
     "yargs": "^16.0.0"
   },
   "devDependencies": {
